@@ -30,6 +30,7 @@ git checkout -b
 Todos os projetos começam com um só branch, o master.
 No inicio se já nao tiverem um branch, fazem checkout do master, e criam um para a feature que vão fazer.
 Para quando forem trabalhar
+
   4. git checkout branchXXXXX , porque cada nó da arvóre/branch representa um commit ou seja um estado do projeto, logo só podem sacar um nó de cada vez, não é como se aparecesse em pastas cada branch ou assim
   3. git pull (para terem a versão mais recente dos ficheiros) NOTA: Não podem fazer pull se têm mudanças por farem commit, sou seja, vamos supor um cenário em que estão a trabalhar num branch e vão dormir, sem dar commit, mas entretanto outra pessoas deu push nesse branch. Logo o pull vai-se queixar que vai substituir modificações que fizeram localmente. Assim têm que escolher esses ficheiros com git add e depois dar ou commit, subsituindo o que está no branch, ou stash, para descartarem as modificações para o git assim poder subsituir sem problemas. A primeira coisa que fazem quando fazem checkout de um branch é certificarem-se que têm a versão mais recente, porque se naõ tiverem, podem depois não conseguir fazer commit.
  
