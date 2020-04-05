@@ -1,4 +1,5 @@
-Projeto de PSI
+# Projeto de PSI
+Repositório para o projeto de PSI
 
 INSTRUÇÕES (leiam, senão isto vai dar merda)
 Para começar recomendo fazerem TODOS os tutoriais do learngitbranching.js.org que tambem tem um bom modo sandbox para perceber isto. Aprendam pelo menos sobre Git Rebase.
