@@ -5,8 +5,13 @@ INSTRUÇÕES (leiam, senão isto vai dar merda)
 Para começar recomendo fazerem TODOS os tutoriais do learngitbranching.js.org que tambem tem um bom modo sandbox para perceber isto. Aprendam pelo menos sobre Git Rebase.
 
 Para gerirmos isto de uma forma meio decente, vamos ter que usar branches, e fazer bastantes commits. Aliás o que todos os guias de git dizem, é fazer muitos branches, o mais no inicio possivel, e fazer commits frequentes, para dar rollback mais facilmente.
-Logo façam branches para cada feature basicamente. é tal como quando aprendem a transformar cada coisa do código num método, em vez de poucos métodos maiores, o raciocinio é o mesmo.
+Logo façam branches para cada feature basicamente. é tal como quando aprendem a transformar cada coisa do código num método, em vez de poucos métodos maiores, o raciocinio é o mesmo. O mesmo para os commits, frequentes, por cada coisa.
 Isto é para garantir que mesmo que nós trabalhamos nos mesmos ficheiros, podemos continuar a trabalhar independentemente, e depois podemos dar merge nos branches e combinar o codigo de duas versões do ficheiro numa só (o git tem um mecanismo para tratar de conflictos, em que há codigos diferentes nas mesmas partes/linhas do ficheiro, depois elaboro).
+
+Mais especificamente, neste trabalho de PSI o stor diz explicitamente para fazer um branch por issue de JIRA, mas podem e devem fazer mais.
+É melhor reduzir o tamanho dos merges mesmo que o seu numero aumente. Quantos mais ficheiros entre dois branches em que vao dar merge, maior as chances de correr mal. Ficam grandes confusões. Aliás, manter ficheiros separados nos seus respetivos branches dá o benefício de ser mais fácil passar para outro membro do grupo/branch. Com o sourcetree, em que os commits são fáceis de visualizar, isto nao é tanto necessário, mas faz de conta que alguem faz rapidamente um enum que quer disponiblizar para os outros membros do grupo. Pode fazer um branch para esse enum para os outros ficarem so com esse ficheiro em vez de todos do branch do criador, ou fazer um commit so com esse ficheiro que possa ser visuzliado no sourcetree e dar merge.
+
+Um bom flow de trabalho é começar um branch para um UC, a partir dái para uma classe ou feature mais especifica, e á medida que vão brancheando e acabando ficheiros, ir mergindo de volta para o anterior. Temos que minimizar merges para o master, tentar por lá só código completo e correto. 
 
 Agora vocês a este ponto já devem perceber como funciona o git merge, que é elaborado aqui em baixo: puxam de um branch para fazer uma
 fusão do conteudo do branch atual, com o branch escolhido. Na nossa experiência a PSI, isso às vezes dava problemas, porque não só não
