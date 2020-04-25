@@ -7,49 +7,49 @@ import {MessageService} from './message.service';
 @Injectable({
   providedIn: 'root'
 })
-export class HotelService {
-  private hotelsUrl = 'http://appserver.alunos.di.fc.ul.pt:3010/catalog/books';  // URL to web api
-  private hotelUrl = 'http://appserver.alunos.di.fc.ul.pt:3010/catalog/book';  // URL to web api
+export class QuartoService {
+  private quartosUrl = 'http://appserver.alunos.di.fc.ul.pt:3010/catalog/books';  // URL to web api
+  private quartoUrl = 'http://appserver.alunos.di.fc.ul.pt:3010/catalog/book';  // URL to web api
 
   constructor(
     private http: HttpClient,
     private messageService: MessageService) {
   }
 
-httpOptions = {
+  httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
 
-  /** GET hotels from the server */
-  getHotels(): Observable<any> {
-    return this.http.get<any>(this.hotelsUrl)
+  /** GET quartos from the server */
+  getQuartos(): Observable<any> {
+    return this.http.get<any>(this.quartosUrl)
       .pipe(
         map(res => res),
-        tap(_ => this.log('fetch hotels request sent')),
-        catchError(this.handleError<any>('getHotels', []))
+        tap(_ => this.log('fetch quartos request sent')),
+        catchError(this.handleError<any>('getQuartos', []))
       );
   }
 
-  /** GET hotel by id. Return `undefined` when id not found */
+  /** GET quarto by id. Return `undefined` when id not found */
   getBookNo404<Data>(id: string): Observable<any> {
-    const url = `${this.hotelUrl}/?id=${id}`;
+    const url = `${this.quartoUrl}/?id=${id}`;
     return this.http.get<any>(url)
       .pipe(
-        map(hotels => hotels[0]), // returns a {0|1} element array
+        map(quartos => quartos[0]), // returns a {0|1} element array
         tap(h => {
           const outcome = h ? `fetched` : `did not find`;
-          this.log(`${outcome} hotel id=${id}`);
+          this.log(`${outcome} quarto id=${id}`);
         }),
-        catchError(this.handleError<any>(`getHotel id=${id}`))
+        catchError(this.handleError<any>(`getQuarto id=${id}`))
       );
   }
 
-  /** GET hotel by id. Will 404 if id not found */
+  /** GET quarto by id. Will 404 if id not found */
   getBook(id: string): Observable<any> {
-    const url = `${this.hotelUrl}/${id}`;
+    const url = `${this.quartoUrl}/${id}`;
     return this.http.get<any>(url).pipe(
-      tap(_ => this.log(`fetch hotel w/ id=${id} request sent`)),
-      catchError(this.handleError<any>(`getHotel id=${id}`))
+      tap(_ => this.log(`fetch quarto w/ id=${id} request sent`)),
+      catchError(this.handleError<any>(`getQuarto id=${id}`))
     );
   }
 
