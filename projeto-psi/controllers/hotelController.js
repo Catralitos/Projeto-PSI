@@ -6,7 +6,7 @@ const { sanitizeBody } = require('express-validator/filter');
 
 exports.get_hotels = function(req, res, next) {
   Hotel.find()
-      .sort([['hotel_name', 'ascending']])
+      .sort([['name', 'ascending']])
       .exec(function (err, list_hotels) {
           if (err) { return next(err); }
           // Successful, so render.
