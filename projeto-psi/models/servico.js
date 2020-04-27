@@ -11,7 +11,7 @@ var ServicoSchema = new Schema({
 ServiceSchema
 .virtual('url')
 .get(function () {
-  return '/catalog/servicoes/'+this._id;
+  return '/catalog/servicos/'+this._id;
 });
 
 // Export model.
