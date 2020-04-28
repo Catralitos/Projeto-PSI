@@ -31,6 +31,12 @@ app.use(function(req, res, next) {
   next(createError(404));
 });
 
+app.listen(3010, function () {
+  console.log('CORS-enabled web server listening on port 3010')
+})
+
+app.use(express.static('public'));
+
 // error handler
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development
