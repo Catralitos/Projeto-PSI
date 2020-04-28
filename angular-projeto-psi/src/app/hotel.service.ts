@@ -31,7 +31,7 @@ httpOptions = {
   }
 
   /** GET hotel by id. Return `undefined` when id not found */
-  getBookNo404<Data>(id: string): Observable<any> {
+  getHotelNo404<Data>(id: string): Observable<any> {
     const url = `${this.hotelUrl}/?id=${id}`;
     return this.http.get<any>(url)
       .pipe(
@@ -45,7 +45,7 @@ httpOptions = {
   }
 
   /** GET hotel by id. Will 404 if id not found */
-  getBook(id: string): Observable<any> {
+  getHotel(id: string): Observable<any> {
     const url = `${this.hotelUrl}/${id}`;
     return this.http.get<any>(url).pipe(
       tap(_ => this.log(`fetch hotel w/ id=${id} request sent`)),
