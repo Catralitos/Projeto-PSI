@@ -4,6 +4,8 @@ import { Hotel } from '../interfaces/Hotel';
 import { HotelService } from '../hotel.service';
 import { Quarto } from '../interfaces/Quarto';
 import { QuartoService } from '../quarto.service';
+import { Servico } from '../interfaces/Servico';
+import { TipoQuarto } from '../interfaces/TipoQuarto';
 
 import { Location } from '@angular/common';
 
@@ -16,6 +18,9 @@ export class HotelDetailComponent implements OnInit {
 
   @Input() hotel: Hotel;
   @Input() quartos: Quarto;
+  @Input() servicos: Servico;
+  @Input() tipos: TipoQuarto;
+
 
   constructor(private route: ActivatedRoute,
               private hotelService: HotelService,
@@ -29,7 +34,9 @@ export class HotelDetailComponent implements OnInit {
   getHotel(): void {
     const id = this.route.snapshot.paramMap.get('id');
     this.hotelService.getHotel(id)
-      .subscribe(response => (this.hotel = response.hotel, this.quartos = response.quartos));
+      .subscribe(response => (this.hotel = response.hotel,
+        this.quartos = response.quartos, this.servicos = response.servicos,
+        this.tipos = response.tipos));
   }
 
   private goBack(): void {
@@ -38,5 +45,12 @@ export class HotelDetailComponent implements OnInit {
 
   getCheapestRoom(): void {
 
+  }
+
+  getRoomsFromType(type): any {
+    const q = this.quartos.filter(function(quarto) {
+      return quarto.tipoQuarto === type;
+    });
+    return q;
   }
 }

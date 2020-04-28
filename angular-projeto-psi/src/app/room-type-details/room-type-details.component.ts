@@ -2,6 +2,10 @@ import { Component, OnInit , Input} from '@angular/core';
 
 import { Quarto } from '../interfaces/Quarto';
 import {QuartoService} from "../quarto.service";
+import { TipoQuarto } from '../interfaces/TipoQuarto';
+import { Servico } from '../interfaces/Servico';
+
+
 import {Location} from "@angular/common";
 
 @Component({
@@ -11,7 +15,10 @@ import {Location} from "@angular/common";
 })
 export class RoomTypeDetailsComponent implements OnInit {
 
-  //obter o tipo de quarto
+  //obter quartos para fazer contagens
+  @Input() tipos: TipoQuarto;
+  @Input() servicos: Servico;
+
 
   constructor(private route: ActivatedRoute,
               private quartoService: QuartoService,
