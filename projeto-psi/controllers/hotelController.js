@@ -51,7 +51,7 @@ exports.hotel_create_get = function (req, res, next) {
     res.json();
 };
 
-export.hotel_create_post = [
+exports.hotel_create_post = [
 
   // Validate fields.
   body('id').isLength({ min: 1 }).trim().withMessage('Hotel id must be specified.'),
