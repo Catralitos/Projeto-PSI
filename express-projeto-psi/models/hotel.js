@@ -4,7 +4,6 @@ var Schema = mongoose.Schema;
 
 var HotelSchema = new Schema(
   {
-    id: {type: String, required: true, max: 10},
     name: {type: String, required: true, max: 20},
     description: {type: String, required: true},
     address: {type: String, required: true, max: 100},
