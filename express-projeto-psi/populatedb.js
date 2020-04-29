@@ -22,9 +22,22 @@ mongoose.Promise = global.Promise;
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
+var servicos = []
 var hoteis = []
 var quartos = []
-var servicos = []
+
+function servicoCreate(nome){
+  var servico = new Servico(nome);
+  servico.save(function (err) {
+    if (err) {
+      cb(err, null)
+      return
+    }
+    console.log('New Servico: ' + servico);
+    servicos.push(servico)
+    cb(null, servico)
+  } );
+  } 
 
 function hotelCreate(name, description, address, coordinates, phone_number, mail, image, servico) {
   hoteldetail = {
@@ -51,19 +64,54 @@ function hotelCreate(name, description, address, coordinates, phone_number, mail
   }  );
 }
 
+funtion quartoCreate(hotel, tipoQuarto, precoBaixo, precoAlto, servico){
+  quartodetail = {
+    hotel: hotel
+  }
+  
+  if(tipoQuarto != false) quartodetail.tipoQuarto = tipoQuarto
+  if(precoBaixo > 0) quartodetail.precoBaixo = precoBaixo
+  if(precoAlto >= precoBaixo) quartodetail.precoAlto = precoAlto
+  if(servico.length > 0) quartodetail.servico = servico
+
+  var quarto = new Quarto(quartodetail);
+
+  quarto.save(function (err) {
+    if (err) {
+      cb(err, null)
+      return
+    }
+    console.log('New Quarto: ' + quarto);
+    quartos.push(hotel)
+    cb(null, hotel)
+  }  );
+}
+
+var servicosQuartos = ['Telefone', 'Ar condicionado', 'Televisão LED', 'Canais por cabo', 'Mini-bar', 'Cofre', 'Casa de banho privativa com telefone',
+                        'Secador de cabelo', 'Espelho de maquilhagem', 'Produtos de higiene pessoal gratuitos', 'Fechadura eletrónica de segurança',
+                        'Roupão e chinelos', 'Maquina de café', 'Sala-de-estar', 'Serviço de quarto 24 horas', 'Televisão LCD', 'Chaleira', 'Varanda',
+                      'Kitchenette', 'Frigorífico', 'Micro-ondas', 'Sofá-cama'];
+
+var servicosH2 = ['Jardins e espaços exteriores', 'Piscina exterior para adultos e crianças', 'Parque de estacionamento', 'Nep Kids Club', 'Parque infantil', 'Sala de jogos', 'Clube de saúde'];
+var servicosH3 = ['Lojas'];
+
+function createServicos(){
+  servicosDouroVinhas.forEach(servicoCreate);
+  servicosQuartos.forEach(servicoCreate);
+  servicosH2.forEach(servicoCreate);
+  servicosH3.forEach(servicoCreate);
+}
+
+//IMAGENS
 var quartosDouroVinhas = ['https://i.imgur.com/FrqF2Vu.jpeg', 'https://i.imgur.com/wQWozsb.jpeg', 'https://i.imgur.com/WABcR6u.jpeg', 'https://i.imgur.com/2HgA6qW.jpeg', 'https://i.imgur.com/ckfj6nh.jpeg', 'https://i.imgur.com/3ToFEBq.jpeg', 'https://i.imgur.com/lDAuqJI.jpeg', 'https://i.imgur.com/gDUisSR.jpeg', 'https://i.imgur.com/SINr0FX.jpeg', 'https://i.imgur.com/glWDH9p.jpeg'];
-
-//GUILHERME TENS QUE PREENCHER ISTO
-var servicosDouroVinhas = ['Adega Moreira', 'Wi-fi', 'Lavanderia', 'Acessos para pessoas com mobilidade reduzida', 'Receção 24 horas', 'Biblioteca'];
-
 var quartosAVerOMar = ['https://i.imgur.com/z2NL6oq.jpg', 'https://i.imgur.com/og60pgO.jpg', 'https://i.imgur.com/0JtaTfL.jpg', 'https://i.imgur.com/xE98fqx.jpg', 'https://i.imgur.com/0XkuZr2.jpg', 'https://i.imgur.com/rbR6AJC.jpg', 'https://i.imgur.com/A2LkOKm.jpg', 'https://i.imgur.com/GQMygvV.jpg', 'https://i.imgur.com/V1rbf9Y.jpg', 'https://i.imgur.com/LTolhgK.jpg'];
-
-//GUILHERME TENS QUE PREENCHER ISTO
-var servicosDouroVinhas = [];
-
 var quartosMediterraneo = ['https://i.imgur.com/KhnIbqe.jpg', 'https://i.imgur.com/G3lrDZe.jpg', 'https://i.imgur.com/YPcAw24.jpg', 'https://i.imgur.com/d0eUeyg.jpg', 'https://i.imgur.com/k0P0pXf.jpg', 'https://i.imgur.com/GMPyTgy.jpg', 'https://i.imgur.com/RgYe0hj.jpg', 'https://i.imgur.com/SwfZwEf.jpg', 'https://i.imgur.com/1ZeeSVz.jpg', 'https://i.imgur.com/BZSowYa.jpg'];
 
-//GUILHERME TENS QUE PREENCHER ISTO
+//GUILHERME TENS QUE PREENCHER ISTO COM SERVICOS, NAO COM STRINGS
+//TENS QUE DAR PUSH DE SERVICOSH2[0], PARA AS LISTAS NECESSARIAS, NAO SO METER A STRING
+//PODES FAZER UM METODO ABAIXO DAS DECLARAÇOES DOS ARRAYS PARA DAR OS PUSHS NECESSÁRIOS
+var servicosDouroVinhas = ['Adega Moreira', 'Wi-fi', 'Lavanderia', 'Acessos para pessoas com mobilidade reduzida', 'Receção 24 horas', 'Biblioteca'];
+var servicosAVerOMar = [];
 var servicosMediterraneo = [];
 
 function createHoteis(cb) {
@@ -82,37 +130,82 @@ function createHoteis(cb) {
         cb);
 }
 
+//TENS QUE DAR PUSH DE SERVICOSQUARTO[0], PARA AS LISTAS NECESSARIAS, NAO SO METER A STRING
+//PODES FAZER UM METODO ABAIXO DAS DECLARAÇOES DOS ARRAYS PARA DAR OS PUSHS NECESSÁRIOS
+var servicosDouroStandard = []
+var servicosDouroSuiteDuplex = []
+
+var servicosMarStandard = [];
+var servicosMarSuiteJunior = [];
+var servicosMarSuiteJunioSup = [];
+
+var servicosMediterraneoStandard = [];
+var servicosMediterraneoSuiteJunior = [];
+var servicosMediterraneoSuiteSenior = [];
+
+//HA SETS DE SERVICOS DUPLICADOS, VAO ESTAR BEM NA DECLARACAO DA FUNCAO
+function createQuartos(cb) {
+  async.parallel([
+    function(callback) {
+      for (var i = 0; i < 3; i++){
+        quartoCreate(hoteis[0], 'Standard', 180, 270, servicosDouroStandard);
+      }
+    },
+    function(callback) {
+        quartoCreate(hoteis[0], 'Suite', 250, 330, servicosDouroStandard);
+    },
+    function(callback) {
+      quartoCreate(hoteis[0], 'SuiteDuplex', 270, 350, servicosDouroSuiteDuplex);
+    },
+    function(callback){
+      quartoCreate(hoteis[0], 'SuiteDeluxe', 270, 350, servicosDouroSuiteDuplex);
+    }, 
+    function(callback){
+      for (var i = 0; i < 182; i++){
+        quartoCreate(hoteis[1], 'Standard', 90, 160, servicosMarStandard);
+      }
+    },
+    function(callback){
+      for(var i = 0; i < 5; i++){
+        quartoCreate(hoteis[1], 'SuiteJunior', 120, 180, servicosMarSuiteJunior);
+      }
+    }, 
+    function(callback){
+      for(var i = 0; i < 15; i++){
+        quartoCreate(hoteis[1], 'SuiteJuniorSuperior', 130, 210, servicosMarSuiteJunioSup);
+      }
+    },
+    function(callback){
+      for(var i = 0; i < 114; i++){
+        quartoCreate(hoteis[2], 'Standard', 70, 210, servicosMediterraneoStandard);
+      }
+    },
+    function(callback){
+      for(var i = 0; i < 98; i++){
+        quartoCreate(hoteis[2], 'SuiteJunior', 90, 250, servicosMediterraneoSuiteJunior);
+      }
+    },
+    function(callback){
+      for(var i = 0; i < 8; i++){
+        quartoCreate(hoteis[2], 'SuiteSenior', 120, 240, servicosMediterraneoSuiteSenior);
+      }
+    },
+  ])
+}
+
 async.series([
-    createHoteis
+  createServicos,
+  createHoteis,
+  createQuartos
 ],
-var servicosQuartos = ['Telefone', 'Ar condicionado', 'Televisão LED', 'Canais por cabo', 'Mini-bar', 'Cofre', 'Casa de banho privativa com telefone',
-                        'Secador de cabelo', 'Espelho de maquilhagem', 'Produtos de higiene pessoal gratuitos', 'Fechadura eletrónica de segurança',
-                        'Roupão e chinelos', 'Maquina de café', 'Sala-de-estar', 'Serviço de quarto 24 horas', 'Televisão LCD', 'Chaleira', 'Varanda',
-                      'Kitchenette', 'Frigorífico', 'Micro-ondas', 'Sofá-cama'];
-
-var servicosH2 = ['Jardins e espaços exteriores', 'Piscina exterior para adultos e crianças', 'Parque de estacionamento', 'Nep Kids Club', 'Parque infantil', 'Sala de jogos', 'Clube de saúde'];
-var servicosH3 = ['Lojas'];
-function servicoCreate(nome){
-  var servico = new Servico(nome);
-  servico.save(function (err) {
-    if (err) {
-      cb(err, null)
-      return
-    }
-    console.log('New Servico: ' + servico);
-    servicos.push(servico)
-    cb(null, servico)
-  }  );
-}
-
-function createServicos(){
-  servicosDouroVinhas.forEach(servicoCreate);
-  servicosQuartos.forEach(servicoCreate);
-  servicosH2.forEach(servicoCreate);
-  servicosH3.forEach(servicoCreate);
-}
 // Optional callback
 function(err, results) {
-    // All done, disconnect from database
-    mongoose.connection.close();
+  if (err) {
+      console.log('FINAL ERR: '+err);
+  }
+  else {
+      //console.log('BOOKInstances: '+bookinstances); 
+  }
+  // All done, disconnect from database
+  mongoose.connection.close();
 });
