@@ -19,11 +19,11 @@ mongoose.Promise = global.Promise;
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
-/*
+
 app.listen(3010, function () {
   console.log('CORS-enabled web server listening on port 3010')
 })
-*/
+
 //app.listen(3010, '10.101.151.25');
 /*
 app.set('domain', '10.101.151.25');
