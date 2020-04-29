@@ -56,14 +56,27 @@ var quartosDouroVinhas = ['https://i.imgur.com/FrqF2Vu.jpeg', 'https://i.imgur.c
 //GUILHERME TENS QUE PREENCHER ISTO
 var servicosDouroVinhas = ['Adega Moreira', 'Wi-fi', 'Lavanderia', 'Acessos para pessoas com mobilidade reduzida', 'Receção 24 horas', 'Biblioteca'];
 
+var quartosAVerOMar = ['https://i.imgur.com/z2NL6oq.jpg', 'https://i.imgur.com/og60pgO.jpg', 'https://i.imgur.com/0JtaTfL.jpg', 'https://i.imgur.com/xE98fqx.jpg', 'https://i.imgur.com/0XkuZr2.jpg', 'https://i.imgur.com/rbR6AJC.jpg', 'https://i.imgur.com/A2LkOKm.jpg', 'https://i.imgur.com/GQMygvV.jpg', 'https://i.imgur.com/V1rbf9Y.jpg', 'https://i.imgur.com/LTolhgK.jpg'];
+
+//GUILHERME TENS QUE PREENCHER ISTO
+var servicosDouroVinhas = [];
+
+var quartosMediterraneo = ['https://i.imgur.com/KhnIbqe.jpg', 'https://i.imgur.com/G3lrDZe.jpg', 'https://i.imgur.com/YPcAw24.jpg', 'https://i.imgur.com/d0eUeyg.jpg', 'https://i.imgur.com/k0P0pXf.jpg', 'https://i.imgur.com/GMPyTgy.jpg', 'https://i.imgur.com/RgYe0hj.jpg', 'https://i.imgur.com/SwfZwEf.jpg', 'https://i.imgur.com/1ZeeSVz.jpg', 'https://i.imgur.com/BZSowYa.jpg'];
+
+//GUILHERME TENS QUE PREENCHER ISTO
+var servicosMediterraneo = [];
+
 function createHoteis(cb) {
     async.parallel([
         function(callback) {
           hotelCreate('Douro Vinhas', 'Com uma vista de cortar o fôlego para o Rio Douro e para o Rio Tedo, é no coração do Douro Vinhateiro que surge o Hotel Douro Vinhas. Com uma forte componente de agro e enoturismo, esta unidade estende-se pela centenária Quinta do Moreira.\n Na margem sul do Douro, perto da pitoresca aldeia do Marmelal, a propriedade que acolhe o Hotel Douro Vinhas fica muito próxima de um dos dois marcos mandados construir pelo Marquês de Pombal em 1757. Classificados como imóveis de interesse público, serviam para demarcar a zona dos vinhos generosos do Douro, à época sob jurisdição da Companhia Geral da Agricultura das Vinhas Douro. Nascia assim a primeira região demarcada de vinhos do mundo. Hoje, os vinhedos em socalcos tornam única a paisagem que rodeia esta unidade.\n Numa primeira fase com apenas sete quartos, o Hotel Douro Vinhas distingue-se pela localização, pelo charme e pela exclusividade. Aqui poderá desfrutar da calma e do silêncio, do cenário, mas também a piscina exterior, da gastronomia regional do restaurante Moreira, cujos grandes janelões permitem admirar a envolvente. Mas também das visitas à adega e provas de vinhos do Porto, produzidos no local.\n Poderá ainda aproveitar para passear entre as vinhas, pelo olival ou pelo amendoal (particularmente bonito durante as amendoeiras em flor), sempre com o Tedo e o Douro como companhia. Para completar a estadia, faça um cruzeiro fluvial, visite as quintas vinícolas da região ou faça um passeio de comboio. Ver as amendoeiras em flor ou participar nas vindimas são outras sugestões.', 'Hotel Douro Vinhas\nQuinta do Moreira – Marmelal\n5110-672 Armamar\nPortugal', '41°09´26.0"N 7°38´26.0"W', '(+351) 254 249 000', 'dourovinhas@hoteispsi.com', quartosDouroVinhas, servicosDouroVinhas, callback);
         },
-        /*function(callback) {
-          bookCreate('Test Book 2', 'Summary of test book 2', 'ISBN222222', authors[4], false, callback)
-        }*/
+        function(callback) {
+          hotelCreate('A Ver o Mar', 'Situado na pitoresca vila da Ericeira, mesmo em cima da praia, este hotel com história e tradição, que resulta da reabilitação do marcante Hotel de Turismo da Ericeira, tem como cenário o Oceano Atlântico.\nA 30 minutos de Lisboa, com acesso direto por autoestrada, o hotel A Ver o Mar dispõe de quatro tipologias de quarto, destacando-se os que têm varanda e vista para o mar. Este hotel na Ericeira inclui um restaurante, dois bares, salas para eventos e reuniões empresariais, clube de crianças e parque infantil e um moderno clube de saúde com salas de massagens, jacuzzi, sauna, banho turco e ginásio.\nDurante a sua estadia no hotel A Ver o Mar, não deixe de dar um mergulho nas duas piscinas para adultos, uma das quais de água salgada. Já as crianças vão adorar os escorregas aquáticos.\nPartindo deste hotel na Ericeira, aventure-se a conhecer as praias da região. E saiba que se apreciar desportos de ondas, está em plena reserva mundial de surf, e palco de uma das etapas do circuito WSL World Tour que junta os melhores surfistas do mundo. Pode ainda visitar o Palácio Nacional de Mafra ou Sintra, a 20 minutos de distância do hotel A Ver o Mar, de carro.\nNo verão, a animação da vila aumenta graças a vários festivais, entre os quais um dedicado exclusivamente à música reggae.', 'Hotel A Ver o Mar\nLargo dos Navegantes\n2655-320 Ericeira\nPORTUGAL', '38°57´56.0"N 9°25´09.0"W', '(+351) 261 869 700', 'averomar@hoteispsi.com', quartosAVerOMar, servicosAVerOMar, callback);
+        },
+        function(callback) {
+          hotelCreate('Mediterrâneo', 'Encontrará o Hotel Mediterrâneo mesmo junto à praia e apenas a cinco minutos do centro de Albufeira, no Algarve.\nEste hotel em Albufeira oferece quartos modernos e amplos, dos quais se destacam os com vista para o mar ou as suítes. Todos têm kitchenette, sendo ideais para famílias com crianças.\nConta ainda com um bar, um restaurante com buffet internacional e piscinas exteriores para adultos e crianças, prometendo dias de muito sol e animação. Tem ainda uma sala de jogos, parque infantil, clube de crianças com atividades para os mais novos e animadores próprios, spa com piscina interior, banho turco e jacuzzi, salas de massagem, ginásio e wi-fi gratuito em todas as zonas.\nDurante a sua estadia aproveite para conhecer as irresistíveis praias de Albufeira, aventurar-se em desportos náuticos ou desfrutar das animadas ruas da cidade, repletas de bares, restaurantes e comércio, ou passear na marina.\nPode também visitar diferentes parques temáticos como o Zoomarine, Aqualand e Aquashow.', 'Hotel Mediterrâneo\nPraia da Galé\n8200-995 Albufeira\nPORTUGAL', '37°04´55.0"N 8°1903.0"W', '(+351) 261 869 700', 'averomar@hoteispsi.com', quartosMediterraneo, servicosMediterraneo, callback);
+        }
         ],
         // optional callback
         cb);
