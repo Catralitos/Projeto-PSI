@@ -4,5 +4,6 @@ export enum TipoQuarto {
   SuiteDuplex,
   SuiteDeluxe,
   SuiteJunior,
+  SuiteJuniorSuperior,
   SuiteSenior
 }
