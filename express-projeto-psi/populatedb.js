@@ -192,7 +192,7 @@ var nomeServicosH3Q3 = ['Telefone', 'Wi-fi', 'Ar condicionado', 'Televisão LCD'
 var nomeServicosH3 = ['Jardins e espaços exteriores', 'Piscina exterior para adultos e crianças', 'Wi-fi', 'Parque de estacionamento', 'Nep Kids Club', 'Parque infantil', 'Sala de jogos', 'Lavanderia', 'Acessos para pessoas com mobilidade reduzida', 'Receção 24 horas', 'Clube de saúde', 'Lojas'];
 
 function servicoCreate(nome){
-  var servico = new Servico(nome);
+  var servico = new Servico({nome: nome});
   servico.save(function (err) {
     if (err) {
       cb(err, null)
@@ -315,7 +315,7 @@ async.series([
 // Optional callback
 function(err, results) {
   if (err) {
-      console.log('FINAL ERR: '+err);
+      console.log('FINAL ERR: ' + err);
   }
   else {
       //console.log('BOOKInstances: '+bookinstances);

@@ -8,11 +8,11 @@ var ServicoSchema = new Schema({
 });
 
 // Virtual for this bookinstance object's URL.
-ServiceSchema
+ServicoSchema
 .virtual('url')
 .get(function () {
   return '/catalog/servicos/'+this._id;
 });
 
 // Export model.
-module.exports = mongoose.model('Servico', ServiceSchema);
+module.exports = mongoose.model('Servico', ServicoSchema);
