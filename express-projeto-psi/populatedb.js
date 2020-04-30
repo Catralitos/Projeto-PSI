@@ -64,7 +64,7 @@ function hotelCreate(name, description, address, coordinates, phone_number, mail
   }  );
 }
 
-funtion quartoCreate(hotel, tipoQuarto, precoBaixo, precoAlto, servico){
+function quartoCreate(hotel, tipoQuarto, precoBaixo, precoAlto, servico){
   quartodetail = {
     hotel: hotel
   }
