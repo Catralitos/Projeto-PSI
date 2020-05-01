@@ -5,14 +5,14 @@ var Quarto = require('../models/quarto')
 const { body, validationResult } = require('express-validator/check');
 const { sanitizeBody } = require('express-validator/filter');
 
-exports.get_hotels = function(req, res, next) {
-  Hotel.find()
-      .sort([['nome', 'ascending']])
-      .exec(function (err, list_hotels) {
-          if (err) { return next(err); }
-          // Successful, so render.
-          res.json({hotel_list: list_hotels });
-      })
+exports.get_hotels = function (req, res, next) {
+    Hotel.find()
+        .sort([['nome', 'ascending']])
+        .exec(function (err, list_hotels) {
+            if (err) { return next(err); }
+            // Successful, so render.
+            res.json({ hotel_list: list_hotels });
+        })
 }
 
 exports.get_hotel = function (req, res, next) {
@@ -33,7 +33,7 @@ exports.get_hotel = function (req, res, next) {
             return next(err);
         }
 
-        res.json({hotel: results.hotel, hotel_rooms: results.hotel_rooms });
+        res.json({ hotel: results.hotel, hotel_rooms: results.hotel_rooms });
     });
 
 };
