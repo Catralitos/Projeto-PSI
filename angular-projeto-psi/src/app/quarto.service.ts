@@ -8,8 +8,8 @@ import {MessageService} from './message.service';
   providedIn: 'root'
 })
 export class QuartoService {
-  private quartosUrl = 'http://appserver.alunos.di.fc.ul.pt:3010/catalog/books';  // URL to web api
-  private quartoUrl = 'http://appserver.alunos.di.fc.ul.pt:3010/catalog/book';  // URL to web api
+  //private quartosUrl = 'http://appserver.alunos.di.fc.ul.pt:3010/catalog/books';  // URL to web api
+  private quartoUrl = 'http://appserver.alunos.di.fc.ul.pt:3010/catalog/quarto';  // URL to web api
 
   constructor(
     private http: HttpClient,
@@ -20,7 +20,9 @@ export class QuartoService {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
 
+
   /** GET quartos from the server */
+  /*
   getQuartos(): Observable<any> {
     return this.http.get<any>(this.quartosUrl)
       .pipe(
@@ -28,10 +30,10 @@ export class QuartoService {
         tap(_ => this.log('fetch quartos request sent')),
         catchError(this.handleError<any>('getQuartos', []))
       );
-  }
+  }*/
 
   /** GET quarto by id. Return `undefined` when id not found */
-  getBookNo404<Data>(id: string): Observable<any> {
+  getQuartoNo404<Data>(id: string): Observable<any> {
     const url = `${this.quartoUrl}/?id=${id}`;
     return this.http.get<any>(url)
       .pipe(
@@ -45,7 +47,7 @@ export class QuartoService {
   }
 
   /** GET quarto by id. Will 404 if id not found */
-  getBook(id: string): Observable<any> {
+  getQuarto(id: string): Observable<any> {
     const url = `${this.quartoUrl}/${id}`;
     return this.http.get<any>(url).pipe(
       tap(_ => this.log(`fetch quarto w/ id=${id} request sent`)),
@@ -75,6 +77,6 @@ export class QuartoService {
 
   /** Log a BookService message with the MessageService */
   private log(message: string) {
-    this.messageService.add(`BookService: ${message}`);
+    this.messageService.add(`QuartoService: ${message}`);
   }
 }

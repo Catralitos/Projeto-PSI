@@ -8,8 +8,8 @@ import {MessageService} from './message.service';
   providedIn: 'root'
 })
 export class HotelService {
-  private hotelsUrl = 'http://appserver.alunos.di.fc.ul.pt:3010/catalog/books';  // URL to web api
-  private hotelUrl = 'http://appserver.alunos.di.fc.ul.pt:3010/catalog/book';  // URL to web api
+  private hotelsUrl = 'http://appserver.alunos.di.fc.ul.pt:3010/catalog/hoteis';  // URL to web api
+  private hotelUrl = 'http://appserver.alunos.di.fc.ul.pt:3010/catalog/hotel';  // URL to web api
 
   constructor(
     private http: HttpClient,
@@ -75,6 +75,6 @@ httpOptions = {
 
   /** Log a BookService message with the MessageService */
   private log(message: string) {
-    this.messageService.add(`BookService: ${message}`);
+    this.messageService.add(`QuartoService: ${message}`);
   }
 }

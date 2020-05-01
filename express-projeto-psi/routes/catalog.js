@@ -7,21 +7,24 @@ var quarto_controller = require('../controllers/quartoController');
 
 
 /// HOTEL ROUTES ///
+//nao ha homepage
+/*
 // GET catalog home page.
 router.get('/', hotel_controller.index);
-
+*/
+//tambem nao precisamos destes
+/*
 // GET request for creating a Hotek.
 router.get('/hotel/create', hotel_controller.hotel_create_get);
 
 // POST request for creating Hotel.
 router.post('/hotel/create', hotel_controller.hotel_create_post);
-
+*/
 // GET request for one Hotel.
 router.get('/hotel/:id', hotel_controller.get_hotel);
 
 // GET request for list of all Hotels.
-router.get('/hotel', hotel_controller.get_hotels);
-
+router.get('/hoteis', hotel_controller.get_hotels);
 
 /// QUARTO ROUTES ///
 router.get('/quarto/:id', quarto_controller.get_quarto);
