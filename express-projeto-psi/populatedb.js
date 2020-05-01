@@ -30,7 +30,7 @@ var servicosQuartos = ['Telefone', 'Ar condicionado', 'Televisão LED', 'Canais 
   'Secador de cabelo', 'Espelho de maquilhagem', 'Produtos de higiene pessoal gratuitos', 'Fechadura eletrónica de segurança',
   'Roupão e chinelos', 'Maquina de café', 'Sala-de-estar', 'Serviço de quarto 24 horas', 'Televisão LCD', 'Chaleira', 'Varanda',
   'Kitchenette', 'Frigorífico', 'Micro-ondas', 'Sofá-cama'];
-
+var servicosH1 = ['Adega Moreira', 'Wi-fi', 'Lavanderia', 'Acessos para pessoas com mobilidade reduzida', 'Receção 24 horas', 'Biblioteca'];
 var servicosH2 = ['Jardins e espaços exteriores', 'Piscina exterior para adultos e crianças', 'Parque de estacionamento', 'Nep Kids Club', 'Parque infantil', 'Sala de jogos', 'Clube de saúde'];
 var servicosH3 = ['Lojas'];
 
@@ -166,10 +166,10 @@ function quartoCreate(hotel, tipoQuarto, precoBaixo, precoAlto, servico, cb) {
 function createServicos(cb) {
   async.series([
     function (callback) {
-      servicosDouroVinhas.forEach(servicoCreate, callback);
+      servicosQuartos.forEach(servicoCreate, callback);
     },
     function (callback) {
-      servicosQuartos.forEach(servicoCreate, callback);
+      servicosH1.forEach(servicoCreate, callback);
     },
     function (callback) {
       servicosH2.forEach(servicoCreate, callback);
