@@ -48,10 +48,11 @@ app.use(function(req, res, next) {
   next(createError(404));
 });
 
+/*
 app.listen(3010, function () {
   console.log('CORS-enabled web server listening on port 3010')
 })
-
+*/
 app.use(express.static('public'));
 
 // error handler
