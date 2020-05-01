@@ -166,16 +166,24 @@ function quartoCreate(hotel, tipoQuarto, precoBaixo, precoAlto, servico, cb) {
 function createServicos(cb) {
   async.series([
     function (callback) {
-      servicosQuartos.forEach(servicoCreate, callback);
+      for (var i = 0; i < servicosQuartos.length; i++) {
+        servicoCreate(servicosQuartos[i], callback);
+      }
     },
     function (callback) {
-      servicosH1.forEach(servicoCreate, callback);
+      for (var i = 0; i < servicosH1.length; i++) {
+        servicoCreate(servicosH1[i], callback);
+      }
     },
     function (callback) {
-      servicosH2.forEach(servicoCreate, callback);
+      for (var i = 0; i < servicosH2.length; i++) {
+        servicoCreate(servicosH2[i], callback);
+      }    
     },
     function (callback) {
-      servicosH3.forEach(servicoCreate, callback);
+      for (var i = 0; i < servicosH3.length; i++) {
+        servicoCreate(servicosH3[i], callback);
+      }
     }
   ],
     // optional callback
