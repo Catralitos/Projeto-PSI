@@ -7,22 +7,13 @@ const { sanitizeBody } = require('express-validator/filter');
 
 exports.get_hotels = function(req, res, next) {
   Hotel.find()
-      .sort([['name', 'ascending']])
+      .sort([['nome', 'ascending']])
       .exec(function (err, list_hotels) {
           if (err) { return next(err); }
           // Successful, so render.
           res.json({hotel_list: list_hotels });
       })
 }
-/*
-exports.get_hotel = function(req, res, next) {
-  Hotel.findById(req.params.id)
-    .exec(function (err, hotel) {
-      if (err) { return next(err); }
-      res.json({hotel : hotel})
-    }
-}
-*/
 
 exports.get_hotel = function (req, res, next) {
     async.parallel({
@@ -47,6 +38,7 @@ exports.get_hotel = function (req, res, next) {
 
 };
 
+/*
 exports.hotel_create_get = function (req, res, next) {
     res.json();
 };
@@ -107,3 +99,4 @@ exports.hotel_create_post = [
       }
   }
 ];
+*/

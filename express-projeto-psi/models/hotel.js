@@ -4,14 +4,14 @@ var Schema = mongoose.Schema;
 
 var HotelSchema = new Schema(
   {
-    name: {type: String, required: true, max: 20},
-    description: {type: String, required: true},
-    address: {type: String, required: true, max: 100},
-    coordinates: {type: String, required: true, max: 100},
-    phone_number: {type: String, required: true, max: 15},
-    mail: {type: String, required: true, max: 20},
-    image: [{type: String}],
-    servico: [{type: Schema.Types.ObjectId, ref: 'Servico'}]
+    nome: {type: String, required: true, max: 20},
+    descricao: {type: String, required: true},
+    morada: {type: String, required: true, max: 100},
+    coordenadas: {type: String, required: true, max: 100},
+    numero_telefone: {type: String, required: true, max: 15},
+    email: {type: String, required: true, max: 20},
+    imagens: [{type: String}],
+    servicos: [{type: Schema.Types.ObjectId, ref: 'Servico'}]
   }
 );
 
