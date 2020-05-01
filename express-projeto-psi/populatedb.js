@@ -164,10 +164,22 @@ function quartoCreate(hotel, tipoQuarto, precoBaixo, precoAlto, servico, cb){
 }
 
 function createServicos(cb){
-  servicosDouroVinhas.forEach(servicoCreate, cb);
-  servicosQuartos.forEach(servicoCreate, cb);
-  servicosH2.forEach(servicoCreate, cb);
-  servicosH3.forEach(servicoCreate, cb);
+  async.series([
+    function(callback) {
+  servicosDouroVinhas.forEach(servicoCreate, callback);
+    },
+    function(callback){
+  servicosQuartos.forEach(servicoCreate, callback);
+    },
+    function(callback){
+  servicosH2.forEach(servicoCreate, callback);
+    },
+    function(callback){
+        servicosH3.forEach(servicoCreate, callback);
+    }
+  ],
+  // optional callback
+  cb);
   createServicesHotelQuartos();
 }
 
