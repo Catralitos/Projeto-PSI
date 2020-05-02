@@ -143,7 +143,7 @@ function hotelCreate(name, description, address, coordinates, phone_number, mail
   });
 }
 
-function quartoCreate(hotel, tipoQuarto, precoBaixo, precoAlto, servico, cb) {
+function quartoCreate(hotel, tipoQuarto, precoBaixo, precoAlto, servicos, cb) {
   quartodetail = {
     hotel: hotel
   }
@@ -151,7 +151,7 @@ function quartoCreate(hotel, tipoQuarto, precoBaixo, precoAlto, servico, cb) {
   if (tipoQuarto != false) quartodetail.tipoQuarto = tipoQuarto
   if (precoBaixo > 0) quartodetail.precoBaixo = precoBaixo
   if (precoAlto >= precoBaixo) quartodetail.precoAlto = precoAlto
-  if (servico.length > 0) quartodetail.servico = servico
+  if (servicos.length > 0) quartodetail.servico = servicos
 
   var quarto = new Quarto(quartodetail);
 
