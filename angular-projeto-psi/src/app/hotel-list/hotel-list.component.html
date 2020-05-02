@@ -1,8 +1,24 @@
-<h1> Cadeia de Hoteis</h1>
+<body>
+<header>
+  <h1>Cadeia de Hotéis</h1>
+  <nav>
+    <ul>
+      <li><a href="#">Home</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Terms of use</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
 <ul class="hotels">
-  <li *ngFor="let hotel of hotels">
-    <a routerLink="/hotel/{{hotel._id}}">
-      <span class="badge">{{hotel.name}}</span>
-    </a>
+  <li *ngFor="let hotel of hotelList">
+    <a routerLink="/{{hotel._id}}">
+      <span class="nome">{{hotel.nome}}</span> </a>
+    <p>{{hotel.descricao}}</p>
+    <img src="{{imgAleatoria(hotel)}}">
   </li>
 </ul>
+</body>
+
+

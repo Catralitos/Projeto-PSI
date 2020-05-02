@@ -1,29 +1,29 @@
-<h1>Hotel: {{hotel.name}} </h1>
-<h3>Hotel: {{hotel.description}} </h3>
-<h3>Hotel: {{hotel.address}} </h3>
-<h3>Hotel: {{hotel.coordinates}} </h3>
-<h3>Hotel: {{hotel.phone_number}} </h3>
-<h3>Hotel: {{hotel.email}} </h3>
+<body>
+<header>
+  <h1>{{hotel.nome}}</h1>
+  <nav>
+    <ul>
+      <li><a href="#">Home</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Terms of use</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+  </nav>
+</header>
 
-<h3>Numero de quartos disponiveis:{{quartos.length}}</h3>
+
+<h3>{{hotel.descricao}} </h3>
+<h3>Morada: {{hotel.morada}} </h3>
+<h3>Coordenadas: {{hotel.coordenadas}} </h3>
+<h3>Telefone: {{hotel.numero_telefone}} </h3>
+<h3>Email: {{hotel.email}} </h3>
+
+<h3>Numero de quartos disponiveis:{{length()}}</h3>
 
 <h3>Desde :</h3>
 
 <h3>Tipos de quartos:</h3>
-<ul class="quartos">
-  <li *ngFor="let tipo of tiposQuarto">
-    <a routerLink="/{{hotel.id}}/{{tipoQuarto._id}}">
-      <h3>Tipo de quarto: {{tipo.nome}} </h3>
-      <h3>Numero de quartos :numeroQuartos(tipo)</h3>
-      <h3>Serviços Disponiveis:</h3>
-        <ul class="servicos">
-          <li *ngFor="let servico of servicos">
-            <span class="badge">{{servico.nome}}</span>
-          </li>
-        </ul>
-    </a>
-  </li>
-</ul>
 
+</body>
 
 

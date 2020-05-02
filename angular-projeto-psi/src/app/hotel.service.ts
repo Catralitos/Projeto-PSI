@@ -8,9 +8,10 @@ import {MessageService} from './message.service';
   providedIn: 'root'
 })
 export class HotelService {
-  private hotelsUrl = 'http://appserver.alunos.di.fc.ul.pt:3010/catalog/hoteis';  // URL to web api
-  private hotelUrl = 'http://appserver.alunos.di.fc.ul.pt:3010/catalog/hotel';  // URL to web api
-
+  //private hotelsUrl = 'http://appserver.alunos.di.fc.ul.pt:3010/catalog/hoteis';  // URL to web api
+  //private hotelUrl = 'http://appserver.alunos.di.fc.ul.pt:3010/catalog/hotel';  // URL to web api
+  private hotelsUrl = 'http://localhost:3000/catalog/hoteis';
+  private hotelUrl = 'http://localhost:3000/catalog/hotel';
   constructor(
     private http: HttpClient,
     private messageService: MessageService) {
@@ -48,6 +49,7 @@ httpOptions = {
   getHotel(id: string): Observable<any> {
     const url = `${this.hotelUrl}/${id}`;
     return this.http.get<any>(url).pipe(
+      map(res => res),
       tap(_ => this.log(`fetch hotel w/ id=${id} request sent`)),
       catchError(this.handleError<any>(`getHotel id=${id}`))
     );
