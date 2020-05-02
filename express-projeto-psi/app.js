@@ -3,6 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var cors = require('cors');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -19,16 +20,8 @@ mongoose.Promise = global.Promise;
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
+app.use(cors());
 
-app.listen(3010, function () {
-  console.log('CORS-enabled web server listening on port 3010')
-})
-
-//app.listen(3010, '10.101.151.25');
-/*
-app.set('domain', '10.101.151.25');
-app.set('port', process.env.PORT || 3010);
-*/
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
@@ -48,11 +41,6 @@ app.use(function (req, res, next) {
   next(createError(404));
 });
 
-/*
-app.listen(3010, function () {
-  console.log('CORS-enabled web server listening on port 3010')
-})
-*/
 app.use(express.static('public'));
 
 // error handler
