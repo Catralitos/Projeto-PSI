@@ -8,7 +8,7 @@ var QuartoSchema = new Schema(
     tipoQuarto: {type: String, required: true, enum: ['Standard', 'Suite', 'SuiteDuplex', 'SuiteDeluxe', 'SuiteJunior', 'SuiteJuniorSuperior', 'SuiteSenior'], default: 'Standard'},
     precoBaixo: {type: Number, required: true},
     precoAlto: {type: Number, required: true},
-    servico: [{type: Schema.Types.ObjectId, ref: 'Servico'}]
+    servicos: [{type: String}]
   }
 );
 

@@ -11,7 +11,7 @@ var HotelSchema = new Schema(
     numero_telefone: {type: String, required: true, max: 15},
     email: {type: String, required: true, max: 20},
     imagens: [{type: String}],
-    servicos: [{type: Schema.Types.ObjectId, ref: 'Servico'}]
+    servicos: [{type: String}]
   }
 );
 
