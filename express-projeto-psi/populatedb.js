@@ -166,29 +166,32 @@ function quartoCreate(hotel, tipoQuarto, precoBaixo, precoAlto, servico, cb) {
 function createServicos(cb) {
   async.series([
     function (callback) {
-      for (var i = 0; i < servicosQuartos.length; i++) {
-        servicoCreate(servicosQuartos[i], callback);
-      }
+      async.map(servicosQuartos, function (servico, cb) {
+        servicoCreate(servico, cb);
+      }, callback);
     },
     function (callback) {
-      for (var i = 0; i < servicosH1.length; i++) {
-        servicoCreate(servicosH1[i], callback);
-      }
+      async.map(servicosH1, function (servico, cb) {
+        servicoCreate(servico, cb);
+      }, callback);
+
     },
     function (callback) {
-      for (var i = 0; i < servicosH2.length; i++) {
-        servicoCreate(servicosH2[i], callback);
-      }    
+      async.map(servicosH2, function (servico, cb) {
+        servicoCreate(servico, cb);
+      }, callback);
+
     },
     function (callback) {
-      for (var i = 0; i < servicosH3.length; i++) {
-        servicoCreate(servicosH3[i], callback);
-      }
-    }
+      async.map(servicosH3, function (servico, cb) {
+        servicoCreate(servico, cb);
+      }, callback);
+    },
+    createServicesHotelQuartos()
   ],
     // optional callback
     cb);
-  createServicesHotelQuartos();
+
 }
 
 function createServicesHotelQuartos() {
@@ -247,12 +250,37 @@ function createHoteis(cb) {
     cb);
 }
 
+var tresQuartos = []
+var cincoQuartos = []
+var centoOitentaDoisQuartos = []
+var quinzeQuartos = []
+var centoCatorzeQuartos = []
+var noventaOitoQuartos = []
+var oitoQuartos = [];
+
+function mudarLength(array, n) {
+  for (var i = 0; i < n, i++;) {
+    array.push[i];
+  }
+}
+
+function preencherArrays() {
+  mudarLength(tresQuartos, 3);
+  mudarLength(cincoQuartos, 5);
+  mudarLength(centoOitentaDoisQuartos, 182);
+  mudarLength(quinzeQuartos, 15);
+  mudarLength(centoCatorzeQuartos, 114);
+  mudarLength(noventaOitoQuartos, 98);
+  mudarLength(oitoQuartos, 8);
+}
+
 function createQuartos(cb) {
   async.parallel([
+    preencherArrays,
     function (callback) {
-      for (var i = 0; i < 3; i++) {
+      async.map(tresQuartos, function (numero, cb) {
         quartoCreate(hoteis[0], 'Standard', 180, 270, servicosDouroStandard, callback);
-      }
+      }, callback);
     },
     function (callback) {
       quartoCreate(hoteis[0], 'Suite', 250, 330, servicosDouroStandard, callback);
@@ -264,34 +292,34 @@ function createQuartos(cb) {
       quartoCreate(hoteis[0], 'SuiteDeluxe', 270, 350, servicosDouroSuiteDuplex, callback);
     },
     function (callback) {
-      for (var i = 0; i < 182; i++) {
+      async.map(centoOitentaDoisQuartos, function (numero, cb) {
         quartoCreate(hoteis[1], 'Standard', 90, 160, servicosMarStandard, callback);
-      }
+      }, callback);
     },
     function (callback) {
-      for (var i = 0; i < 5; i++) {
+      async.map(cincoQuartos, function (numero, cb) {
         quartoCreate(hoteis[1], 'SuiteJunior', 120, 180, servicosMarSuiteJunior, callback);
-      }
+      }, callback);
     },
     function (callback) {
-      for (var i = 0; i < 15; i++) {
+      async.map(quinzeQuartos, function (numero, cb) {
         quartoCreate(hoteis[1], 'SuiteJuniorSuperior', 130, 210, servicosMarSuiteJunioSup, callback);
-      }
+      }, callback);
     },
     function (callback) {
-      for (var i = 0; i < 114; i++) {
+      async.map(centoCatorzeQuartos, function (numero, cb) {
         quartoCreate(hoteis[2], 'Standard', 70, 210, servicosMediterraneoStandard, callback);
-      }
+      }, callback);
     },
     function (callback) {
-      for (var i = 0; i < 98; i++) {
+      async.map(noventaOitoQuartos, function (numero, cb) {
         quartoCreate(hoteis[2], 'SuiteJunior', 90, 250, servicosMediterraneoSuiteJunior, callback);
-      }
+      }, callback);
     },
     function (callback) {
-      for (var i = 0; i < 8; i++) {
+      async.map(oitoQuartos, function (numero, cb) {
         quartoCreate(hoteis[2], 'SuiteSenior', 120, 240, servicosMediterraneoSuiteSenior, callback);
-      }
+      }, callback);
     }
   ],
     // optional callback
