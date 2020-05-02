@@ -193,10 +193,12 @@ function createServicos(cb) {
 }
 
 function createServicesHotelQuartos() {
+  console.log("Entrou no createServicesHotelQuartos");
   servicos.forEach(colocarServicoEmSeuArray);
 }
 
 function colocarServicoEmSeuArray(nome) {
+  console.log("Entrou no colocarServicoEmSeuArray");
   if (nomeServicosH1.includes(nome.nome)) {
     servicosDouroVinhas.push(nome);
   }
