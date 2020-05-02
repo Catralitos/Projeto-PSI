@@ -8,6 +8,9 @@ import { HotelDetailComponent } from './hotel-detail/hotel-detail.component';
 import { HotelListComponent } from './hotel-list/hotel-list.component';
 import { RoomTypeDetailsComponent } from './room-type-details/room-type-details.component';
 
+import {HttpClientModule} from '@angular/common/http';
+import {RouterModule} from '@angular/router';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,7 +21,9 @@ import { RoomTypeDetailsComponent } from './room-type-details/room-type-details.
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    RouterModule
   ],
   providers: [],
   bootstrap: [AppComponent]

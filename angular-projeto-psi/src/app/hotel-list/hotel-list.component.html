@@ -1,8 +1,10 @@
 <h1> Cadeia de Hoteis</h1>
 <ul class="hotels">
-  <li *ngFor="let hotel of hotels">
-    <a routerLink="/hotel/{{hotel._id}}">
-      <span class="badge">{{hotel.name}}</span>
-    </a>
+  <li *ngFor="let hotel of hotelList">
+    <a routerLink="/{{hotel._id}}">
+      <span class="badge">{{hotel.nome}}</span> </a>
+    <p>{{hotel.descricao}}</p>
+    <img src="{{imgAleatoria(hotel)}}">
   </li>
 </ul>
+
