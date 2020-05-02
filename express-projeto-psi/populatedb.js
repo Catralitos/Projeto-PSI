@@ -284,7 +284,7 @@ function createQuartos(cb) {
     },
     function (callback) {
       async.map(quinzeQuartos, function (numero, cb) {
-        quartoCreate(hoteis[1], 'SuiteJuniorSuperior', 130, 210, servicosMarSuiteJunioSup, callback);
+        quartoCreate(hoteis[1], 'SuiteJuniorSuperior', 130, 210, servicosMarSuiteJuniorSup, callback);
       }, callback);
     },
     function (callback) {
