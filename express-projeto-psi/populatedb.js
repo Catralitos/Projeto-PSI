@@ -264,20 +264,23 @@ function mudarLength(array, n) {
 
 var hoteisOrdenados = [];
 
-function preencherArrays() {
-  mudarLength(tresQuartos, 3);
-  mudarLength(cincoQuartos, 5);
-  mudarLength(centoOitentaDoisQuartos, 182);
-  mudarLength(quinzeQuartos, 15);
-  mudarLength(centoCatorzeQuartos, 114);
-  mudarLength(noventaOitoQuartos, 98);
-  mudarLength(oitoQuartos, 8);
-  async.parallel([])
+function preencherArrays(cb) {
+  async.series([
+    mudarLength(tresQuartos, 3),
+    mudarLength(cincoQuartos, 5),
+    mudarLength(centoOitentaDoisQuartos, 182),
+    mudarLength(quinzeQuartos, 15),
+    mudarLength(centoCatorzeQuartos, 114),
+    mudarLength(noventaOitoQuartos, 98),
+    mudarLength(oitoQuartos, 8),
+  ],
+    // optional callback
+    cb);
 }
 
 function createQuartos(cb) {
   async.series([
-    preencherArrays,
+    preencherArrays(cb),
     function (callback) {
       async.map(tresQuartos, function (numero, cb) {
         quartoCreate(hoteis[0], 'Standard', 180, 270, servicosDouroStandard, callback);
