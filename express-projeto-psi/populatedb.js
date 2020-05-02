@@ -257,7 +257,7 @@ var noventaOitoQuartos = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,2
 var oitoQuartos = [0,1,2,3,4,5,6,7];
 
 function createQuartos(cb) {
-  async.series([
+  async.parallel([
     function (callback) {
       async.map(tresQuartos, function (numero, cb) {
         quartoCreate(hoteis[0], 'Standard', 180, 270, servicosDouroStandard, callback);
