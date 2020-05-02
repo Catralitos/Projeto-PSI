@@ -134,7 +134,7 @@ function hotelCreate(name, description, address, coordinates, phone_number, mail
       cb(err, null)
       return
     }
-    console.log('New Hotel: ' + hotel.nome);
+    console.log('New Hotel: ' + hotel.nome + "\n" + hotel.servicos);
     hoteis.push(hotel)
     cb(null, hotel)
   });
@@ -157,7 +157,7 @@ function quartoCreate(hotel, tipoQuarto, precoBaixo, precoAlto, servico, cb) {
       cb(err, null)
       return
     }
-    console.log('New Quarto: ' + quarto.hotel.nome + " : " + quarto.tipoQuarto);
+    console.log('New Quarto: ' + quarto.hotel.nome + " : " + quarto.tipoQuarto + "\n" + quarto.servico);
     quartos.push(hotel)
     cb(null, hotel)
   });
@@ -271,7 +271,6 @@ function createQuartos(cb) {
     },
     function (callback) {
       async.map(umQuarto, function (numero, cb) {
-        console.log("Entrou na suite duplex");
         quartoCreate(hoteis[0], 'SuiteDuplex', 270, 350, servicosDouroSuiteDuplex, cb);
       }, callback);
     },
@@ -281,7 +280,6 @@ function createQuartos(cb) {
       }, callback);
     },
     function (callback) {
-      console.log("Entrou nos 182 quartos");
       async.map(centoOitentaDoisQuartos, function (numero, cb) {
         quartoCreate(hoteis[1], 'Standard', 90, 160, servicosMarStandard, cb);
       }, callback);
