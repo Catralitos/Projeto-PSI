@@ -18,11 +18,19 @@
 <h3>Telefone: {{hotel.numero_telefone}} </h3>
 <h3>Email: {{hotel.email}} </h3>
 
-<h3>Numero de quartos disponiveis:{{length()}}</h3>
+<h3>Numero de quartos disponiveis: {{length()}}</h3>
 
 <h3>Desde :</h3>
 
 <h3>Tipos de quartos:</h3>
+<ul class="types">
+  <li *ngFor="let tipo of getRoomTypes()">
+    <a routerLink="/{{hotel._id}}/{{tipo}}" (click)="alteraTipo(tipo)">
+      <span class="nome">{{tipo}}</span> </a>
+      <p>Ainda existem {{getRoomNumber(tipo)}} quartos disponiveis</p>
+      <p>Valor mais baixo na epoca baixa {{getCheapestRoom(tipo)}}€ </p>
+  </li>
+</ul>
 
 </body>
 

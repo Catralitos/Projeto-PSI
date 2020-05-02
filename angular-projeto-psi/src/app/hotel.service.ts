@@ -10,8 +10,8 @@ import {MessageService} from './message.service';
 export class HotelService {
   //private hotelsUrl = 'http://appserver.alunos.di.fc.ul.pt:3010/catalog/hoteis';  // URL to web api
   //private hotelUrl = 'http://appserver.alunos.di.fc.ul.pt:3010/catalog/hotel';  // URL to web api
-  private hotelsUrl = 'http://localhost:3000/catalog/hoteis';
-  private hotelUrl = 'http://localhost:3000/catalog/hotel';
+  private hotelsUrl = 'http://10.101.151.25:3010/catalog/hoteis';
+  private hotelUrl = 'http://10.101.151.25:3010/catalog/hotel';
   constructor(
     private http: HttpClient,
     private messageService: MessageService) {

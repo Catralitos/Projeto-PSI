@@ -4,7 +4,6 @@ import { Hotel } from '../Hotel';
 import { HotelService } from '../hotel.service';
 import { Quarto } from '../Quarto';
 import { QuartoService } from '../quarto.service';
-import { Servico } from '../Servico';
 import { TipoQuarto } from '../TipoQuarto';
 
 import { Location } from '@angular/common';
@@ -24,8 +23,8 @@ export class HotelDetailComponent implements OnInit {
 
   @Input() hotel: Hotel;
   @Input() quartos: Quarto[];
-  @Input() servicos: Servico[];
-  tipos: TipoQuarto[];
+  @Input() servicos: string[];
+  tipos: string[];
   message = 'heloo';
 
 
@@ -39,7 +38,7 @@ export class HotelDetailComponent implements OnInit {
   ngOnInit(): void {
     this.getHotel();
     //this.data.currentMessage.subscribe(message => this.message = message);
-    this.newInfo();
+    //this.newInfo();
   }
 
   newInfo() {
@@ -58,38 +57,61 @@ export class HotelDetailComponent implements OnInit {
     this.location.back();
   }
 
-  getCheapestRoom(): void {
+  public getCheapestRoom(type): any {
+    let price = 1000000;
+    //const rooms=getRoom(type);
 
+    for (const quarto of this.getRoom(type)) {
+      if (quarto.precoBaixo <price) {
+        price = quarto.precoBaixo;
+      }
+    }
+    return price;
+  }
+
+  public getExpRoom(type): any {
+    let price = 0;
+    //const rooms=getRoom(type);
+
+    for (const quarto of this.getRoom(type)) {
+      if (quarto.precoBaixo >price) {
+        price = quarto.precoBaixo;
+      }
+    }
+    return price;
   }
 
   length(): any {
     return 1;
   }
 
-  private getRoomTypes(): any {
-    this.quartos.forEach(function(quarto) {
-      if (!this.tipos.includes(quarto.tipoQuarto)) {
-        this.tipos.push(quarto.tipoQuarto);
+  public getRoomTypes(): any {
+    const v: Array<string> = [];
+
+    for (const quarto of this.quartos) {
+      if (!v.includes( quarto.tipoQuarto)) {
+        v.push( quarto.tipoQuarto);
       }
-    });
+    }
+    return v;
   }
 
-  private getRoom(type): any {
+  public getRoom(type): any {
     const q = this.quartos.filter(function(quarto) {
       return quarto.tipoQuarto === type;
     });
     return q;
   }
-  /* codigo de html
-  <li *ngFor="let tipo of quartos">
-      <h3>Tipo de quarto: {{tipo}} </h3>
-      <h3>Numero de quartos :numeroQuartos(tipo)</h3>
-      <h3>Serviços Disponiveis:</h3>
-        <ul class="servicos">
-          <li *ngFor="let servico of servicos">
-            <span class="badge">{{servico.nome}}</span>
-          </li>
-        </ul>
-  </li>
-   */
+
+  public getRoomNumber(type): any {
+    const q = this.quartos.filter(function(quarto) {
+      return quarto.tipoQuarto === type;
+    });
+    return q.length;
+  }
+
+  public alteraTipo(tipo: any) {
+    this.data.changeType(tipo);
+    this.data.changeRooms(this.getRoom(tipo));
+  }
 }
