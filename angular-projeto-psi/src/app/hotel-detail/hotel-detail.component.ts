@@ -43,8 +43,8 @@ export class HotelDetailComponent implements OnInit {
   }
 
   newInfo() {
-    this.data.changeType();
-    this.data.changeRooms();
+    this.data.changeType(null);
+    this.data.changeRooms(null);
   }
 
   getHotel(): void {
