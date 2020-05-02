@@ -183,9 +183,7 @@ function createServicos(cb) {
 
     },
     function (callback) {
-      async.map(servicosH3, function (servico, cb) {
-        servicoCreate(servico, cb);
-      }, callback);
+      servicoCreate(servicosH3[0], cb);
     },
     createServicesHotelQuartos()
   ],
