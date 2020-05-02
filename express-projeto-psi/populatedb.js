@@ -233,7 +233,7 @@ function colocarServicoEmSeuArray(nome) {
 }
 
 function createHoteis(cb) {
-  async.parallel([
+  async.series([
     function (callback) {
       hotelCreate('Douro Vinhas', 'Com uma vista de cortar o fôlego para o Rio Douro e para o Rio Tedo, é no coração do Douro Vinhateiro que surge o Hotel Douro Vinhas. Com uma forte componente de agro e enoturismo, esta unidade estende-se pela centenária Quinta do Moreira.\n Na margem sul do Douro, perto da pitoresca aldeia do Marmelal, a propriedade que acolhe o Hotel Douro Vinhas fica muito próxima de um dos dois marcos mandados construir pelo Marquês de Pombal em 1757. Classificados como imóveis de interesse público, serviam para demarcar a zona dos vinhos generosos do Douro, à época sob jurisdição da Companhia Geral da Agricultura das Vinhas Douro. Nascia assim a primeira região demarcada de vinhos do mundo. Hoje, os vinhedos em socalcos tornam única a paisagem que rodeia esta unidade.\n Numa primeira fase com apenas sete quartos, o Hotel Douro Vinhas distingue-se pela localização, pelo charme e pela exclusividade. Aqui poderá desfrutar da calma e do silêncio, do cenário, mas também a piscina exterior, da gastronomia regional do restaurante Moreira, cujos grandes janelões permitem admirar a envolvente. Mas também das visitas à adega e provas de vinhos do Porto, produzidos no local.\n Poderá ainda aproveitar para passear entre as vinhas, pelo olival ou pelo amendoal (particularmente bonito durante as amendoeiras em flor), sempre com o Tedo e o Douro como companhia. Para completar a estadia, faça um cruzeiro fluvial, visite as quintas vinícolas da região ou faça um passeio de comboio. Ver as amendoeiras em flor ou participar nas vindimas são outras sugestões.', 'Hotel Douro Vinhas\nQuinta do Moreira – Marmelal\n5110-672 Armamar\nPortugal', '41°09´26.0"N 7°38´26.0"W', '(+351) 254 249 000', 'dourovinhas@hoteispsi.com', quartosDouroVinhas, servicosDouroVinhas, callback);
     },
@@ -262,6 +262,8 @@ function mudarLength(array, n) {
   }
 }
 
+var hoteisOrdenados = [];
+
 function preencherArrays() {
   mudarLength(tresQuartos, 3);
   mudarLength(cincoQuartos, 5);
@@ -270,10 +272,11 @@ function preencherArrays() {
   mudarLength(centoCatorzeQuartos, 114);
   mudarLength(noventaOitoQuartos, 98);
   mudarLength(oitoQuartos, 8);
+  async.parallel([])
 }
 
 function createQuartos(cb) {
-  async.parallel([
+  async.series([
     preencherArrays,
     function (callback) {
       async.map(tresQuartos, function (numero, cb) {
