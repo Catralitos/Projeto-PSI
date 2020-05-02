@@ -146,7 +146,7 @@ function hotelCreate(name, description, address, coordinates, phone_number, mail
 function quartoCreate(hotel, tipoQuarto, precoBaixo, precoAlto, servicos, cb) {
   quartodetail = {
     hotel: hotel,
-    servicos: servico
+    servicos: servicos
   }
 
   if (tipoQuarto != false) quartodetail.tipoQuarto = tipoQuarto
