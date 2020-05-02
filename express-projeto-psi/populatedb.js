@@ -185,8 +185,10 @@ function createServicos(cb) {
     function (callback) {
       servicoCreate(servicosH3[0], cb);
     },
-    function (callback) {
-      createServicesHotelQuartos();
+    function(callback){
+      async.map(servicos, function (servico, cb) {
+        colocarServicoEmSeuArray(servico, cb);
+      }, callback);
     }
   ],
     // optional callback
@@ -199,7 +201,7 @@ function createServicesHotelQuartos() {
   servicos.forEach(colocarServicoEmSeuArray);
 }
 
-function colocarServicoEmSeuArray(nome) {
+function colocarServicoEmSeuArray(nome, cb) {
   console.log("Entrou no colocarServicoEmSeuArray");
   if (nomeServicosH1.includes(nome.nome)) {
     servicosDouroVinhas.push(nome);
