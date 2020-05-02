@@ -256,7 +256,7 @@ var centoCatorzeQuartos = []
 var noventaOitoQuartos = []
 var oitoQuartos = [];
 
-function mudarLength(array, n) {
+function mudarLength(array, n, cb) {
   for (var i = 0; i < n, i++;) {
     array.push[i];
   }
@@ -266,13 +266,22 @@ var hoteisOrdenados = [];
 
 function preencherArrays(cb) {
   async.series([
-    mudarLength(tresQuartos, 3),
-    mudarLength(cincoQuartos, 5),
-    mudarLength(centoOitentaDoisQuartos, 182),
-    mudarLength(quinzeQuartos, 15),
-    mudarLength(centoCatorzeQuartos, 114),
-    mudarLength(noventaOitoQuartos, 98),
-    mudarLength(oitoQuartos, 8),
+    function (callback) {
+      mudarLength(tresQuartos, 3, callback);
+    },
+    function (callback) {
+      mudarLength(cincoQuartos, 5, callback);
+    }, function (callback) {
+      mudarLength(centoOitentaDoisQuartos, 182, callback);
+    }, function (callback) {
+      mudarLength(quinzeQuartos, 15, callback);
+    }, function (callback) {
+      mudarLength(centoCatorzeQuartos, 114, callback);
+    }, function (callback) {
+      mudarLength(noventaOitoQuartos, 98, callback);
+    }, function (callback) {
+      mudarLength(oitoQuartos, 8, callback);
+    },
   ],
     // optional callback
     cb);
