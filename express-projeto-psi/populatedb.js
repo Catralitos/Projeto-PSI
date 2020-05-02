@@ -109,7 +109,7 @@ function servicoCreate(nome, cb) {
       cb(err, null)
       return
     }
-    console.log('New Servico: ' + servico);
+    console.log('New Servico: ' + servico.nome);
     servicos.push(servico)
     cb(null, servico)
   });
@@ -134,7 +134,7 @@ function hotelCreate(name, description, address, coordinates, phone_number, mail
       cb(err, null)
       return
     }
-    console.log('New Hotel: ' + hotel);
+    console.log('New Hotel: ' + hotel.nome);
     hoteis.push(hotel)
     cb(null, hotel)
   });
@@ -157,7 +157,7 @@ function quartoCreate(hotel, tipoQuarto, precoBaixo, precoAlto, servico, cb) {
       cb(err, null)
       return
     }
-    console.log('New Quarto: ' + quarto.hotel.nome + ":" + quarto.tipoQuarto);
+    console.log('New Quarto: ' + quarto.hotel.nome + " : " + quarto.tipoQuarto);
     quartos.push(hotel)
     cb(null, hotel)
   });
@@ -248,13 +248,14 @@ function createHoteis(cb) {
     cb);
 }
 
-var tresQuartos = [0,1,2]
-var cincoQuartos = [0,1,2,3,4]
-var centoOitentaDoisQuartos = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122,123,124,125,126,127,128,129,130,131,132,133,134,135,136,137,138,139,140,141,142,143,144,145,146,147,148,149,150,151,152,153,154,155,156,157,158,159,160,161,162,163,164,165,166,167,168,169,170,171,172,173,174,175,176,177,178,179,180,181]
-var quinzeQuartos = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14]
-var centoCatorzeQuartos = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,105,106,107,108,109,110,111,112,113]
-var noventaOitoQuartos = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97]
-var oitoQuartos = [0,1,2,3,4,5,6,7];
+var umQuarot = [0];
+var tresQuartos = [0, 1, 2];
+var cincoQuartos = [0, 1, 2, 3, 4];
+var centoOitentaDoisQuartos = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143, 144, 145, 146, 147, 148, 149, 150, 151, 152, 153, 154, 155, 156, 157, 158, 159, 160, 161, 162, 163, 164, 165, 166, 167, 168, 169, 170, 171, 172, 173, 174, 175, 176, 177, 178, 179, 180, 181];
+var quinzeQuartos = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14];
+var centoCatorzeQuartos = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113];
+var noventaOitoQuartos = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97];
+var oitoQuartos = [0, 1, 2, 3, 4, 5, 6, 7];
 
 function createQuartos(cb) {
   async.series([
@@ -264,13 +265,20 @@ function createQuartos(cb) {
       }, callback);
     },
     function (callback) {
-      quartoCreate(hoteis[0], 'Suite', 250, 330, servicosDouroStandard, cb);
+      async.map(umQuartos, function (numero, cb) {
+        quartoCreate(hoteis[0], 'Suite', 250, 330, servicosDouroStandard, cb);
+      }, callback);
     },
     function (callback) {
-      quartoCreate(hoteis[0], 'SuiteDuplex', 270, 350, servicosDouroSuiteDuplex, cb);
+      async.map(umQuartos, function (numero, cb) {
+        console.log("Entrou na suite duplex");
+        quartoCreate(hoteis[0], 'SuiteDuplex', 270, 350, servicosDouroSuiteDuplex, cb);
+      }, callback);
     },
     function (callback) {
-      quartoCreate(hoteis[0], 'SuiteDeluxe', 270, 350, servicosDouroSuiteDuplex, cb);
+      async.map(umQuartos, function (numero, cb) {
+        quartoCreate(hoteis[0], 'SuiteDeluxe', 270, 350, servicosDouroSuiteDuplex, cb);
+      }, callback);
     },
     function (callback) {
       console.log("Entrou nos 182 quartos");
