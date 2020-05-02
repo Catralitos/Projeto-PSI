@@ -196,7 +196,7 @@ function createServicos(cb) {
 }
 
 function createServicesHotelQuartos(cb) {
-  async.series([
+  async.parallel([
     function (callback) {
       async.map(servicos, function (servico, cb) {
         colocarServicoEmSeuArray(servico, cb)
