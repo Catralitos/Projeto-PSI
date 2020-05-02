@@ -161,7 +161,7 @@ function quartoCreate(hotel, tipoQuarto, precoBaixo, precoAlto, servicos, cb) {
       cb(err, null)
       return
     }
-    console.log('New Quarto: ' + quarto.hotel.nome + " : " + quarto.tipoQuarto + "\n" + quarto.servico);
+    console.log('New Quarto: ' + quarto.hotel.nome + " : " + quarto.tipoQuarto + "\n" + quarto.servicos);
     quartos.push(hotel)
     cb(null, hotel)
   });
