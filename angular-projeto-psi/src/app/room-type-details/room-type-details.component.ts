@@ -21,7 +21,7 @@ import {ActivatedRoute} from '@angular/router';
 export class RoomTypeDetailsComponent implements OnInit {
 
   //obter quartos para fazer contagens
-  tipo: TipoQuarto;
+  tipo: string;
   hotel: Hotel;
   quartos: Quarto[];
   servicos: string[];

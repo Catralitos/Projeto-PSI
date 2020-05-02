@@ -20,7 +20,7 @@
 
 <h3>Numero de quartos disponiveis: {{length()}}</h3>
 
-<h3>Desde :</h3>
+<h3>Desde: {{lowestPrice()}}€</h3>
 
 <h3>Tipos de quartos:</h3>
 <ul class="types">
@@ -29,6 +29,11 @@
       <span class="nome">{{tipo}}</span> </a>
       <p>Ainda existem {{getRoomNumber(tipo)}} quartos disponiveis</p>
       <p>Valor mais baixo na epoca baixa {{getCheapestRoom(tipo)}}€ </p>
+      <ul class="types">
+        <li *ngFor="let s of getRoom(tipo)">
+            <span class="nome">{{s.servicos}}</span>
+        </li>
+      </ul>
   </li>
 </ul>
 

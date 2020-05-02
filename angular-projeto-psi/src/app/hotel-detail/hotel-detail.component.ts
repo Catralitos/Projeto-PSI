@@ -17,7 +17,7 @@ import { DataService } from '../data.service';
   templateUrl: './hotel-detail.component.html',
   styleUrls: ['./hotel-detail.component.css'],
   template: '<room-type-details [message]="message"></room-type-details>',
-  //template: '<room-type-details></room-type-details>',
+  // template: '<room-type-details></room-type-details>',
 })
 export class HotelDetailComponent implements OnInit {
 
@@ -37,8 +37,8 @@ export class HotelDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.getHotel();
-    //this.data.currentMessage.subscribe(message => this.message = message);
-    //this.newInfo();
+    // this.data.currentMessage.subscribe(message => this.message = message);
+    // this.newInfo();
   }
 
   newInfo() {
@@ -59,10 +59,21 @@ export class HotelDetailComponent implements OnInit {
 
   public getCheapestRoom(type): any {
     let price = 1000000;
-    //const rooms=getRoom(type);
+    // const rooms=getRoom(type);
 
     for (const quarto of this.getRoom(type)) {
-      if (quarto.precoBaixo <price) {
+      if (quarto.precoBaixo < price) {
+        price = quarto.precoBaixo;
+      }
+    }
+    return price;
+  }
+
+  public lowestPrice(): any {
+    let price = 1000000;
+    // const rooms=getRoom(type);
+    for (const quarto of this.quartos) {
+      if (quarto.precoBaixo < price) {
         price = quarto.precoBaixo;
       }
     }
@@ -71,10 +82,10 @@ export class HotelDetailComponent implements OnInit {
 
   public getExpRoom(type): any {
     let price = 0;
-    //const rooms=getRoom(type);
+    // const rooms=getRoom(type);
 
     for (const quarto of this.getRoom(type)) {
-      if (quarto.precoBaixo >price) {
+      if (quarto.precoBaixo > price) {
         price = quarto.precoBaixo;
       }
     }
@@ -113,5 +124,30 @@ export class HotelDetailComponent implements OnInit {
   public alteraTipo(tipo: any) {
     this.data.changeType(tipo);
     this.data.changeRooms(this.getRoom(tipo));
+  }
+
+  private getRoomsBetween(min, max, type): any {
+
+  }
+
+  private getRoomMin(min): any {
+    const q = this.quartos.filter(function(quarto) {
+      return quarto.precoBaixo > min || quarto.precoAlto > min;
+    });
+    return q;
+  }
+
+  private getRoomMax(max): any {
+    const q = this.quartos.filter(function(quarto) {
+      return quarto.precoBaixo < max || quarto.precoAlto < max;
+    });
+    return q;
+  }
+
+  private getRoomMinMax(min, max): any {
+    const q = this.quartos.filter(function(quarto) {
+      return quarto.precoBaixo < max || quarto.precoAlto < max;
+    });
+    return q;
   }
 }
