@@ -22,7 +22,7 @@ exports.get_hotel = function (req, res, next) {
                 .exec(callback)
         },
         hotel_rooms: function (callback) {
-            Quarto.find({ 'hotel': req.params.hotel })
+            Quarto.find({ 'hotel': req.params.id }, 'hotel tipoQuarto precoBaixo precoAlto servicos')
                 .exec(callback)
         },
     }, function (err, results) {
