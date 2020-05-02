@@ -151,7 +151,7 @@ function quartoCreate(hotel, tipoQuarto, precoBaixo, precoAlto, servicos, cb) {
   if (tipoQuarto != false) quartodetail.tipoQuarto = tipoQuarto
   if (precoBaixo > 0) quartodetail.precoBaixo = precoBaixo
   if (precoAlto >= precoBaixo) quartodetail.precoAlto = precoAlto
-  if (servicos.length > 0) quartodetail.servico = servicos
+  if (servicos.length > 0) quartodetail.servicos = servicos
 
   var quarto = new Quarto(quartodetail);
 
