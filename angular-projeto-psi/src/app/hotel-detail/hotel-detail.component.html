@@ -15,20 +15,31 @@
 <h3>Telefone: {{hotel.numero_telefone}} </h3>
 <h3>Email: {{hotel.email}} </h3>
 
-<h3>Numero de quartos disponiveis: {{length()}}</h3>
+<h3>Numero de quartos disponiveis: {{numeroQuartos()}}</h3>
 
-<h3>Desde :</h3>
+<h3>Desde : </h3>
 
 <h3>Tipos de quartos:</h3>
 <ul class="types">
   <li *ngFor="let tipo of getRoomTypes()">
-    <a routerLink="/{{hotel._id}}/{{tipo}}" (click)="alteraTipo(tipo)">
+    <a routerLink="/{{hotel.nome}}/{{tipo}}" (click)="alteraTipo(tipo)">
       <span class="nome">{{tipo}}</span> </a>
-      <p>Ainda existem {{getRoomNumber(tipo)}} quartos disponiveis</p>
-      <p>Valor mais baixo na epoca baixa {{getCheapestRoom(tipo)}}€ </p>
+    <p>Ainda existem {{getRoomNumber(tipo)}} quartos disponiveis</p>
+    <p>Valor mais baixo na epoca baixa {{getCheapestRoom(tipo)}}€ </p>
+  </li>
+</ul>
+
+<h3>Serviços Disponíveis:</h3>
+<ul class="services">
+  <li *ngFor="let servico of hotel.servicos">
+    <a><span class="nome">{{servico}}</span> </a>
+  </li>
+</ul>
+
+<ul class="imagens">
+  <li *ngFor="let imagem of hotel.imagens">
+    <img src="{{imagem}}">
   </li>
 </ul>
 
 </body>
-
-

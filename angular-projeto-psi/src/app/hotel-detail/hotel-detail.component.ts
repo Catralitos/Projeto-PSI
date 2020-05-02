@@ -81,12 +81,12 @@ export class HotelDetailComponent implements OnInit {
     return price;
   }
 
-  length(): any {
-    return 1;
+  public numeroQuartos(): any {
+    return this.quartos.length;
   }
 
   public getRoomTypes(): any {
-    const v: Array<string> = [];
+    const v: Array<TipoQuarto> = [];
 
     for (const quarto of this.quartos) {
       if (!v.includes( quarto.tipoQuarto)) {

@@ -21,7 +21,7 @@ import {ActivatedRoute} from '@angular/router';
 export class RoomTypeDetailsComponent implements OnInit {
 
   //obter quartos para fazer contagens
-  tipo: TipoQuarto;
+  tipo: string;
   hotel: Hotel;
   quartos: Quarto[];
   servicos: string[];
@@ -34,10 +34,10 @@ export class RoomTypeDetailsComponent implements OnInit {
               private location: Location) { }
 
   ngOnInit(): void {
-    //this.getQuarto();
+    // this.getQuarto();
     this.tipo = this.route.snapshot.url[1].path;
-    //this.data.currentType.subscribe(message => this.tipos = message);
-    //this.data.currentRooms.subscribe(message => this.quartos = message);
+    // this.data.currentType.subscribe(message => this.tipos = message);
+    // this.data.currentRooms.subscribe(message => this.quartos = message);
     this.getHotel();
   }
 
