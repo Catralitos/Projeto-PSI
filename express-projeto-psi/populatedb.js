@@ -184,11 +184,6 @@ function createServicos(cb) {
     },
     function (callback) {
       servicoCreate(servicosH3[0], cb);
-    },
-    function(callback){
-      async.map(servicos, function (servico, cb) {
-        colocarServicoEmSeuArray(servico, cb);
-      }, callback);
     }
   ],
     // optional callback
@@ -197,8 +192,9 @@ function createServicos(cb) {
 }
 
 function createServicesHotelQuartos() {
-  console.log("Entrou no createServicesHotelQuartos");
-  servicos.forEach(colocarServicoEmSeuArray);
+  async.map(servicos, function (servico, cb) {
+    colocarServicoEmSeuArray(servico, cb);
+  }, callback);
 }
 
 function colocarServicoEmSeuArray(nome, cb) {
@@ -322,6 +318,7 @@ function createQuartos(cb) {
 
 async.series([
   createServicos,
+  createServicesHotelQuartos,
   createHoteis,
   createQuartos
 ],
