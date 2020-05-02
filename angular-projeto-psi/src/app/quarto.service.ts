@@ -8,7 +8,9 @@ import {MessageService} from './message.service';
   providedIn: 'root'
 })
 export class QuartoService {
+
   //private quartosUrl = 'http://http://10.101.151.25:3010/catalog/hoteis';  // URL to web api
+
   private quartoUrl = 'http://10.101.151.25:3010/catalog/quarto';  // URL to web api
 
   constructor(

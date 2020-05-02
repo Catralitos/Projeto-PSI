@@ -34,10 +34,10 @@ export class RoomTypeDetailsComponent implements OnInit {
               private location: Location) { }
 
   ngOnInit(): void {
-    //this.getQuarto();
+    // this.getQuarto();
     this.tipo = this.route.snapshot.url[1].path;
-    //this.data.currentType.subscribe(message => this.tipos = message);
-    //this.data.currentRooms.subscribe(message => this.quartos = message);
+    // this.data.currentType.subscribe(message => this.tipos = message);
+    // this.data.currentRooms.subscribe(message => this.quartos = message);
     this.getHotel();
   }
 
@@ -86,6 +86,13 @@ export class RoomTypeDetailsComponent implements OnInit {
       return quarto.tipoQuarto === type;
     });
     return q;
+  }
+
+  public getSingleRoom(type): any {
+    const q = this.quartos.filter(function(quarto) {
+      return quarto.tipoQuarto === type;
+    });
+    return q[0];
   }
 
   public getRoomNumber(type): any {

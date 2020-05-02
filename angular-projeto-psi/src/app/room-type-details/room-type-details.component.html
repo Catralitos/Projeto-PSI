@@ -4,7 +4,7 @@
 <h3>Numero de quartos :{{getRoomNumber(tipo)}}</h3>
 <h3>Serviços Disponiveis:</h3>
 <ul class="servicos">
-  <li *ngFor="let servico of getRoom(tipo)">
-    <span class="badge">{{servico.tipoQuarto}}</span>
+  <li *ngFor="let servico of getRoom(tipo)[0].servicos">
+    <span class="badge">{{servico}}</span>
   </li>
 </ul>
