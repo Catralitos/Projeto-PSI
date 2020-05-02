@@ -185,7 +185,9 @@ function createServicos(cb) {
     function (callback) {
       servicoCreate(servicosH3[0], cb);
     },
-    createServicesHotelQuartos()
+    function (callback) {
+      createServicesHotelQuartos()
+    }
   ],
     // optional callback
     cb);
