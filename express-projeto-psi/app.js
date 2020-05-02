@@ -22,8 +22,6 @@ db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 app.use(cors());
 
-app.listen(3010);
-
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
