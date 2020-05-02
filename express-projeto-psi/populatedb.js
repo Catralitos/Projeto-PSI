@@ -257,49 +257,49 @@ var noventaOitoQuartos = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,2
 var oitoQuartos = [0,1,2,3,4,5,6,7];
 
 function createQuartos(cb) {
-  async.parallel([
+  async.series([
     function (callback) {
       async.map(tresQuartos, function (numero, cb) {
-        quartoCreate(hoteis[0], 'Standard', 180, 270, servicosDouroStandard, callback);
+        quartoCreate(hoteis[0], 'Standard', 180, 270, servicosDouroStandard, cb);
       }, callback);
     },
     function (callback) {
-      quartoCreate(hoteis[0], 'Suite', 250, 330, servicosDouroStandard, callback);
+      quartoCreate(hoteis[0], 'Suite', 250, 330, servicosDouroStandard, cb);
     },
     function (callback) {
-      quartoCreate(hoteis[0], 'SuiteDuplex', 270, 350, servicosDouroSuiteDuplex, callback);
+      quartoCreate(hoteis[0], 'SuiteDuplex', 270, 350, servicosDouroSuiteDuplex, cb);
     },
     function (callback) {
-      quartoCreate(hoteis[0], 'SuiteDeluxe', 270, 350, servicosDouroSuiteDuplex, callback);
+      quartoCreate(hoteis[0], 'SuiteDeluxe', 270, 350, servicosDouroSuiteDuplex, cb);
     },
     function (callback) {
       async.map(centoOitentaDoisQuartos, function (numero, cb) {
-        quartoCreate(hoteis[1], 'Standard', 90, 160, servicosMarStandard, callback);
+        quartoCreate(hoteis[1], 'Standard', 90, 160, servicosMarStandard, cb);
       }, callback);
     },
     function (callback) {
       async.map(cincoQuartos, function (numero, cb) {
-        quartoCreate(hoteis[1], 'SuiteJunior', 120, 180, servicosMarSuiteJunior, callback);
+        quartoCreate(hoteis[1], 'SuiteJunior', 120, 180, servicosMarSuiteJunior, cb);
       }, callback);
     },
     function (callback) {
       async.map(quinzeQuartos, function (numero, cb) {
-        quartoCreate(hoteis[1], 'SuiteJuniorSuperior', 130, 210, servicosMarSuiteJuniorSup, callback);
+        quartoCreate(hoteis[1], 'SuiteJuniorSuperior', 130, 210, servicosMarSuiteJuniorSup, cb);
       }, callback);
     },
     function (callback) {
       async.map(centoCatorzeQuartos, function (numero, cb) {
-        quartoCreate(hoteis[2], 'Standard', 70, 210, servicosMediterraneoStandard, callback);
+        quartoCreate(hoteis[2], 'Standard', 70, 210, servicosMediterraneoStandard, cb);
       }, callback);
     },
     function (callback) {
       async.map(noventaOitoQuartos, function (numero, cb) {
-        quartoCreate(hoteis[2], 'SuiteJunior', 90, 250, servicosMediterraneoSuiteJunior, callback);
+        quartoCreate(hoteis[2], 'SuiteJunior', 90, 250, servicosMediterraneoSuiteJunior, cb);
       }, callback);
     },
     function (callback) {
       async.map(oitoQuartos, function (numero, cb) {
-        quartoCreate(hoteis[2], 'SuiteSenior', 120, 240, servicosMediterraneoSuiteSenior, callback);
+        quartoCreate(hoteis[2], 'SuiteSenior', 120, 240, servicosMediterraneoSuiteSenior, cb);
       }, callback);
     }
   ],
