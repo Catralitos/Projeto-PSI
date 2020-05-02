@@ -157,7 +157,7 @@ function quartoCreate(hotel, tipoQuarto, precoBaixo, precoAlto, servico, cb) {
       cb(err, null)
       return
     }
-    console.log('New Quarto: ' + quarto);
+    console.log('New Quarto: ' + quarto.hotel.nome + ":" + quarto.tipoQuarto);
     quartos.push(hotel)
     cb(null, hotel)
   });
@@ -273,6 +273,7 @@ function createQuartos(cb) {
       quartoCreate(hoteis[0], 'SuiteDeluxe', 270, 350, servicosDouroSuiteDuplex, cb);
     },
     function (callback) {
+      console.log("Entrou nos 182 quartos");
       async.map(centoOitentaDoisQuartos, function (numero, cb) {
         quartoCreate(hoteis[1], 'Standard', 90, 160, servicosMarStandard, cb);
       }, callback);
