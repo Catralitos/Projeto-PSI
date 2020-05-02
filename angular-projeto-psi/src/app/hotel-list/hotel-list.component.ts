@@ -23,7 +23,7 @@ export class HotelListComponent implements OnInit {
   }
 
   public imgAleatoria(hotel) {
-    //return hotel.imagens[this.randomInt(0, hotel.imagens.length)];
+    return hotel.imagens[this.randomInt(0, hotel.imagens.length)];
   }
 
   private randomInt(min, max) {
