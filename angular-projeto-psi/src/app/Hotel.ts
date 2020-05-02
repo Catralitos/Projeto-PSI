@@ -1,4 +1,3 @@
-import {Servico} from './Servico';
 
 export interface Hotel {
   // podem faltar certos atributos do JSON mas acho que vao ser estes todos
@@ -13,5 +12,5 @@ export interface Hotel {
   // vai ser algo assim
   // https://stackoverflow.com/questions/54492562/angular-getting-property-from-json-object-and-displaying-it-as-image
   imagens: string[];
-  servicos: Servico[];
+  servicos: string[];
 }
