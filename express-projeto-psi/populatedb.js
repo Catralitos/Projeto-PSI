@@ -191,7 +191,7 @@ function createServicos(cb) {
 
 }
 
-function createServicesHotelQuartos() {
+function createServicesHotelQuartos(cb) {
   async.map(servicos, function (servico, cb) {
     colocarServicoEmSeuArray(servico, cb);
   }, callback);
