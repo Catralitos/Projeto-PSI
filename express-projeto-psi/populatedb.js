@@ -327,7 +327,7 @@ function createQuartos(cb) {
 
 async.series([
   createServicos,
-  //createServicesHotelQuartos,
+  createServicesHotelQuartos,
   createHoteis,
   createQuartos
 ],
