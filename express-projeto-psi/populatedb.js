@@ -192,10 +192,10 @@ function createServicos(cb) {
 }
 
 function createServicesHotelQuartos(cb) {
-  console.log("Entrou no createServicesHOTELQuartos e os servicos estao: \n" + servicos);
   async.series([
     function (callback) {
       async.map(servicos, function (servico, cb) {
+        console.log("Vai colocar o servico " + servico); 
         colocarServicoEmSeuArray(servico, cb)
       }, callback);
     }
