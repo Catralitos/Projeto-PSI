@@ -22,9 +22,7 @@ db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 app.use(cors());
 
-app.listen(3010){
-  //do nothing
-}
+app.listen(3010);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
