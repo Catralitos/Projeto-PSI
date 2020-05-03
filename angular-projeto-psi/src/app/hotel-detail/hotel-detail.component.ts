@@ -16,8 +16,6 @@ import { DataService } from '../data.service';
   selector: 'app-hotel-detail',
   templateUrl: './hotel-detail.component.html',
   styleUrls: ['./hotel-detail.component.css'],
-  template: '<room-type-details [message]="message"></room-type-details>',
-  // template: '<room-type-details></room-type-details>',
 })
 export class HotelDetailComponent implements OnInit {
 
@@ -37,13 +35,6 @@ export class HotelDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.getHotel();
-    // this.data.currentMessage.subscribe(message => this.message = message);
-    // this.newInfo();
-  }
-
-  newInfo() {
-    this.data.changeType(null);
-    this.data.changeRooms(null);
   }
 
   getHotel(): void {
@@ -133,8 +124,16 @@ export class HotelDetailComponent implements OnInit {
     this.data.changeRooms(this.getRoom(tipo));
   }
 
-  private getRoomsBetween(min, max, type): any {
-
+  private getRoomsBetween(min, max): any {
+    if (!max) {
+      return this.getRoomMin(min);
+    }
+    if (!min) {
+      return this.getRoomMax(max);
+    }
+    if(max && min) {
+      return this.getRoomsBetween(min, max);
+    }
   }
 
   private getRoomMin(min): any {
@@ -153,7 +152,8 @@ export class HotelDetailComponent implements OnInit {
 
   private getRoomMinMax(min, max): any {
     const q = this.quartos.filter(function(quarto) {
-      return quarto.precoBaixo < max || quarto.precoAlto < max;
+      return (quarto.precoBaixo > min || quarto.precoAlto > min) &&
+        (quarto.precoBaixo < max || quarto.precoAlto < max);
     });
     return q;
   }
