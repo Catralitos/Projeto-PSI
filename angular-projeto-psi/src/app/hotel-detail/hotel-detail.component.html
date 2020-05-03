@@ -1,16 +1,12 @@
 <body>
 <header>
-  <h1>{{hotel.nome}}</h1>
-  <nav>
-    <ul>
-      <li><a href="#">Home</a></li>
-      <li><a href="#">About</a></li>
-      <li><a href="#">Terms of use</a></li>
-      <li><a href="#">Contact</a></li>
-    </ul>
-  </nav>
+<h1>{{hotel.nome}}</h1>
+<nav>
+  <ul>
+    <a href="#">Hóteis</a>
+  </ul>
+</nav>
 </header>
-
 
 <h3>{{hotel.descricao}} </h3>
 <h3>Morada: {{hotel.morada}} </h3>
@@ -18,12 +14,79 @@
 <h3>Telefone: {{hotel.numero_telefone}} </h3>
 <h3>Email: {{hotel.email}} </h3>
 
-<h3>Numero de quartos disponiveis:{{length()}}</h3>
+<h3>Serviços Disponíveis:</h3>
+<ul class="services">
+<li *ngFor="let servico of hotel.servicos">
+  <a><span class="nome">{{servico}}</span> </a>
+</li>
+</ul>
 
-<h3>Desde :</h3>
+
+<h3>Numero de quartos disponiveis: {{numeroQuartos()}}</h3>
+
+<h3>Desde: {{lowestPrice()}}€</h3>
+
+  <h3>Preço</h3>
+  <label >De:
+    <input type="number" #min />
+    Até
+    <input type="number" #max />
+  </label> <br>
+  <br>
+
+ <button (click)="toggle(); " >Pesquisar </button>
+ <button (click)="hide(); min.value=''; max.value='';" >Limpar </button>
+
+  <ng-container *ngIf="show">
+  <li *ngFor="let tipo of getTypesList(getRoomsBetween(min.value,max.value))">
+    <span class="nome">{{tipo}} </span>
+  </li>
+  </ng-container>
+<br>
 
 <h3>Tipos de quartos:</h3>
+<table style="overflow-x:auto;">
+  <th *ngFor="let tipo of getRoomTypes()">
+    <tr>
+      <th>
+        <a routerLink="/{{hotel._id}}/{{tipo}}" >
+          <span class="nome">{{tipo}}</span></a>
+      </th>
+    <tr>
+      <td>Ainda existem {{getRoomNumber(tipo)}} quartos disponiveis</td>
+    </tr>
+    <tr>
+      <p>Serviços disponíveis neste tipo de quarto:</p>
+      <ng-container *ngFor="let servico of getRoom(tipo)[0].servicos">
+        <p class="nome">{{servico}}</p>
+      </ng-container>
+    </tr>
+      <br>
+</table>
+
+<!--<h3>Tipos de quartos:</h3>
+<ul class="types">
+<li *ngFor="let tipo of getRoomTypes()">
+  <tr>
+  <a routerLink="/{{hotel._id}}/{{tipo}}" >
+    <span class="nome">{{tipo}}</span> </a>
+      <p>Ainda existem {{getRoomNumber(tipo)}} quartos disponiveis</p>
+      <p>Valor mais baixo na epoca baixa {{getCheapestRoom(tipo)}}€ </p>
+      <p>Serviços disponíveis neste tipo de quarto</p>
+      <ul class="servicos">
+        <li *ngFor="let servico of getRoom(tipo)[0].servicos">
+            <span class="nome">{{servico}}</span>
+        </li>
+      </ul>
+  <br>
+  </tr>
+</li>
+</ul>-->
+
+<ul class="imagens">
+<li *ngFor="let imagem of hotel.imagens">
+  <img src="{{imagem}}">
+</li>
+</ul>
 
 </body>
-
-

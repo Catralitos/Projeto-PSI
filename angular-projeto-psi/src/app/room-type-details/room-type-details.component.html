@@ -1,10 +1,13 @@
 
-<h3>Tipo de quarto: </h3>
+<h3>Tipo de quarto: {{tipo}}</h3>
 
-<h3>Numero de quartos :numeroQuartos(tipo)</h3>
+<h3>Numero de quartos :{{getRoomNumber(tipo)}}</h3>
 <h3>Serviços Disponiveis:</h3>
 <ul class="servicos">
-  <li *ngFor="let servico of servicos">
-    <span class="badge">{{servico.nome}}</span>
+  <li *ngFor="let servico of getRoom(tipo)[0].servicos">
+    <span class="badge">{{servico}}</span>
   </li>
 </ul>
+
+<h3>Desde: {{getCheapestRoomEpocaBaixa(tipo)}}€ Para reservas entre 15 de janeiro a 31 e maio e 30 de setembro a 15 de dezembro</h3>
+<h3>Desde: {{getCheapestRoomEpocaAlta(tipo)}}€ Para as restantes datas</h3>
