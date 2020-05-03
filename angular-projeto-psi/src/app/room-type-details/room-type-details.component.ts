@@ -101,4 +101,26 @@ export class RoomTypeDetailsComponent implements OnInit {
     });
     return q.length;
   }
+
+  public getCheapestRoomEpocaBaixa(type): any {
+    let price = 1000000;
+
+    for (const quarto of this.getRoom(type)) {
+      if (quarto.precoBaixo <price) {
+        price = quarto.precoBaixo;
+      }
+    }
+    return price;
+  }
+
+  public getCheapestRoomEpocaAlta(type): any {
+    let price = 1000000;
+
+    for (const quarto of this.getRoom(type)) {
+      if (quarto.precoBaixo <price) {
+        price = quarto.precoAlto;
+      }
+    }
+    return price;
+  }
 }

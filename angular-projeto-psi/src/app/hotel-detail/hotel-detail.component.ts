@@ -128,7 +128,7 @@ export class HotelDetailComponent implements OnInit {
     return q.length;
   }
 
-  private getRoomsBetween(min, max): any {
+  public getRoomsBetween(min, max): any {
     if (min && !max) {
       return this.getRoomMin(min);
     }
