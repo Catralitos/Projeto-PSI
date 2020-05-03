@@ -1,11 +1,11 @@
 <body>
 <header>
-  <h1>{{hotel.nome}}</h1>
-  <nav>
-    <ul>
-      <li><a href="#">Home</a></li>
-    </ul>
-  </nav>
+<h1>{{hotel.nome}}</h1>
+<nav>
+  <ul>
+    <a href="#">Hóteis</a>
+  </ul>
+</nav>
 </header>
 
 
@@ -17,9 +17,9 @@
 
 <h3>Serviços Disponíveis:</h3>
 <ul class="services">
-  <li *ngFor="let servico of hotel.servicos">
-    <a><span class="nome">{{servico}}</span> </a>
-  </li>
+<li *ngFor="let servico of hotel.servicos">
+  <a><span class="nome">{{servico}}</span> </a>
+</li>
 </ul>
 
 
@@ -28,38 +28,54 @@
 <h3>Desde: {{lowestPrice()}}€</h3>
 
 
-  <h3>Preço</h3>
-  <label >De:
-    <input type="number" #authorName />
-    Até
-    <input type="number" #authorName />
-  </label> <br>
-  <br>
- <!-- <button (click)="add(authorName.value,authorFname.value); authorName.value='';authorFname.value='';" >
-    Pesquisar
-  </button>-->
+<h3>Preço</h3>
+<label >De:
+  <input type="number" #authorName />
+  Até
+  <input type="number" #authorName />
+</label> <br>
+<br>
+<!-- <button (click)="add(authorName.value,authorFname.value); authorName.value='';authorFname.value='';" >
+  Pesquisar
+</button>-->
+
+<table style="overflow-x:auto;">
+  <th *ngFor="let tipo of getRoomTypes()">
+    <tr>
+      <th>
+        <span class="nome">{{tipo}}</span>
+      </th>
+          <tr>
+        <ng-container *ngFor="let servico of getRoom(tipo)[0].servicos">
+          <p class="nome">{{servico}}</p>
+        </ng-container>
+    </tr>
+      <br>
+</table>
 
 <h3>Tipos de quartos:</h3>
 <ul class="types">
-  <li *ngFor="let tipo of getRoomTypes()">
-    <a routerLink="/{{hotel._id}}/{{tipo}}" (click)="alteraTipo(tipo)">
-      <span class="nome">{{tipo}}</span> </a>
-        <p>Ainda existem {{getRoomNumber(tipo)}} quartos disponiveis</p>
-        <p>Valor mais baixo na epoca baixa {{getCheapestRoom(tipo)}}€ </p>
-        <p>Serviços disponíveis neste tipo de quarto</p>
-        <ul class="servicos">
-          <li *ngFor="let servico of getRoom(tipo)[0].servicos">
-              <span class="nome">{{servico}}</span>
-          </li>
-        </ul>
-    <br>
-  </li>
+<li *ngFor="let tipo of getRoomTypes()">
+  <tr>
+  <a routerLink="/{{hotel.nome}}/{{tipo}}" (click)="alteraTipo(tipo)">
+    <span class="nome">{{tipo}}</span> </a>
+      <p>Ainda existem {{getRoomNumber(tipo)}} quartos disponiveis</p>
+      <p>Valor mais baixo na epoca baixa {{getCheapestRoom(tipo)}}€ </p>
+      <p>Serviços disponíveis neste tipo de quarto</p>
+      <ul class="servicos">
+        <li *ngFor="let servico of getRoom(tipo)[0].servicos">
+            <span class="nome">{{servico}}</span>
+        </li>
+      </ul>
+  <br>
+  </tr>
+</li>
 </ul>
 
 <ul class="imagens">
-  <li *ngFor="let imagem of hotel.imagens">
-    <img src="{{imagem}}">
-  </li>
+<li *ngFor="let imagem of hotel.imagens">
+  <img src="{{imagem}}">
+</li>
 </ul>
 
 </body>
