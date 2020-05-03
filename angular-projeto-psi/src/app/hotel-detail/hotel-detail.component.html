@@ -8,7 +8,6 @@
   </nav>
 </header>
 
-
 <h3>{{hotel.descricao}} </h3>
 <h3>Morada: {{hotel.morada}} </h3>
 <h3>Coordenadas: {{hotel.coordenadas}} </h3>
@@ -30,19 +29,27 @@
 
   <h3>Preço</h3>
   <label >De:
-    <input type="number" #authorName />
+    <input type="number" #min />
     Até
-    <input type="number" #authorName />
+    <input type="number" #max />
   </label> <br>
   <br>
- <!-- <button (click)="add(authorName.value,authorFname.value); authorName.value='';authorFname.value='';" >
-    Pesquisar
-  </button>-->
+
+   <button (click)="toggle(); " >
+  Pesquisar
+</button>
+<ng-container *ngIf="show">
+  <li *ngFor="let tipo of getTypesList(getRoomsBetween(min.value,max.value))">
+    <span class="nome">{{tipo}} </span>
+  </li>
+</ng-container>
+
+
 
 <h3>Tipos de quartos:</h3>
 <ul class="types">
   <li *ngFor="let tipo of getRoomTypes()">
-    <a routerLink="/{{hotel._id}}/{{tipo}}" (click)="alteraTipo(tipo)">
+    <a routerLink="/{{hotel._id}}/{{tipo}}">
       <span class="nome">{{tipo}}</span> </a>
         <p>Ainda existem {{getRoomNumber(tipo)}} quartos disponiveis</p>
         <p>Valor mais baixo na epoca baixa {{getCheapestRoom(tipo)}}€ </p>

@@ -23,7 +23,8 @@ export class HotelDetailComponent implements OnInit {
   @Input() quartos: Quarto[];
   @Input() servicos: string[];
   tipos: string[];
-  message = 'heloo';
+  quartosB: Quarto[];
+  show = false;
 
 
 
@@ -35,6 +36,14 @@ export class HotelDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.getHotel();
+  }
+
+  public toggle() {
+    this.show = true;
+  }
+
+  public hide() {
+    this.show = false;
   }
 
   getHotel(): void {
@@ -119,42 +128,48 @@ export class HotelDetailComponent implements OnInit {
     return q.length;
   }
 
-  public alteraTipo(tipo: any) {
-    this.data.changeType(tipo);
-    this.data.changeRooms(this.getRoom(tipo));
-  }
-
   private getRoomsBetween(min, max): any {
-    if (!max) {
+    if (min && !max) {
       return this.getRoomMin(min);
     }
-    if (!min) {
+    if (!min && max) {
       return this.getRoomMax(max);
     }
-    if(max && min) {
-      return this.getRoomsBetween(min, max);
+    if (max && min) {
+      return this.getRoomMinMax(min, max);
     }
   }
 
   private getRoomMin(min): any {
     const q = this.quartos.filter(function(quarto) {
-      return quarto.precoBaixo > min || quarto.precoAlto > min;
+      return quarto.precoBaixo >= min || quarto.precoAlto >= min;
     });
     return q;
   }
 
   private getRoomMax(max): any {
     const q = this.quartos.filter(function(quarto) {
-      return quarto.precoBaixo < max || quarto.precoAlto < max;
+      return quarto.precoBaixo <= max || quarto.precoAlto <= max;
     });
     return q;
   }
 
   private getRoomMinMax(min, max): any {
     const q = this.quartos.filter(function(quarto) {
-      return (quarto.precoBaixo > min || quarto.precoAlto > min) &&
-        (quarto.precoBaixo < max || quarto.precoAlto < max);
+      return (quarto.precoBaixo >= min || quarto.precoAlto >= min) &&
+        (quarto.precoBaixo <= max || quarto.precoAlto <= max);
     });
     return q;
+  }
+
+  getTypesList(quartos: Quarto[]): any{
+    const v: Array<TipoQuarto> = [];
+
+    for (const quarto of quartos) {
+      if (!v.includes( quarto.tipoQuarto)) {
+        v.push( quarto.tipoQuarto);
+      }
+    }
+    return v;
   }
 }

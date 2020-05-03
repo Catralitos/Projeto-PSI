@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { Hotel } from '../Hotel';
 import { HotelService } from '../hotel.service';
+import {DataService} from "../data.service";
 
 @Component({
   selector: 'app-hotel-list',
@@ -11,11 +12,14 @@ import { HotelService } from '../hotel.service';
 export class HotelListComponent implements OnInit {
 
   hotelList: Hotel[];
+  message: string;
 
-  constructor(private hotelService: HotelService) { }
+  constructor(private hotelService: HotelService,
+              private data: DataService) { }
 
   ngOnInit(): void {
     this.getHotels();
+    this.data.currentId.subscribe(message => this.message = message);
   }
 
   private getHotels() {
@@ -23,12 +27,10 @@ export class HotelListComponent implements OnInit {
   }
 
   public imgAleatoria(hotel) {
-    return hotel.imagens[this.randomInt(0, hotel.imagens.length-1)];
+    return hotel.imagens[this.randomInt(0, hotel.imagens.length - 1)];
   }
 
   private randomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
-
-
 }

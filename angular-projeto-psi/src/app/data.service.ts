@@ -12,20 +12,13 @@ import { TipoQuarto } from './TipoQuarto';
 })
 export class DataService {
   //type
-  private typeSource = new BehaviorSubject<TipoQuarto>(null);
-  currentType = this.typeSource.asObservable();
+  private messageSource = new BehaviorSubject<string>('');
+  currentId = this.messageSource.asObservable();
 
-  //quartos
-  private quartoSource = new BehaviorSubject<Quarto[]>(null);
-  currentRooms = this.quartoSource.asObservable();
 
   constructor() { }
 
-  changeType(type: TipoQuarto) {
-    this.typeSource.next(type);
-  }
-
-  changeRooms(quartos: Quarto[]) {
-    this.quartoSource.next(quartos);
+  changeHotelId(id: string) {
+    this.messageSource.next(id);
   }
 }
