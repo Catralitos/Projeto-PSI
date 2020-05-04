@@ -26,30 +26,12 @@
 
 <h3>Desde: {{lowestPrice()}}€</h3>
 
-  <h3>Preço</h3>
-  <label >De:
-    <input type="number" #min />
-    Até
-    <input type="number" #max />
-  </label> <br>
-  <br>
-
- <button (click)="toggle(); " >Pesquisar </button>
- <button (click)="hide(); min.value=''; max.value='';" >Limpar </button>
-
-  <ng-container *ngIf="show">
-  <li *ngFor="let tipo of getTypesList(getRoomsBetween(min.value,max.value))">
-    <span class="nome">{{tipo}} </span>
-  </li>
-  </ng-container>
-<br>
-
 <h3>Tipos de quartos:</h3>
 <table style="overflow-x:auto;">
   <th *ngFor="let tipo of getRoomTypes()">
     <tr>
       <th>
-        <a routerLink="/{{hotel._id}}/{{tipo}}" >
+        <a routerLink="/{{hotelId()}}/{{tipo}}" >
           <span class="nome">{{tipo}}</span></a>
       </th>
     <tr>
@@ -63,6 +45,25 @@
     </tr>
       <br>
 </table>
+
+<h3>Preço</h3>
+<label >De:
+  <input type="number" #min />
+  Até
+  <input type="number" #max />
+</label> <br>
+<br>
+
+<button (click)="toggle(); " >Pesquisar </button>
+<button (click)="hide(); min.value=''; max.value='';" >Limpar </button>
+<br><br>
+<ng-container *ngIf="show">
+  <li *ngFor="let tipo of getTypesList(getRoomsBetween(min.value,max.value))">
+    <span class="nome">{{tipo}} </span>
+    <p> Ainda existem {{getRooms(getRoomsBetween(min.value,max.value) , tipo).length}} quartos disponíveis</p>
+  </li>
+</ng-container>
+<br>
 
 <!--<h3>Tipos de quartos:</h3>
 <ul class="types">

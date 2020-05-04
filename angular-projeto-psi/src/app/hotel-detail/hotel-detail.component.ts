@@ -15,7 +15,7 @@ import { DataService } from '../data.service';
 @Component({
   selector: 'app-hotel-detail',
   templateUrl: './hotel-detail.component.html',
-  styleUrls: ['./hotel-detail.component.css'],
+  styleUrls: ['./hotel-detail.component.css']
 })
 export class HotelDetailComponent implements OnInit {
 
@@ -171,5 +171,16 @@ export class HotelDetailComponent implements OnInit {
       }
     }
     return v;
+  }
+
+  public getRooms(quartos , type): any {
+    const q = quartos.filter(function(quarto) {
+      return quarto.tipoQuarto === type;
+    });
+    return q;
+  }
+
+  public hotelId(): string{
+    return this.route.snapshot.url[0].path;
   }
 }
