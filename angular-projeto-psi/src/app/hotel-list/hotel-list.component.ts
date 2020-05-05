@@ -27,7 +27,7 @@ export class HotelListComponent implements OnInit {
   }
 
   public primeiraFrase(descricao) {
-    return descricao.split('.')[0];
+    return descricao.split('.')[0] + '.';
   }
 
   public imgAleatoria(hotel) {
