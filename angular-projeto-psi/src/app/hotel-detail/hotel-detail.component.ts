@@ -41,7 +41,7 @@ export class HotelDetailComponent implements OnInit {
   }
 
   public getTipoCerto(tipo): any {
-    return tipo.split.split(/(?=[A-Z])/).join(' ');
+    return tipo.split(/(?=[A-Z])/).join(' ');
   }
 
   public getHotel(): void {
