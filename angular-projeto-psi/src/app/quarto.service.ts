@@ -9,9 +9,9 @@ import {MessageService} from './message.service';
 })
 export class QuartoService {
 
-  //private quartosUrl = 'http://http://10.101.151.25:3010/catalog/hoteis';  // URL to web api
+  // private quartosUrl = 'http://http://10.101.151.25:3010/catalog/hoteis';  // URL to web api
 
-  private quartoUrl = 'http://10.101.151.25:3010/catalog/quarto';  // URL to web api
+  private quartoUrl = 'http://appserver.alunos.di.fc.ul.pt:3010/catalog/quarto';  // URL to web api
 
   constructor(
     private http: HttpClient,
