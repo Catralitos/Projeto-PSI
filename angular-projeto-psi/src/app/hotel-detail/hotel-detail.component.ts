@@ -25,8 +25,8 @@ export class HotelDetailComponent implements OnInit {
   tipos: string[];
   quartosB: Quarto[];
   show: boolean;
-  precoMinimo: number;
-  precoMaximo: number;
+  precoMinimo = 0;
+  precoMaximo = 0;
 
 
   constructor(private route: ActivatedRoute,
