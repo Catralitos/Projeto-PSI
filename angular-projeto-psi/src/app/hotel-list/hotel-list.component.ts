@@ -26,6 +26,10 @@ export class HotelListComponent implements OnInit {
     this.hotelService.getHotels().subscribe(response => this.hotelList = response.hotel_list);
   }
 
+  public primeiraFrase(descricao) {
+    return descricao.split('.')[0] + '.';
+  }
+
   public imgAleatoria(hotel) {
     return hotel.imagens[this.randomInt(0, hotel.imagens.length - 1)];
   }

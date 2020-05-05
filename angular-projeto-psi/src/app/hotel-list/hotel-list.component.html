@@ -3,16 +3,15 @@
   <h1>Cadeia de Hotéis</h1>
 </div>
 
+
 <ul class="hotels">
   <li *ngFor="let hotel of hotelList">
-
     <a routerLink="/{{hotel._id}}">
-      <span id="spaceText" class="nome2">{{hotel.nome}}</span>
-      <!--<span id="spaceText" class="nome">{{hotel.descricao}}</span>!-->
-    </a>
-
-    <!--<p>{{hotel.descricao}}</p>!-->
-    <img class="image" src="{{imgAleatoria(hotel)}}">
+      <span class="nome">{{hotel.nome}}</span> </a>
+    <p>{{primeiraFrase(hotel.descricao)}}</p>
+    <img src="{{imgAleatoria(hotel)}}">
   </li>
 </ul>
 </body>
+
+
