@@ -26,6 +26,8 @@ export class HotelDetailComponent implements OnInit {
   quartosB: Quarto[];
   show = false;
 
+  precoMinimo: number;
+  precoMaximo: number;
 
 
   constructor(private route: ActivatedRoute,
@@ -38,15 +40,11 @@ export class HotelDetailComponent implements OnInit {
     this.getHotel();
   }
 
-  public toggle() {
-    this.show = true;
+  public getTipoCerto(tipo): any {
+    return tipo.split.split(/(?=[A-Z])/).join(' ');
   }
 
-  public hide() {
-    this.show = false;
-  }
-
-  getHotel(): void {
+  public getHotel(): void {
     const id = this.route.snapshot.url[0].path;
     this.hotelService.getHotel(id)
       .subscribe(response => (this.hotel = response.hotel,
@@ -98,16 +96,25 @@ export class HotelDetailComponent implements OnInit {
 
   public getRoomTypes(): any {
     const v: Array<TipoQuarto> = [];
-
-    for (const quarto of this.quartos) {
-      if (!v.includes( quarto.tipoQuarto)) {
-        v.push( quarto.tipoQuarto);
+    if (this.precoMinimo < this.precoMaximo) {
+      for (const quarto of this.quartos) {
+        if (!v.includes(quarto.tipoQuarto)
+          && ( ((this.precoMinimo <= quarto.precoBaixo) && (quarto.precoBaixo <= this.precoMaximo))
+            || ((this.precoMinimo <= quarto.precoAlto) && (quarto.precoAlto <= this.precoMaximo)))) {
+          v.push(quarto.tipoQuarto);
+        }
+      }
+    } else {
+      for (const quarto of this.quartos) {
+        if (!v.includes(quarto.tipoQuarto)) {
+          v.push(quarto.tipoQuarto);
+        }
       }
     }
     return v;
   }
 
-  public getRoom(type): any {
+  getRoom(type): any {
     const q = this.quartos.filter(function(quarto) {
       return quarto.tipoQuarto === type;
     });
@@ -115,6 +122,7 @@ export class HotelDetailComponent implements OnInit {
   }
 
   public getSingleRoom(type): any {
+    // tslint:disable-next-line:only-arrow-functions
     const q = this.quartos.filter(function(quarto) {
       return quarto.tipoQuarto === type;
     });

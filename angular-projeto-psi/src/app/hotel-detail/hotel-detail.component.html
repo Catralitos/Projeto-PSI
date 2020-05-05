@@ -21,10 +21,16 @@
 </li>
 </ul>
 
-
 <h3>Numero de quartos disponiveis: {{numeroQuartos()}}</h3>
 
 <h3>Desde: {{lowestPrice()}}€</h3>
+
+<h3>Preço</h3>
+<label >De:
+  <input type="number" [(ngModel)]="precoMinimo" placeholder="0"/>
+  Até
+  <input type="number" [(ngModel)]="precoMaximo" placeholder="0" />
+</label> <br>
 
 <h3>Tipos de quartos:</h3>
 <table style="overflow-x:auto;">
@@ -32,7 +38,7 @@
     <tr>
       <th>
         <a routerLink="/{{hotelId()}}/{{tipo}}" >
-          <span class="nome">{{tipo}}</span></a>
+          <span class="nome">{{getTipoCerto(tipo)}}</span></a>
       </th>
     <tr>
       <td>Ainda existem {{getRoomNumber(tipo)}} quartos disponiveis</td>
@@ -45,45 +51,6 @@
     </tr>
       <br>
 </table>
-
-<h3>Preço</h3>
-<label >De:
-  <input type="number" #min />
-  Até
-  <input type="number" #max />
-</label> <br>
-<br>
-
-<button (click)="toggle(); " >Pesquisar </button>
-<button (click)="hide(); min.value=''; max.value='';" >Limpar </button>
-<br><br>
-<ng-container *ngIf="show">
-  <li *ngFor="let tipo of getTypesList(getRoomsBetween(min.value,max.value))">
-    <span class="nome">{{tipo}} </span>
-    <p> Ainda existem {{getRooms(getRoomsBetween(min.value,max.value) , tipo).length}} quartos disponíveis</p>
-  </li>
-</ng-container>
-<br>
-
-<!--<h3>Tipos de quartos:</h3>
-<ul class="types">
-<li *ngFor="let tipo of getRoomTypes()">
-  <tr>
-  <a routerLink="/{{hotel._id}}/{{tipo}}" >
-    <span class="nome">{{tipo}}</span> </a>
-      <p>Ainda existem {{getRoomNumber(tipo)}} quartos disponiveis</p>
-      <p>Valor mais baixo na epoca baixa {{getCheapestRoom(tipo)}}€ </p>
-      <p>Serviços disponíveis neste tipo de quarto</p>
-      <ul class="servicos">
-        <li *ngFor="let servico of getRoom(tipo)[0].servicos">
-            <span class="nome">{{servico}}</span>
-        </li>
-      </ul>
-  <br>
-  </tr>
-</li>
-</ul>-->
-
 <ul class="imagens">
 <li *ngFor="let imagem of hotel.imagens">
   <img src="{{imagem}}">

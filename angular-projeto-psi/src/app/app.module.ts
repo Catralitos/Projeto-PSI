@@ -10,6 +10,7 @@ import { RoomTypeDetailsComponent } from './room-type-details/room-type-details.
 
 import {HttpClientModule} from '@angular/common/http';
 import {RouterModule} from '@angular/router';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -19,12 +20,13 @@ import {RouterModule} from '@angular/router';
     HotelListComponent,
     RoomTypeDetailsComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    RouterModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+        RouterModule,
+        FormsModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })
