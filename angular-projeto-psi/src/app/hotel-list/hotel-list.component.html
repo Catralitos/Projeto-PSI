@@ -8,7 +8,7 @@
   <li *ngFor="let hotel of hotelList">
     <a routerLink="/{{hotel._id}}">
       <span class="nome">{{hotel.nome}}</span> </a>
-    <p>{{hotel.descricao}}</p>
+    <p>{{primeiraFrase(hotel.descricao)}}</p>
     <img src="{{imgAleatoria(hotel)}}">
   </li>
 </ul>

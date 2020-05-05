@@ -1,7 +1,7 @@
 
 export interface Hotel {
   // podem faltar certos atributos do JSON mas acho que vao ser estes todos
-  id: string;
+  _id: string;
   nome: string;
   descricao: string;
   morada: string;
