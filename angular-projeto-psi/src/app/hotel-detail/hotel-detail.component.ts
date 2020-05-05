@@ -24,8 +24,7 @@ export class HotelDetailComponent implements OnInit {
   @Input() servicos: string[];
   tipos: string[];
   quartosB: Quarto[];
-  show = false;
-
+  show: boolean;
   precoMinimo: number;
   precoMaximo: number;
 
@@ -38,6 +37,7 @@ export class HotelDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.getHotel();
+    this.show = false;
   }
 
   public getTipoCerto(tipo): any {
@@ -188,7 +188,11 @@ export class HotelDetailComponent implements OnInit {
     return q;
   }
 
-  public hotelId(): string{
+  public hotelId(): string {
     return this.route.snapshot.url[0].path;
+  }
+
+  public verServicos(): void {
+    this.show = !this.show;
   }
 }
