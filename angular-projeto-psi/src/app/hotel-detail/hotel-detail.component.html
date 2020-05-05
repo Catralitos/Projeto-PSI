@@ -1,12 +1,11 @@
 <body>
-<header>
-<h1>{{hotel.nome}}</h1>
-<nav>
-  <ul>
-    <a href="#">Hóteis</a>
-  </ul>
-</nav>
-</header>
+  <div class="header">
+    <h1>{{hotel.nome}}</h1>
+  </div>
+
+  <div class="navbar">
+    <a href="#home">Home</a>
+  </div>
 
 <h3>{{hotel.descricao}} </h3>
 <h3>Morada: {{hotel.morada}} </h3>
@@ -27,7 +26,7 @@
 <h3>Desde: {{lowestPrice()}}€</h3>
 
 <h3>Tipos de quartos:</h3>
-<table style="overflow-x:auto;">
+<table id="customers" style="overflow-x:auto;">
   <th *ngFor="let tipo of getRoomTypes()">
     <tr>
       <th>
@@ -39,10 +38,10 @@
     </tr>
     <tr>
       <p>Serviços disponíveis neste tipo de quarto:</p>
-      <ng-container *ngFor="let servico of getRoom(tipo)[0].servicos">
-        <p class="nome">{{servico}}</p>
-      </ng-container>
     </tr>
+      <ng-container *ngFor="let servico of getRoom(tipo)[0].servicos">
+        <tr><p class="nome">{{servico}}</p></tr>
+      </ng-container>
       <br>
 </table>
 

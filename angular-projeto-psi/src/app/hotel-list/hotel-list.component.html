@@ -1,17 +1,26 @@
+<<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
 <body>
 <div class="header">
   <h1>Cadeia de Hotéis</h1>
 </div>
 
+<div class="navbar">
+  <li *ngFor="let hotel2 of hotelList">
+    <a routerLink="/{{hotel2._id}}">
+      <span class="nome">{{hotel2.nome}}</span>
+    </a>
+  </li>
+  <a href="#home">Home</a>
+</div>
 
 <ul class="hotels">
   <li *ngFor="let hotel of hotelList">
     <a routerLink="/{{hotel._id}}">
-      <span class="nome">{{hotel.nome}}</span> </a>
-    <p>{{primeiraFrase(hotel.descricao)}}</p>
+      <span class="nome">{{hotel.nome}}</span>
+    <span class="nome2">{{primeiraFrase(hotel.descricao)}}</span></a>
     <img src="{{imgAleatoria(hotel)}}">
   </li>
 </ul>
 </body>
-
-
