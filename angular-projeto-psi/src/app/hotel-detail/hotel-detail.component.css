@@ -158,55 +158,158 @@ body {
   display: inline-block;
 }
 
-/*img {
-  width: 100%;
+img {
+  /*width: 100%;
   max-width: 600px;
-  height: auto;
+  height: auto;*/
+  /*width: 500px;
+  height: 400px;*/
+  width: 60%/*auto*/;
+  max-height: 100%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 30px;
+  /*display: block;
+  width: 100%;
+  height: auto;*/
+  /*width: 100%;
+  height: auto;*/
+  /*margin-left: /*200px0px;*/
 }
 
 .imagens{
   list-style-type: none;
-}*/
+}
 
 table {
   border: 1px solid black;
+  width: 100%;
 }
 
 
-#customers {
+.rooms {
   font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
   border-collapse: collapse;
   width: 100%;
 }
 
-#customers td, #customers th, #customers tr {
+.rooms td, .rooms th, .rooms tr {
   border: 1px solid #ddd;
   padding: 8px;
+  /*font-size: 35px;*/
+  font-size: 20px;
 }
 
 /*#customers tr:nth-child(even){background-color: #f2f2f2;}*/
 
-#customers tr:hover {background-color: #ddd;}
+/*.rooms tr:hover {background-color: #ddd;}*/
 
-#customers th {
+.rooms td {
+  background-color: #e6ccb3;
+}
+
+.rooms th {
   /*padding-top: 12px;
   padding-bottom: 12px;
   text-align: left;
   background-color: #4CAF50;
   color: white;*/
-  text-align: left;
+  text-align: center;
+  background-color: #d2a679;
 }
 
-#customers tr {
+.rooms tr {
   border: 1px solid #ddd;
   padding: 8px;
 }
 
-#customers nome {
-  border: 1px solid #ddd;
-  padding: 8px;
+.rooms .nome {
+  text-align: center;
 }
 
-img {
-  vertical-align: middle;
+/*.services li {
+  border: 1px solid #ddd;
+  padding: 8px;
+}*/
+
+.rooms li {
+  display: inline-block;
+}
+
+.rooms li a {
+  width: 100%;
+  font-size: 30px;
+}
+
+.services {
+  margin: 0 0 2em 0;
+  list-style-type: none;
+  padding: 0;
+  width: 100%;
+}
+.services li {
+  font-family: inherit;
+  position: relative;
+  cursor: pointer;
+  background-color: #EEE;
+  margin: .5em;
+  padding: .3em 0;
+  height: 1.6em;
+  border-radius: 4px;
+}
+
+.services li:hover {
+  color: #607D8B;
+  background-color: #DDD;
+  left: .1em;
+}
+
+.services a {
+  color: #333;
+  margin-left: 10px;
+  text-decoration: none;
+  position: relative;
+  display: block;
+  width: 305px;
+}
+
+.services a:hover {
+  color:#607D8B;
+}
+
+.service li .nome {
+  margin-left: 30px;
+}
+
+.item1 { grid-area: detalhes; }
+.item2 { grid-area: servico; }
+
+.grid-container {
+  display: grid;
+  grid-template-areas:
+    'detalhes'
+    'servico';
+  grid-gap: 10px;
+  padding: 10px;
+  border: 1px solid black;
+  background-color: #d2a679;
+}
+
+.item2 h3 {
+  margin-left: 10px;
+}
+
+.rooms .button {
+  background-color: #555555; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  width: 100%;
 }
