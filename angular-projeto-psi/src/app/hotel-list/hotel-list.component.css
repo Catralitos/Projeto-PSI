@@ -78,7 +78,9 @@ body {
 .navbar {
   overflow: hidden;
   background-color: #333;
-  margin-top: /*-57px;*/50px;
+  /*
+  margin-top: !*-57px;*!50px;
+  */
   height: auto;
   width: 100%;
 }

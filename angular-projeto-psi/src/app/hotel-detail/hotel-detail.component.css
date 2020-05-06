@@ -70,8 +70,8 @@ body {
   background-color: #f2e6d9;/*#deb887;*//*#dfbf9f;*/
 }
 
-.header {
-  background-color: #4d2600;/*#deb887;*/
+/*.header {
+  background-color: #4d2600;!*#deb887;*!
   color: white;
   position: fixed;
   top: 0;
@@ -91,12 +91,14 @@ body {
   line-height: 25px;
   border-radius: 4px;
   margin-left: 587px;
-}
+}*/
 
 .navbar {
   overflow: hidden;
   background-color: #333;
-  margin-top: /*-57px;*/80px;
+  /*
+  margin-top: !*-57px;*!80px;
+  */
   height: auto;
   width: 100%;
 }
