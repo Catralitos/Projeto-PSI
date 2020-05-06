@@ -1,14 +1,14 @@
 <body>
-  <div class="header">
-    <h1>{{hotel.nome}}</h1>
-  </div>
+<div class="header">
+  <h1 style="text-align: center">{{hotel.nome}}</h1>
+</div>
 
-  <div class="navbar">
-    <a href="#home">Home</a>
-  </div>
+<div class="navbar">
+  <a href="#home">Home</a>
+</div>
 
 
-    <h3>{{hotel.descricao}}</h3>
+<h3>{{hotel.descricao}}</h3>
 <div class="grid-container">
   <div class="item1">
     <h3>Morada: {{hotel.morada}}</h3>
@@ -17,7 +17,7 @@
     <h3>Email: {{hotel.email}} </h3>
   </div>
   <div class="item2">
-  <h3>Serviços Disponíveis:</h3>
+    <h3>Serviços Disponíveis:</h3>
     <ul class="services">
       <li *ngFor="let servico of hotel.servicos">
         <a><span class="nome">{{servico}}</span> </a>
@@ -43,56 +43,10 @@
 <h3>Tipos de quartos:</h3>
 <ul class="rooms">
   <li *ngFor="let tipo of getRoomTypes()">
-    <table>
-      <tr>
-        <th>
-          <a>
-            <span class="nome">{{getTipoCerto(tipo)}}</span></a>
-        </th>
-      </tr>
-      <tr>
-        <td>Preco Época Baixa: {{getRoom(tipo)[0].precoBaixo}} <br> Preco Época Alta: {{getRoom(tipo)[0].precoAlto}}</td>
-      </tr>
-      <tr >
-        <button class="button" (click)="verServicos()">Ver servicos dos quartos</button>
-      </tr>
-      <tr *ngIf="show">
-        <td>
-          <p>Serviços disponíveis neste tipo de quarto:</p>
-          <ng-container *ngFor="let servico of getRoom(tipo)[0].servicos">
-            <p class="nome">{{servico}}</p>
-          </ng-container>
-        </td>
-      </tr>
-    </table>
+    <app-room-type-details [tipo]="tipo"></app-room-type-details>
   </li>
 </ul>
 
-<!--
-<ul *ngFor="let tipo of getRoomTypes()>
-<table>
-  <tr>
-    <th>
-      <a routerLink="/{{hotelId()}}/{{tipo}}" >
-        <span class="nome">{{getTipoCerto(tipo)}}</span></a>
-    </th>
-  </tr>
-  <tr>
-     <td>Preco Época Baixa: {{getRoom(tipo)[0].precoBaixo}} <br> Preco Época Alta: {{getRoom(tipo)[0].precoAlto}}</td>
-  </tr>
-  <tr>
-    <td>Ainda existem {{getRoomNumber(tipo)}} quartos disponiveis</td>
-  </tr>
-  <tr>
-    <p>Serviços disponíveis neste tipo de quarto:</p>
-    <ng-container *ngFor="let servico of getRoom(tipo)[0].servicos">
-      <p class="nome">{{servico}}</p>
-    </ng-container>
-  </tr>
-  <br>
-</table>
-</ul>
--->
 <ul class="imagens">
   <li *ngFor="let imagem of hotel.imagens">
     <img src="{{imagem}}">

@@ -21,11 +21,10 @@ import {ActivatedRoute} from '@angular/router';
 export class RoomTypeDetailsComponent implements OnInit {
 
   //obter quartos para fazer contagens
-  tipo: string;
+  @Input() tipo: string;
   hotel: Hotel;
   quartos: Quarto[];
-  servicos: string[];
-
+  show: boolean;
 
   constructor(private route: ActivatedRoute,
               private hotelService: HotelService,
@@ -34,93 +33,29 @@ export class RoomTypeDetailsComponent implements OnInit {
               private location: Location) { }
 
   ngOnInit(): void {
-    // this.getQuarto();
-    this.tipo = this.route.snapshot.url[1].path;
-    // this.data.currentType.subscribe(message => this.tipos = message);
-    // this.data.currentRooms.subscribe(message => this.quartos = message);
-    this.getHotel();
+      this.getHotel();
+      this.show = false;
   }
 
-  /*private getQuarto() { //obter quartos consoante um tipo de quarto
-    const id = this.route.snapshot.paramMap.get('id');
-    this.quartoService.get
-      .subscribe(response => ());
-  }*/
-  getHotel(): void {
+  public getHotel(): void {
     const id = this.route.snapshot.url[0].path;
     this.hotelService.getHotel(id)
       .subscribe(response => (this.hotel = response.hotel,
         this.quartos = response.hotel_rooms));
   }
 
-  private goBack(): void {
-    this.location.back();
-  }
-
-  public getCheapestRoom(type): any {
-    let price = 1000000;
-    //const rooms=getRoom(type);
-
-    for (const quarto of this.getRoom(type)) {
-      if (quarto.precoBaixo <price) {
-        price = quarto.precoBaixo;
-      }
-    }
-    return price;
-  }
-
-  public getExpRoom(type): any {
-    let price = 0;
-    //const rooms=getRoom(type);
-
-    for (const quarto of this.getRoom(type)) {
-      if (quarto.precoBaixo >price) {
-        price = quarto.precoBaixo;
-      }
-    }
-    return price;
-  }
-
   public getRoom(type): any {
-    const q = this.quartos.filter(function(quarto) {
-      return quarto.tipoQuarto === type;
-    });
-    return q;
-  }
-
-  public getSingleRoom(type): any {
     const q = this.quartos.filter(function(quarto) {
       return quarto.tipoQuarto === type;
     });
     return q[0];
   }
 
-  public getRoomNumber(type): any {
-    const q = this.quartos.filter(function(quarto) {
-      return quarto.tipoQuarto === type;
-    });
-    return q.length;
+  public getTipoCerto(tipo): any {
+    return tipo.split(/(?=[A-Z])/).join(' ');
   }
 
-  public getCheapestRoomEpocaBaixa(type): any {
-    let price = 1000000;
-
-    for (const quarto of this.getRoom(type)) {
-      if (quarto.precoBaixo <price) {
-        price = quarto.precoBaixo;
-      }
-    }
-    return price;
-  }
-
-  public getCheapestRoomEpocaAlta(type): any {
-    let price = 1000000;
-
-    for (const quarto of this.getRoom(type)) {
-      if (quarto.precoBaixo <price) {
-        price = quarto.precoAlto;
-      }
-    }
-    return price;
+  public verServicos(): void {
+    this.show = !this.show;
   }
 }

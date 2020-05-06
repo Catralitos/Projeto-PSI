@@ -70,8 +70,8 @@ body {
   background-color: #f2e6d9;/*#deb887;*//*#dfbf9f;*/
 }
 
-/*.header {
-  background-color: #4d2600;!*#deb887;*!
+.header {
+  background-color: #4d2600;/*#deb887;*/
   color: white;
   position: fixed;
   top: 0;
@@ -91,7 +91,7 @@ body {
   line-height: 25px;
   border-radius: 4px;
   margin-left: 587px;
-}*/
+}
 
 .navbar {
   overflow: hidden;
@@ -235,6 +235,7 @@ table {
 
 .rooms li {
   display: inline-block;
+  vertical-align: top
 }
 
 .rooms li a {
