@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 
-import { Hotel } from './Hotel';
-import { Quarto } from './Quarto';
-import { TipoQuarto } from './TipoQuarto';
+import { Hotel } from './interfaces/Hotel';
+import { Quarto } from './interfaces/Quarto';
+import { TipoQuarto } from './interfaces/TipoQuarto';
 
 
 

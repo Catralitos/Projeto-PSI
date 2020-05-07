@@ -1,10 +1,10 @@
 import { Component, OnInit , Input} from '@angular/core';
 
-import { Hotel } from '../Hotel';
+import { Hotel } from '../interfaces/Hotel';
 import {HotelService} from '../hotel.service';
-import { Quarto } from '../Quarto';
+import { Quarto } from '../interfaces/Quarto';
 import {QuartoService} from '../quarto.service';
-import { TipoQuarto } from '../TipoQuarto';
+import { TipoQuarto } from '../interfaces/TipoQuarto';
 
 import { DataService } from '../data.service';
 
