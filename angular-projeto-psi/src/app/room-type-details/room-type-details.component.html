@@ -6,7 +6,10 @@
     </th>
   </tr>
   <tr>
-    <td>Preco Época Baixa: {{getRoom(tipo).precoBaixo}} <br> Preco Época Alta: {{getRoom(tipo).precoAlto}}</td>
+    <td>{{getNumRoom(tipo)}} quarto(s)</td>
+  </tr>
+  <tr>
+    <td>Preco Época Baixa: {{getRoom(tipo).precoBaixo}} €<br> Preco Época Alta: {{getRoom(tipo).precoAlto}} €</td>
   </tr>
   <tr >
     <button class="button" (click)="verServicos()">Ver servicos dos quartos</button>

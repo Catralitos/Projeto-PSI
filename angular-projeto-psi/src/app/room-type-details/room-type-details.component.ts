@@ -44,6 +44,13 @@ export class RoomTypeDetailsComponent implements OnInit {
         this.quartos = response.hotel_rooms));
   }
 
+  public getNumRoom(type): any {
+    const q = this.quartos.filter(function(quarto) {
+      return quarto.tipoQuarto === type;
+    });
+    return q.length;
+  }
+
   public getRoom(type): any {
     const q = this.quartos.filter(function(quarto) {
       return quarto.tipoQuarto === type;
