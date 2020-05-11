@@ -11,6 +11,7 @@ import { RoomTypeDetailsComponent } from './room-type-details/room-type-details.
 import {HttpClientModule} from '@angular/common/http';
 import {RouterModule} from '@angular/router';
 import {FormsModule} from '@angular/forms';
+import { RoomsByDateComponent } from './rooms-by-date/rooms-by-date.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import {FormsModule} from '@angular/forms';
     MessagesComponent,
     HotelDetailComponent,
     HotelListComponent,
-    RoomTypeDetailsComponent
+    RoomTypeDetailsComponent,
+    RoomsByDateComponent
   ],
     imports: [
         BrowserModule,

@@ -12,13 +12,13 @@ import { TipoQuarto } from './interfaces/TipoQuarto';
 })
 export class DataService {
   //type
-  private messageSource = new BehaviorSubject<string>('');
-  currentId = this.messageSource.asObservable();
+  private messageSource = new BehaviorSubject<number>(0);
+  currentDays = this.messageSource.asObservable();
 
 
   constructor() { }
 
-  changeHotelId(id: string) {
-    this.messageSource.next(id);
+  changeHotelId(n: number) {
+    this.messageSource.next(n);
   }
 }

@@ -19,7 +19,7 @@ export class HotelListComponent implements OnInit {
 
   ngOnInit(): void {
     this.getHotels();
-    this.data.currentId.subscribe(message => this.message = message);
+    //this.data.currentId.subscribe(message => this.message = message);
   }
 
   private getHotels() {
