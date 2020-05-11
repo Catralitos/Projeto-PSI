@@ -11,6 +11,10 @@ import {ActivatedRoute} from '@angular/router';
 
 import { DataService } from '../data.service';
 
+import { Reserva } from '../interfaces/Reserva';
+import { ReservaService } from '../reserva.service';
+
+
 
 @Component({
   selector: 'app-hotel-detail',
@@ -28,15 +32,21 @@ export class HotelDetailComponent implements OnInit {
   precoMinimo = 0;
   precoMaximo = 0;
 
+  dataInicial: Date;
+  dataFinal: Date;
+  reservas: Reserva[];
+
 
   constructor(private route: ActivatedRoute,
               private data: DataService,
               private hotelService: HotelService,
               private quartoService: QuartoService,
-              private location: Location) { }
+              private location: Location,
+              private reservaService: ReservaService) { }
 
   ngOnInit(): void {
     this.getHotel();
+    //this.getReservasDoHotel();
     this.show = false;
   }
 
@@ -49,6 +59,17 @@ export class HotelDetailComponent implements OnInit {
     this.hotelService.getHotel(id)
       .subscribe(response => (this.hotel = response.hotel,
         this.quartos = response.hotel_rooms));
+  }
+
+  private getReservasDoHotel(): void {
+    let allR;
+    this.reservaService.getReservas().subscribe(response => allR = response.reservas_list);
+
+    for (const reserva of allR) {
+      if (reserva.quarto.hotel === this.hotel) {
+        this.reservas.push(reserva);
+      }
+    }
   }
 
   private goBack(): void {
@@ -112,6 +133,24 @@ export class HotelDetailComponent implements OnInit {
       }
     }
     return v;
+  }
+
+  public getRoomTypesByDate(): any {
+    const t: Array<TipoQuarto> = [];
+
+    if (this.dataInicial < this.dataFinal ) {
+        for (const quarto of this.quartos) {
+          if (!t.includes(quarto.tipoQuarto)) {
+            //for (const reserva of this.reservas) {
+            //if (this.dataFinal < reserva.checkin
+            // && this.dataInicial > reserva.checkout) {
+            t.push(quarto.tipoQuarto);
+            //}
+            //}
+          }
+        }
+    }
+    return t;
   }
 
   getRoom(type): any {
@@ -194,5 +233,9 @@ export class HotelDetailComponent implements OnInit {
 
   public verServicos(): void {
     this.show = !this.show;
+  }
+
+  public numDias(): any {
+    return this.dataFinal.getTime() - this.dataInicial.getTime();
   }
 }
