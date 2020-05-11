@@ -2,7 +2,7 @@ import {Quarto} from './Quarto';
 import {Cliente} from './Cliente';
 
 export interface Reserva {
-  id: string;
+  _id: string;
   quarto: Quarto;
   checkin: Date;
   checkout: Date;

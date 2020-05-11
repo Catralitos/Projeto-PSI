@@ -3,6 +3,9 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {MessageService} from './message.service';
 import {Observable, of} from 'rxjs';
 import {catchError, map, tap} from 'rxjs/operators';
+import {Reserva} from './interfaces/Reserva';
+import {Quarto} from './interfaces/Quarto';
+import {Cliente} from './interfaces/Cliente';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +14,8 @@ export class ReservaService {
 
   private reservasUrl = 'http://appserver.alunos.di.fc.ul.pt:3010/catalog/reservas';  // URL to web api
   private reservaUrl = 'http://appserver.alunos.di.fc.ul.pt:3010/catalog/reserva';  // URL to web api
+  private reservaCreateUrl = 'http://appserver.alunos.di.fc.ul.pt:3010/catalog/reservas/create';
+
 
   constructor(
     private http: HttpClient,
@@ -51,6 +56,14 @@ export class ReservaService {
     return this.http.get<any>(url).pipe(
       tap(_ => this.log(`fetch reserva w/ id=${id} request sent`)),
       catchError(this.handleError<any>(`getReserva id=${id}`))
+    );
+  }
+
+  /** POST: add a new reserva to the server */
+  addReserva(reserva: {quarto: Quarto, checkin: Date, checkout: Date, cliente: Cliente}): Observable<Reserva> {
+    return this.http.post<Reserva>(this.reservaCreateUrl, reserva, this.httpOptions).pipe(
+      tap((newReserva: Reserva) => this.log(`add reserva w/ id=${newReserva._id} request sent`)),
+      catchError(this.handleError<Reserva>('addReserva'))
     );
   }
 
