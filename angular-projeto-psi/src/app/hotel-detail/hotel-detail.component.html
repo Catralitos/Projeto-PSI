@@ -47,6 +47,23 @@
   </li>
 </ul>
 
+<h3>Verifique disponibilidade dos quartos</h3>
+<label >De:
+  <input type="text" [(ngModel)]="dataInicial" placeholder="0"/>
+  Até
+  <input type="text" [(ngModel)]="dataFinal" placeholder="0" />
+</label>
+
+<br>
+
+<h3>Disponibilidade: </h3>
+<ul class="rooms">
+  <li *ngFor="let tipo of getRoomTypesByDate()">
+    <app-rooms-by-date [tipo]="tipo" [dataInicial]="dataInicial" [dataFinal]="dataFinal"></app-rooms-by-date>
+  </li>
+</ul>
+
+
 <ul class="imagens">
   <li *ngFor="let imagem of hotel.imagens">
     <img src="{{imagem}}">

@@ -12,13 +12,23 @@ import {HttpClientModule} from '@angular/common/http';
 import {RouterModule} from '@angular/router';
 import {FormsModule} from '@angular/forms';
 
+import { ReservaComponent } from './reserva/reserva.component';
+import { RoomsByDateComponent } from './rooms-by-date/rooms-by-date.component';
+
+
 @NgModule({
   declarations: [
     AppComponent,
     MessagesComponent,
     HotelDetailComponent,
     HotelListComponent,
-    RoomTypeDetailsComponent
+    RoomTypeDetailsComponent,
+<<<<<<< HEAD
+    ReserveComponent,
+    ReservaComponent
+=======
+    RoomsByDateComponent
+>>>>>>> 98cc4c17234a6c452e021327dbf3babc5490286d
   ],
     imports: [
         BrowserModule,
