@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 
 import { Hotel } from '../interfaces/Hotel';
 import {HotelService} from '../hotel.service';
@@ -25,7 +25,7 @@ import {emit} from "cluster";
 export class ReservaComponent implements OnInit {
 
   hotel: Hotel;
-  quartos: Quarto[];
+  @Input() cliente: Cliente;
 
   constructor(private route: ActivatedRoute,
               private data: DataService,
