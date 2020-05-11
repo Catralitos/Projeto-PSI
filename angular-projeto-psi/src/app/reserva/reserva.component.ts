@@ -14,7 +14,6 @@ import { DataService } from '../data.service';
 import {Location} from '@angular/common';
 
 import {ActivatedRoute} from '@angular/router';
-import {emit} from "cluster";
 
 
 @Component({
@@ -26,6 +25,15 @@ export class ReservaComponent implements OnInit {
 
   hotel: Hotel;
   @Input() cliente: Cliente;
+  nome: string;
+  morada: string;
+  telefone: string;
+  email: string;
+  nif: string;
+  numeroCartao: string;
+  ano: string;
+  mes: string;
+  ccv: string;
 
   constructor(private route: ActivatedRoute,
               private data: DataService,
@@ -41,8 +49,8 @@ export class ReservaComponent implements OnInit {
 
     if (!quarto && !checkIn && !checkOut) { return; }
 
-    this.reservaService.addReserva({quarto: quarto, checkin: checkIn, checkout: checkOut,
-      cliente: this.constroiCliente()}).subscribe(() => this.goBack());
+    /*this.reservaService.addReserva({quarto: quarto, checkin: checkIn, checkout: checkOut,
+      cliente: this.constroiCliente()}).subscribe(() => this.goBack());*/
   }
 
 

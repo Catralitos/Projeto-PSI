@@ -23,12 +23,8 @@ import { RoomsByDateComponent } from './rooms-by-date/rooms-by-date.component';
     HotelDetailComponent,
     HotelListComponent,
     RoomTypeDetailsComponent,
-<<<<<<< HEAD
-    ReserveComponent,
-    ReservaComponent
-=======
-    RoomsByDateComponent
->>>>>>> 98cc4c17234a6c452e021327dbf3babc5490286d
+    ReservaComponent,
+    RoomsByDateComponent,
   ],
     imports: [
         BrowserModule,
