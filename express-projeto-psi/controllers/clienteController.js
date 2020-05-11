@@ -4,7 +4,7 @@ const { body, validationResult } = require('express-validator/check');
 const { sanitizeBody } = require('express-validator/filter');
 
 exports.getCliente = function (req, res, next) {
-    Cliente.find({'nome' : req.params.nome})
+    Cliente.find({'email' : req.params.email})
         .exec(function (err, cliente) {
             if (err) { return next(err); }
             res.json({ cliente: cliente });
@@ -88,7 +88,7 @@ exports.cliente_update_get = function (req, res, next) {
     });
 };
 
-exports.author_update_post = [
+exports.cliente_update_post = [
 
   // Validate fields.
   body('nome').isLength({ min: 1 }).trim().withMessage('Cliente nome must be specified.'),
