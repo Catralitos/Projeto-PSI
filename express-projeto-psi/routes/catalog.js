@@ -32,18 +32,18 @@ router.get('/hoteis', hotel_controller.get_hotels);
 router.get('/quarto/:id', quarto_controller.get_quarto);
 
 //Cliente
-router.get('/cliente/:id', cliente_controller.getCliente);
+router.get('/cliente/:email', cliente_controller.getCliente);
 
-router.post('/cliente/:id', cliente_controller.cliente_create_post);
+router.post('/clientes/create', cliente_controller.cliente_create_post);
 
-router.put('/cliente/:id', cliente_controller.cliente_update_post);
+router.post('/cliente/:id/update', cliente_controller.cliente_update_post);
 
 //Reserva
 router.get('/reserva/:quarto', reserva_controller.getReserva);
 
 router.get('/reservas', reserva_controller.getReservas);
 
-router.post('/reserva/:quarto', reserva_controller.reserva_create_post);
+router.post('/reservas/create', reserva_controller.reserva_create_post);
 
 
 
