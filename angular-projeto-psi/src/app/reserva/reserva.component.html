@@ -1,6 +1,12 @@
-<h3>Reserva</h3>
+<h3>Reserva de {{this.dataInicial}} até {{this.dataFinal}}</h3>
 
-var nome = {{cliente.nome}};
+<select [(ngModel)]="tipo">
+  <option *ngFor="let tipo of tipos" >{{tipo}}</option>
+</select>
+
+<br>
+<br>
+
 <label >Nome:
   <input type="text" value=nome [(ngModel)]="nome" placeholder="0"/>
 </label>

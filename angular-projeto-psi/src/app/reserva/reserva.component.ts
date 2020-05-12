@@ -34,6 +34,11 @@ export class ReservaComponent implements OnInit {
   ano: string;
   mes: string;
   ccv: string;
+  @Input() tipos: string[];
+  tipo: string;
+
+  @Input() dataInicial: Date;
+  @Input() dataFinal: Date;
 
   constructor(private route: ActivatedRoute,
               private data: DataService,

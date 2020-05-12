@@ -31,10 +31,11 @@ export class HotelDetailComponent implements OnInit {
   show: boolean;
   precoMinimo = 0;
   precoMaximo = 0;
-
+  botaoR: boolean;
   dataInicial: Date;
   dataFinal: Date;
   reservas: Reserva[];
+
 
 
   constructor(private route: ActivatedRoute,
@@ -48,6 +49,7 @@ export class HotelDetailComponent implements OnInit {
     this.getHotel();
     this.getReservasDoHotel();
     this.show = false;
+    this.botaoR = false;
   }
 
   public getTipoCerto(tipo): any {
@@ -141,6 +143,7 @@ export class HotelDetailComponent implements OnInit {
     let df = new Date(this.dataFinal);
 
     if (di < df ) {
+      this.mostraBotao();
         for (const quarto of this.quartos) {
           if (!t.includes(quarto.tipoQuarto)) {
             if (this.reservas.length === 0) {
@@ -237,8 +240,12 @@ export class HotelDetailComponent implements OnInit {
     return this.route.snapshot.url[0].path;
   }
 
-  public verServicos(): void {
-    this.show = !this.show;
+  public mostraBotao(): void {
+    this.botaoR = true;
+  }
+
+  public mostraReserva(): void {
+    this.show = true;
   }
 
   public numDias(): any {
