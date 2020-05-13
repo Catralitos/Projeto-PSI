@@ -1,4 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { ClienteService } from '../cliente.service';
+import { Cliente } from '../interfaces/Cliente';
+
+import { DataService } from '../data.service';
+
+import {Location} from '@angular/common';
+
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-registar',
@@ -7,9 +15,125 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RegistarComponent implements OnInit {
 
-  constructor() { }
+  @Input() cliente: Cliente;
+  nome: string;
+  password: string;
+  morada: string;
+  telefone: string;
+  email: string;
+  nif: string;
+  numeroCartao: string;
+  ano: string;
+  mes: string;
+  ccv: string;
+  @Input() tipos: string[];
+  tipo: string;
+  botaoR: boolean;
+  confR: boolean;
+
+  @Input() dataInicial: Date;
+  @Input() dataFinal: Date;
+
+
+  constructor(private location: Location,
+              private clienteService: ClienteService) { }
 
   ngOnInit(): void {
+    this.botaoR = true;
+    this.confR = false;
+  }
+
+  registarCliente(nomeCliente: string, passwordCliente: string, moradaCliente: string, telefone: string, emailCliente: string,
+                 nif: number, numeroCartao: number, anoValidade: number, mesValidade: number, ccv: number): any {
+    const nome = nomeCliente.trim();
+    const password = passwordCliente.trim();
+    const morada = moradaCliente.trim();
+    const numero_telefone = telefone.trim();
+    const email = emailCliente.trim();
+
+    if (!nome && !password && !email) {
+      window.alert("Tem que inserir um nome/password/email!");
+      return;
+    }
+
+    if(numero_telefone){
+      if (!this.validatePhoneNumber(numero_telefone)) {
+        window.alert("Tem que inserir um número de telefone no formato correto!");
+        return;
+      }
+    }
+
+    if(nif > 0){
+      if (!this.validateNif(nif)) {
+        window.alert("Tem que inserir um nif no formato correto!");
+        return;
+      }
+    }
+
+    if(numeroCartao > 0){
+      window.alert("Tem que inserir um número de cartão no formato correto!");
+      if (!this.validateCreditCard(numeroCartao, anoValidade, mesValidade, ccv)) {
+        return;
+      }
+    }
+
+    console.log(nome);
+    console.log(password);
+    console.log(morada);
+    console.log(numero_telefone);
+    console.log(email);
+    console.log(nif);
+    console.log(numeroCartao);
+    console.log(ccv);
+
+    this.clienteService.addCliente({nome,password,morada,numero_telefone,email,nif,numeroCartao,ccv,
+                                    anoValidade,mesValidade}).subscribe(() => this.goBack());
+
+    window.alert("Registo efetuado com sucesso!")
+
+  }
+
+  public validatePhoneNumber(telefone: string) {
+    const regex = '^\\+(?:[0-9] ?){6,14}[0-9]$';
+
+    if (telefone.match(regex)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  public validateNif(nif: number) {
+    const regex =  '^[0-9]{6}$';
+
+    if (nif.toString().match(regex)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  public validateCreditCard(numero: number, anoValidade: number, mesValidade: number, ccv: number) {
+    const regexNumero =  '^[0-9]{16}$';
+    const regexAno =  '^[20-99]';
+    const regexMes =  '^[1-12]$';
+    const regexCcv =  '^[0-9]{3}$';
+
+    if (numero.toString().match(regexNumero) && anoValidade.toString().match(regexAno)
+        && mesValidade.toString().match(regexMes) && ccv.toString().match(regexCcv) ) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  private goBack(): void {
+    this.location.back();
+  }
+
+  mostraConf(): void {
+    this.confR= true;
+    this.botaoR=false;
   }
 
 }
