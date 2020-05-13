@@ -14,6 +14,7 @@ import {FormsModule} from '@angular/forms';
 
 import { ReservaComponent } from './reserva/reserva.component';
 import { RoomsByDateComponent } from './rooms-by-date/rooms-by-date.component';
+import { RegistarComponent } from './registar/registar.component';
 
 
 @NgModule({
@@ -25,6 +26,7 @@ import { RoomsByDateComponent } from './rooms-by-date/rooms-by-date.component';
     RoomTypeDetailsComponent,
     ReservaComponent,
     RoomsByDateComponent,
+    RegistarComponent,
   ],
     imports: [
         BrowserModule,
