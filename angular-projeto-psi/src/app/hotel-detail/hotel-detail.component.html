@@ -49,24 +49,28 @@
 
 <h3>Verifique disponibilidade dos quartos</h3>
 <label >De:
-  <input type="text" [(ngModel)]="dataInicial" placeholder="0"/>
+  <input type="Date" [(ngModel)]="dataInicial" placeholder="0"/>
   Até
-  <input type="text" [(ngModel)]="dataFinal" placeholder="0" />
+  <input  type="Date" [(ngModel)]="dataFinal" placeholder="0" />
+
+  <button *ngIf="botaoR" (click)="mostraReserva()" class="button">Reservar</button>
 </label>
 
 <br>
 
-<h3>Disponibilidade: </h3>
+<h3 *ngIf="botaoR" >Disponibilidade: </h3>
 <ul class="rooms">
   <li *ngFor="let tipo of getRoomTypesByDate()">
     <app-rooms-by-date [tipo]="tipo" [dataInicial]="dataInicial" [dataFinal]="dataFinal"></app-rooms-by-date>
   </li>
 </ul>
 
+<app-reserva *ngIf="show" [tipos]="getRoomTypesByDate()" [dataInicial]="dataInicial" [dataFinal]="dataFinal"></app-reserva>
 
 <ul class="imagens">
   <li *ngFor="let imagem of hotel.imagens">
     <img src="{{imagem}}">
   </li>
 </ul>
+
 </body>

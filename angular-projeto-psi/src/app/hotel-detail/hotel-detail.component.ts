@@ -31,10 +31,11 @@ export class HotelDetailComponent implements OnInit {
   show: boolean;
   precoMinimo = 0;
   precoMaximo = 0;
-
+  botaoR: boolean;
   dataInicial: Date;
   dataFinal: Date;
   reservas: Reserva[];
+
 
 
   constructor(private route: ActivatedRoute,
@@ -46,8 +47,9 @@ export class HotelDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.getHotel();
-    //this.getReservasDoHotel();
+    this.getReservasDoHotel();
     this.show = false;
+    this.botaoR = false;
   }
 
   public getTipoCerto(tipo): any {
@@ -63,13 +65,13 @@ export class HotelDetailComponent implements OnInit {
 
   private getReservasDoHotel(): void {
     let allR;
-    this.reservaService.getReservas().subscribe(response => allR = response.reservas_list);
-
+    this.reservaService.getReservas().subscribe(response => this.reservas = response.reservas_list);
+    /*this.reservas.filter()
     for (const reserva of allR) {
       if (reserva.quarto.hotel === this.hotel) {
         this.reservas.push(reserva);
       }
-    }
+    }*/
   }
 
   private goBack(): void {
@@ -137,16 +139,25 @@ export class HotelDetailComponent implements OnInit {
 
   public getRoomTypesByDate(): any {
     const t: Array<TipoQuarto> = [];
+    let di = new Date(this.dataInicial);
+    let df = new Date(this.dataFinal);
+    let da = new Date();
+    let dat = new Date(da.getTime()- (1000*60*60*da.getHours()))
 
-    if (this.dataInicial < this.dataFinal ) {
-        for (const quarto of this.quartos) {
+    if (di < df && (di >= dat)) {
+      this.mostraBotao();
+      for (const quarto of this.quartos) {
           if (!t.includes(quarto.tipoQuarto)) {
-            //for (const reserva of this.reservas) {
-            //if (this.dataFinal < reserva.checkin
-            // && this.dataInicial > reserva.checkout) {
-            t.push(quarto.tipoQuarto);
-            //}
-            //}
+            if (this.reservas.length === 0) {
+              t.push(quarto.tipoQuarto);
+            } else {
+              for (const reserva of this.reservas) {
+                if (df < reserva.checkin
+                  && di > reserva.checkout) {
+                  t.push(quarto.tipoQuarto);
+                }
+              }
+            }
           }
         }
     }
@@ -231,8 +242,12 @@ export class HotelDetailComponent implements OnInit {
     return this.route.snapshot.url[0].path;
   }
 
-  public verServicos(): void {
-    this.show = !this.show;
+  public mostraBotao(): void {
+    this.botaoR = true;
+  }
+
+  public mostraReserva(): void {
+    this.show = true;
   }
 
   public numDias(): any {
