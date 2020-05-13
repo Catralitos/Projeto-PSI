@@ -1,3 +1,18 @@
 
-
+<div class="grid">
+  <div class="box_a">
+    <div class="header">
+      <h1 style="text-align: center; ">Cadeia de Hotéis</h1>
+    </div>
+  </div>
+  <div class="box_b">
+    <div class="navbar">
+      <li *ngFor="let hotel2 of hotelList">
+        <a routerLink="/{{hotel2._id}}">
+          <span class="nome">{{hotel2.nome}}</span>
+        </a>
+      </li>
+      <a href="#home">Home</a>
+    </div>
+  </div>
 <router-outlet></router-outlet>
