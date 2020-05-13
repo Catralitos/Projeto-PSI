@@ -58,7 +58,7 @@
 
 <br>
 
-<h3>Disponibilidade: </h3>
+<h3 *ngIf="botaoR" >Disponibilidade: </h3>
 <ul class="rooms">
   <li *ngFor="let tipo of getRoomTypesByDate()">
     <app-rooms-by-date [tipo]="tipo" [dataInicial]="dataInicial" [dataFinal]="dataFinal"></app-rooms-by-date>
@@ -66,8 +66,6 @@
 </ul>
 
 <app-reserva *ngIf="show" [tipos]="getRoomTypesByDate()" [dataInicial]="dataInicial" [dataFinal]="dataFinal"></app-reserva>
-
-
 
 <ul class="imagens">
   <li *ngFor="let imagem of hotel.imagens">

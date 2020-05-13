@@ -36,6 +36,8 @@ export class ReservaComponent implements OnInit {
   ccv: string;
   @Input() tipos: string[];
   tipo: string;
+  botaoR: boolean;
+  confR: boolean;
 
   @Input() dataInicial: Date;
   @Input() dataFinal: Date;
@@ -48,6 +50,8 @@ export class ReservaComponent implements OnInit {
               private location: Location) { }
 
   ngOnInit(): void {
+    this.botaoR = true;
+    this.confR = false;
   }
 
   public addReserva(quarto: Quarto, checkIn: Date, checkOut: Date): void {
@@ -134,6 +138,11 @@ export class ReservaComponent implements OnInit {
 
   private goBack(): void {
     this.location.back();
+  }
+
+  mostraConf(): void {
+    this.confR= true;
+    this.botaoR=false;
   }
 
 

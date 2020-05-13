@@ -1,24 +1,24 @@
-<h3>Reserva de {{this.dataInicial}} até {{this.dataFinal}}</h3>
+<h3>Reserva de {{dataInicial | date: 'dd-MM-yyyy'}} até {{dataFinal | date: 'dd-MM-yyyy'}}</h3>
 
-<select [(ngModel)]="tipo">
+<label> Tipo de Quarto <select [(ngModel)]="tipo">
   <option *ngFor="let tipo of tipos" >{{tipo}}</option>
-</select>
+</select> </label>
 
 <br>
 <br>
 
 <label >Nome:
   <input type="text" value=nome [(ngModel)]="nome" placeholder="0"/>
-</label>
+</label> <br>
 <label >Morada:
   <input type="text" value=nome [(ngModel)]="morada" placeholder="0"/>
-</label>
+</label> <br>
 <label >Telefone:
   <input type="text" value=nome [(ngModel)]="telefone" placeholder="0"/>
-</label>
+</label> <br>
 <label >Email:
   <input type="text" value=nome [(ngModel)]="email" placeholder="0"/>
-</label>
+</label><br>
 <label >Nif:
   <input type="number" value=nome [(ngModel)]="nif" placeholder="0"/>
 </label>
@@ -27,11 +27,18 @@
 <h3>Dados de Pagamento:</h3>
 <label >Numero Cartão:
   <input type="number" value=nome [(ngModel)]="numeroCartao" placeholder="0"/>
-</label>
+</label> <br>
 <label > Ano:
-  <input type="number" value=nome [(ngModel)]="ano" placeholder="0"/>
+  <input type="number" value=nome [(ngModel)]="ano" placeholder="0"/> <br>
   Mês:
-  <input type="number" value=nome [(ngModel)]="mes" placeholder="0"/>
+  <input type="number" value=nome [(ngModel)]="mes" placeholder="0"/><br>
   CCV:
-  <input type="number" value=nome [(ngModel)]="ccv" placeholder="0"/>
+  <input type="number" value=nome [(ngModel)]="ccv" placeholder="0"/><br>
 </label>
+
+<br>
+<button *ngIf="botaoR" (click)="mostraConf()" class="button">Reservar</button>
+<input *ngIf="confR" type="checkbox" ng-model="checkbox.value">
+<label *ngIf="confR"> *Confirmo que todos os dados estão corretos</label>
+<br>
+<button *ngIf="confR" class="button">Confirmar reserva</button>

@@ -141,10 +141,12 @@ export class HotelDetailComponent implements OnInit {
     const t: Array<TipoQuarto> = [];
     let di = new Date(this.dataInicial);
     let df = new Date(this.dataFinal);
+    let da = new Date();
+    let dat = new Date(da.getTime()- (1000*60*60*da.getHours()))
 
-    if (di < df ) {
+    if (di < df && (di >= dat)) {
       this.mostraBotao();
-        for (const quarto of this.quartos) {
+      for (const quarto of this.quartos) {
           if (!t.includes(quarto.tipoQuarto)) {
             if (this.reservas.length === 0) {
               t.push(quarto.tipoQuarto);
