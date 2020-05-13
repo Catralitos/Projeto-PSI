@@ -8,7 +8,7 @@ import { DataService } from "./data.service";
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'angular-projeto-psi';
   hotelList: Hotel[];
   message: string;
@@ -18,7 +18,6 @@ export class AppComponent {
 
   ngOnInit(): void {
     this.getHotels();
-    //this.data.currentId.subscribe(message => this.message = message);
   }
 
   private getHotels() {

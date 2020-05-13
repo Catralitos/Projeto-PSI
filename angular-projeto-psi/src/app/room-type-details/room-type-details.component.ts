@@ -20,7 +20,7 @@ import {ActivatedRoute} from '@angular/router';
 })
 export class RoomTypeDetailsComponent implements OnInit {
 
-  //obter quartos para fazer contagens
+  // obter quartos para fazer contagens
   @Input() tipo: string;
   hotel: Hotel;
   quartos: Quarto[];
