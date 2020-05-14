@@ -11,10 +11,6 @@ exports.getCliente = function (req, res, next) {
         })
 }
 
-exports.cliente_create_get = function (req, res, next) {
-    res.json();
-};
-
 exports.cliente_create_post = [
 
   // Validate fields.
