@@ -4,21 +4,11 @@ const { body, validationResult } = require('express-validator/check');
 const { sanitizeBody } = require('express-validator/filter');
 
 exports.getCliente = function (req, res, next) {
-    async.parallel({
-        cliente: function (callback) {
-            Cliente.find({'email': req.params.email}, 'id nome password email morada numero_telefone nif __v')
-                .exec(callback)
-        },
-    }, function (err, results) {
-        if (err) { return next(err); } // Error in API usage.
-        if (results.cliente == null) { // No results.
-            var err = new Error('Cliente not found');
-            err.status = 404;
-            return next(err);
-        }
-
-        res.json({cliente: cliente});
-    });
+    Cliente.find({'email' : req.params.email})
+        .exec(function (err, cliente) {
+            if (err) { return next(err); }
+            res.json(cliente);
+        })
 }
 
 exports.cliente_create_post = [
