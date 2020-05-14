@@ -58,8 +58,7 @@ export class ClienteService {
 
 
   /** POST: add a new cliente to the server */
-  addCliente(cliente: {nome: string, password: string, email: string, morada: string, numero_telefone: string,
-    nif: number, numeroCartao: number, ccv: number, anoValidade: number, mesValidade: number}): Observable<Cliente> {
+  addCliente(cliente: {nome: string, password: string, email: string, morada: string, numero_telefone: string, nif: number}): Observable<Cliente> {
     return this.http.post<Cliente>(this.clienteCreateUrl, cliente, this.httpOptions).pipe(
       tap((newCliente: Cliente) => this.log(`add cliente w/ id=${newCliente._id} request sent`)),
       catchError(this.handleError<Cliente>('addCliente'))
