@@ -11,9 +11,9 @@ import {RegistarComponent} from './registar/registar.component';
 const routes: Routes = [
   { path: '', component: HotelListComponent },
   { path: 'registar', component: RegistarComponent },
-  { path: ':hotelName', component: HotelDetailComponent },
+  { path: ':hotelID', component: HotelDetailComponent },
   // { path: ':hotelName/:tipoQuarto', component: RoomTypeDetailsComponent },
-  { path: ':hotelName/:reserva', component: ReservaComponent }
+  { path: ':hotelID/:reserva', component: ReservaComponent }
 ];
 
 @NgModule({

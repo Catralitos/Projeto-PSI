@@ -1,4 +1,4 @@
-import { Component, OnInit , Input} from '@angular/core';
+import {Component, OnInit, Input, SimpleChange, SimpleChanges, OnChanges} from '@angular/core';
 
 import { Hotel } from '../interfaces/Hotel';
 import { HotelService } from '../hotel.service';
@@ -21,7 +21,7 @@ import { ReservaService } from '../reserva.service';
   templateUrl: './hotel-detail.component.html',
   styleUrls: ['./hotel-detail.component.css']
 })
-export class HotelDetailComponent implements OnInit {
+export class HotelDetailComponent implements OnInit, OnChanges {
 
   @Input() hotel: Hotel;
   @Input() quartos: Quarto[];
@@ -35,8 +35,7 @@ export class HotelDetailComponent implements OnInit {
   dataInicial: Date;
   dataFinal: Date;
   reservas: Reserva[];
-
-
+  id: string;
 
   constructor(private route: ActivatedRoute,
               private data: DataService,
@@ -52,13 +51,24 @@ export class HotelDetailComponent implements OnInit {
     this.botaoR = false;
   }
 
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log('Entrou no changes');
+    this.getHotel();
+    this.getReservasDoHotel();
+    this.show = false;
+    this.botaoR = false;
+  }
+
   public getTipoCerto(tipo): any {
     return tipo.split(/(?=[A-Z])/).join(' ');
   }
 
   public getHotel(): void {
-    const id = this.route.snapshot.url[0].path;
-    this.hotelService.getHotel(id)
+    //this.id = this.route.snapshot.url[0].path;
+    this.route.params.subscribe(routeParams => {
+      this.id = routeParams.hotelID;
+    });
+    this.hotelService.getHotel(this.id)
       .subscribe(response => (this.hotel = response.hotel,
         this.quartos = response.hotel_rooms));
   }
@@ -147,19 +157,19 @@ export class HotelDetailComponent implements OnInit {
     if (di < df && (di >= dat)) {
       this.mostraBotao();
       for (const quarto of this.quartos) {
-          if (!t.includes(quarto.tipoQuarto)) {
-            if (this.reservas.length === 0) {
-              t.push(quarto.tipoQuarto);
-            } else {
-              for (const reserva of this.reservas) {
-                if (df < reserva.checkin
-                  && di > reserva.checkout) {
-                  t.push(quarto.tipoQuarto);
-                }
+        if (!t.includes(quarto.tipoQuarto)) {
+          if (this.reservas.length === 0) {
+            t.push(quarto.tipoQuarto);
+          } else {
+            for (const reserva of this.reservas) {
+              if (df < reserva.checkin
+                && di > reserva.checkout) {
+                t.push(quarto.tipoQuarto);
               }
             }
           }
         }
+      }
     }
     return t;
   }
