@@ -13,9 +13,8 @@ const routes: Routes = [
   { path: '', component: HotelListComponent },
   { path: 'registar', component: RegistarComponent },
   { path: 'login', component: LoginComponent },
-  { path: ':hotelName', component: HotelDetailComponent },
-  // { path: ':hotelName/:tipoQuarto', component: RoomTypeDetailsComponent },
-  { path: ':hotelName/:reserva', component: ReservaComponent }
+  { path: ':hotelID', component: HotelDetailComponent },
+  { path: ':hotelID/:reserva', component: ReservaComponent }
 ];
 
 @NgModule({

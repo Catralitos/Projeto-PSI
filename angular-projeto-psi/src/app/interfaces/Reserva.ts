@@ -1,10 +1,16 @@
 import {Quarto} from './Quarto';
-import {Cliente} from './Cliente';
 
 export interface Reserva {
   _id: string;
   quarto: Quarto;
   checkin: Date;
   checkout: Date;
-  cliente: Cliente;
+  nome: string;
+  numero_telefone: string;
+  email: string;
+  nif: number;
+  numeroCartao: number;
+  ccv: number;
+  anoValidade: number;
+  mesValidade: number;
 }

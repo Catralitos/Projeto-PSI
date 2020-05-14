@@ -21,7 +21,6 @@ exports.cliente_create_post = [
   body('nome').isLength({ min: 1 }).trim().withMessage('Cliente nome must be specified.'),
   body('password').isLength({ min: 1 }).trim().withMessage('Cliente password must be specified.'),
   body('email').isLength({ min: 1 }).trim().withMessage('Cliente email must be specified.'),
-  //body('nif').isLength({ min: 9 }).trim().withMessage('Cliente nif must be specified.'),
 
   // Sanitize fields.
   sanitizeBody('nome').escape(),
@@ -29,10 +28,6 @@ exports.cliente_create_post = [
   sanitizeBody('email').escape(),
   sanitizeBody('morada').escape(),
   sanitizeBody('numero_telefone').escape(),
-  sanitizeBody('numeroCartao').escape(),
-  sanitizeBody('ccv').escape(),
-  sanitizeBody('anoValidade').escape(),
-  sanitizeBody('mesValidade').escape(),
   sanitizeBody('nif').escape(),
 
   // Process request after validation and sanitization.
@@ -49,10 +44,6 @@ exports.cliente_create_post = [
               email: req.body.email,
               morada: req.body.morada,
               numero_telefone: req.body.numero_telefone,
-              numeroCartao: req.body.numeroCartao,
-              ccv: req.body.ccv,
-              anoValidade: req.body.anoValidade,
-              mesValidade: req.body.mesValidade,
               nif: req.body.nif,
           }
       );
@@ -94,7 +85,6 @@ exports.cliente_update_post = [
   body('nome').isLength({ min: 1 }).trim().withMessage('Cliente nome must be specified.'),
   body('password').isLength({ min: 1 }).trim().withMessage('Cliente password must be specified.'),
   body('email').isLength({ min: 1 }).trim().withMessage('Cliente email must be specified.'),
-  //body('nif').isLength({ min: 9 }).trim().withMessage('Cliente nif must be specified.'),
 
   // Sanitize fields.
   sanitizeBody('nome').escape(),
@@ -102,10 +92,6 @@ exports.cliente_update_post = [
   sanitizeBody('email').escape(),
   sanitizeBody('morada').escape(),
   sanitizeBody('numero_telefone').escape(),
-  sanitizeBody('numeroCartao').escape(),
-  sanitizeBody('ccv').escape(),
-  sanitizeBody('anoValidade').escape(),
-  sanitizeBody('mesValidade').escape(),
   sanitizeBody('nif').escape(),
 
     // Process request after validation and sanitization.
@@ -122,10 +108,6 @@ exports.cliente_update_post = [
                 email: req.body.email,
                 morada: req.body.morada,
                 numero_telefone: req.body.numero_telefone,
-                numeroCartao: req.body.numeroCartao,
-                ccv: req.body.ccv,
-                anoValidade: req.body.anoValidade,
-                mesValidade: req.body.mesValidade,
                 nif: req.body.nif,
             }
         );
