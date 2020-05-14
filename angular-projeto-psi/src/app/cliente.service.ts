@@ -52,8 +52,9 @@ export class ClienteService {
     const url = `${this.clienteUrl}/${email}`;
     console.log('O url no service deu: ' + url);
     return this.http.get<any>(url).pipe(
+      map(res => res),
       tap(_ => this.log(`fetch cliente w/ email=${email} request sent`)),
-      catchError(this.handleError<any>(`getCliente id=${email}`))
+      catchError(this.handleError<any>(`getCliente email=${email}`))
     );
   }
 
