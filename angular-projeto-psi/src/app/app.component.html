@@ -1,4 +1,4 @@
-
+<!-- *ngIf="emailCliente !== null"-->
 <div class="grid">
   <div class="box_a">
     <div class="header">
@@ -13,9 +13,16 @@
         </a>
       </li>
       <a href="#home">Home</a>
-      <a routerLink="/registar">Registar</a>
-      <a routerLink="/login">Login</a>
+      <div *ngIf="emailCliente !== null && emailCliente.length === 0; else elseBlock">
+        <a routerLink="/registar">Registar</a>
+        <a routerLink="/login">Login</a>
+      </div>
+      <ng-template #elseBlock>
+        <!--<a routerLink="/conta">Conta</a>-->
+        <a (click)="logOut()">Logout</a>
+      </ng-template>
     </div>
   </div>
 </div>
+
 <router-outlet></router-outlet>
