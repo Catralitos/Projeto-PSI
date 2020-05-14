@@ -7,13 +7,15 @@ import {HotelDetailComponent} from './hotel-detail/hotel-detail.component';
 import {RoomTypeDetailsComponent} from './room-type-details/room-type-details.component';
 import {ReservaComponent} from './reserva/reserva.component';
 import {RegistarComponent} from './registar/registar.component';
+import {LoginComponent} from './login/login.component';
 
 const routes: Routes = [
   { path: '', component: HotelListComponent },
   { path: 'registar', component: RegistarComponent },
-  { path: ':hotelID', component: HotelDetailComponent },
+  { path: 'login', component: LoginComponent },
+  { path: ':hotelName', component: HotelDetailComponent },
   // { path: ':hotelName/:tipoQuarto', component: RoomTypeDetailsComponent },
-  { path: ':hotelID/:reserva', component: ReservaComponent }
+  { path: ':hotelName/:reserva', component: ReservaComponent }
 ];
 
 @NgModule({

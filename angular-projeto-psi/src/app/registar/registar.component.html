@@ -1,30 +1,44 @@
-<p>registar works!</p>
+<h1>Registo</h1>
+<h2>Por favor preencha os dados necessários para criar uma conta.</h2>
 
-<!--<label >Nome:
-  <input type="text" value=nome [(ngModel)]="nome" placeholder="0"/>
-</label> <br>
-<label >Morada:
-  <input type="text" value=nome [(ngModel)]="morada" placeholder="0"/>
-</label> <br>
-<label >Telefone:
-  <input type="text" value=nome [(ngModel)]="telefone" placeholder="0"/>
-</label> <br>
-<label >Email:
-  <input type="text" value=nome [(ngModel)]="email" placeholder="0"/>
+<h3>Dados Pessoais:</h3>
+<label ><b>Nome</b>:
+  <input #nome type="text" placeholder="Ex:Pedro Oliveira"/>
 </label><br>
-<label >Nif:
-  <input type="number" value=nome [(ngModel)]="nif" placeholder="0"/>
+<label ><b>Password</b>:
+  <input #pass type="text" placeholder="Ex:123456"/>
+</label><br>
+<label >Morada:
+  <input #morada type="text" placeholder="Ex:Rua das Macieiras"/>
+</label><br>
+<label >Telefone:
+  <input #tele type="text" placeholder="Ex:912345678"/>
+</label><br>
+<label ><b>Email</b>:
+  <input #email type="text" placeholder="Ex:pedrooliveira@outlook.pt"/>
+</label><br>
+<label >NIF:
+  <input #nif type="number" placeholder="Ex:123456789"/>
 </label>
 
 
-<h3>Dados de Pagamento:</h3>
-<label >Numero Cartão:
-  <input type="number" value=nome [(ngModel)]="numeroCartao" placeholder="0"/>
-</label> <br>
+<h3>Dados de Pagamento: (opcional)</h3>
+<label >NºCartão:
+  <input #numCartao type="number" placeholder="Ex:1234567812345678"/>
+</label><br>
 <label > Ano:
-  <input type="number" value=nome [(ngModel)]="ano" placeholder="0"/> <br>
+  <input #ano type="number" placeholder="Ex:21"/> <br>
   Mês:
-  <input type="number" value=nome [(ngModel)]="mes" placeholder="0"/><br>
+  <input #mes type="number" placeholder="Ex:08"/><br>
   CCV:
-  <input type="number" value=nome [(ngModel)]="ccv" placeholder="0"/><br>
-</label>!-->
+  <input #ccv type="number" placeholder="Ex:123"/><br>
+</label>
+
+<p>Ao criar uma conta concorda com os nossos <a href="#" style="color:dodgerblue">Termos & Privacidade</a>.</p>
+
+<button>Cancelar</button>
+<button *ngIf="botaoR" (click)="mostraConf()" class="button">Registar</button>
+<input *ngIf="confR" type="checkbox" ng-model="checkbox.value">
+<label *ngIf="confR"> *Confirmo que todos os dados estão corretos</label>
+<br>
+<button *ngIf="confR" class="button" (click)="registarCliente(nome.value, pass.value, morada.value, tele.value, email.value, nif.value, numCartao.value, ccv.value, ano.value, mes.value)">Confirmar registo</button>
