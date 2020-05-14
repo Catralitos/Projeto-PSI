@@ -6,12 +6,12 @@
 
     <div class="container">
       <label for="uname"><b>Mail</b></label><br>
-      <input type="text" placeholder="Enter Mail" name="uname" required>
+      <input #username type="text" placeholder="Enter Mail"/>
       <br>
       <label for="psw"><b>Password</b></label><br>
-      <input type="password" placeholder="Enter Password" name="psw" required>
+      <input #password type="password" placeholder="Enter Password"/>
       <br>
-      <button type="submit">Login</button><br>
+      <button type="button" (click)="loginCliente(username.value, password.value)">Login</button><br>
       <label>
         <input type="checkbox" checked="checked" name="remember"> Remember me
       </label>

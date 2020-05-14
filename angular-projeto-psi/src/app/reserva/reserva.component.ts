@@ -63,7 +63,7 @@ export class ReservaComponent implements OnInit {
   }
 
 
-  public constroiCliente(nome: string, morada: string, telefone: string, email: string, nif: number,
+  /*public constroiCliente(nome: string, morada: string, telefone: string, email: string, nif: number,
                          numeroCartao: number, anoValidade: number, mesValidade: number, ccv: number): any {
 
     nome = nome.trim();
@@ -99,7 +99,7 @@ export class ReservaComponent implements OnInit {
     client.ccv = ccv;
 
     return client;
-  }
+  }*/
 
   public validatePhoneNumber(telefone: string) {
     const regex = '^\\+(?:[0-9] ?){6,14}[0-9]$';

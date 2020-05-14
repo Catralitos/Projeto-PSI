@@ -25,18 +25,6 @@
       <label for="nif"><b>NIF</b></label>
       <input #nif type="number" placeholder="Ex:123456789"/>
 
-      <label for="numCartao"><b>NºCartão</b></label>
-      <input #numCartao type="number" placeholder="Ex:1234567812345678"/>
-
-      <label for="ano"><b>Ano</b></label>
-      <input #ano type="number" placeholder="Ex:21"/> <br>
-
-      <label for="mes"><b>Mês</b></label>
-      <input #mes type="number" placeholder="Ex:08"/><br>
-
-      <label for="ccv"><b>CCV</b></label>
-      <input #ccv type="number" placeholder="Ex:123"/><br>
-
       <label>
         <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Remember me
       </label>
@@ -46,7 +34,7 @@
 
       <div class="clearfix">
         <button type="button" class="cancelbtn">Cancelar</button>
-        <button type="submit" class="signupbtn" (click)="registarCliente(nome.value, pass.value, morada.value, tele.value, email.value, nif.value, numCartao.value, ccv.value, ano.value, mes.value)">Registar</button>
+        <button type="submit" class="signupbtn" (click)="registarCliente(nome.value, pass.value, morada.value, tele.value, email.value, nif.value)">Registar</button>
       </div>
     </div>
   </form>

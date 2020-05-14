@@ -43,15 +43,19 @@ export class RegistarComponent implements OnInit {
     this.confR = false;
   }
 
-  registarCliente(nomeCliente: string, passwordCliente: string, moradaCliente: string, telefone: string, emailCliente: string,
-                 nif: number, numeroCartao: number, anoValidade: number, mesValidade: number, ccv: number): any {
+  registarCliente(nomeCliente: string, passwordCliente: string, moradaCliente: string, telefone: string,
+                  emailCliente: string, nif: number,): any {
     const nome = nomeCliente.trim();
     const password = passwordCliente.trim();
     const morada = moradaCliente.trim();
     const numero_telefone = telefone.trim();
     const email = emailCliente.trim();
 
-    if (!nome && !password && !email) {
+    console.log(nome.length);
+    console.log(password.length);
+    console.log(email.length);
+
+    if (nome.length == 0 || password.length == 0 || email.length == 0) {
       window.alert("Tem que inserir um nome/password/email!");
       return;
     }
@@ -70,24 +74,14 @@ export class RegistarComponent implements OnInit {
       }
     }
 
-    if(numeroCartao > 0){
-      window.alert("Tem que inserir um número de cartão no formato correto!");
-      if (!this.validateCreditCard(numeroCartao, anoValidade, mesValidade, ccv)) {
-        return;
-      }
-    }
-
     console.log(nome);
     console.log(password);
     console.log(morada);
     console.log(numero_telefone);
     console.log(email);
     console.log(nif);
-    console.log(numeroCartao);
-    console.log(ccv);
 
-    this.clienteService.addCliente({nome,password,morada,numero_telefone,email,nif,numeroCartao,ccv,
-                                    anoValidade,mesValidade}).subscribe(() => this.goBack());
+    this.clienteService.addCliente({nome,password,morada,numero_telefone,email,nif}).subscribe(() => this.goBack());
 
     window.alert("Registo efetuado com sucesso!")
 
@@ -107,20 +101,6 @@ export class RegistarComponent implements OnInit {
     const regex =  '^[0-9]{6}$';
 
     if (nif.toString().match(regex)) {
-      return true;
-    } else {
-      return false;
-    }
-  }
-
-  public validateCreditCard(numero: number, anoValidade: number, mesValidade: number, ccv: number) {
-    const regexNumero =  '^[0-9]{16}$';
-    const regexAno =  '^[20-99]';
-    const regexMes =  '^[1-12]$';
-    const regexCcv =  '^[0-9]{3}$';
-
-    if (numero.toString().match(regexNumero) && anoValidade.toString().match(regexAno)
-        && mesValidade.toString().match(regexMes) && ccv.toString().match(regexCcv) ) {
       return true;
     } else {
       return false;
