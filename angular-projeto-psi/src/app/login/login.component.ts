@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Cliente } from '../interfaces/Cliente';
 import { ClienteService } from '../cliente.service';
 
@@ -10,11 +10,12 @@ import { ClienteService } from '../cliente.service';
 export class LoginComponent implements OnInit {
 
   clientes: Cliente[];
-  cliente: Cliente;
+  @Input cliente: Cliente;
 
-  constructor(private clienteService: ClienteService,) { }
+  constructor(private clienteService: ClienteService) { }
 
   ngOnInit(): void {
+    //this.getClientes();
   }
 
   getClientes(): void {
@@ -26,7 +27,7 @@ export class LoginComponent implements OnInit {
     console.log(this.cliente);
     console.log(email);
     console.log(password);
-    if(!this.cliente || email == null){
+    if(!this.cliente){
       window.alert("Tem que inserir um email existente!");
       this.cliente = null;
       return;
