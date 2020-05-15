@@ -53,10 +53,8 @@
   <input type="Date" [(ngModel)]="dataInicial" placeholder="0"/>
   Até
   <input  type="Date" [(ngModel)]="dataFinal" placeholder="0" />
-
-  <button *ngIf="botaoR" (click)="mostraReserva()" class="button">Reservar</button>
 </label>
-
+<button *ngIf="botaoR" (click)="mostraReserva()" class="button">Reservar</button>
 <br>
 
 <h3 *ngIf="botaoR" >Disponibilidade: </h3>

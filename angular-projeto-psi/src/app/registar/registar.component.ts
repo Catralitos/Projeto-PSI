@@ -94,7 +94,7 @@ export class RegistarComponent implements OnInit {
   }
 
   public validateNif(nif: number) {
-    const regex =  '^[0-9]{6}$';
+    const regex =  '^[0-9]{9}$';
     return !!nif.toString().match(regex);
   }
 

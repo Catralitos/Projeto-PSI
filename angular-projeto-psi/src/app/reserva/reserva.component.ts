@@ -39,6 +39,7 @@ export class ReservaComponent implements OnInit {
   botaoR: boolean;
   confR: boolean;
 
+
   @Input() dataInicial: Date;
   @Input() dataFinal: Date;
 
@@ -48,6 +49,8 @@ export class ReservaComponent implements OnInit {
               private quartoService: QuartoService,
               private reservaService: ReservaService,
               private location: Location) { }
+
+ myStorage = window.localStorage;
 
   ngOnInit(): void {
     this.botaoR = true;
@@ -134,6 +137,7 @@ export class ReservaComponent implements OnInit {
       return false;
     }
   }
+
 
 
   private goBack(): void {
