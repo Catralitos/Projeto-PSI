@@ -12,7 +12,7 @@ exports.getClientes = function (req, res, next) {
             if (err) { return next(err); }
             res.json({ cliente_list: list_clientes });
         })
-  }
+}
 
 exports.getCliente = function (req, res, next) {
     Cliente.find({'email' : req.params.email})
@@ -21,6 +21,10 @@ exports.getCliente = function (req, res, next) {
             res.json(cliente);
         })
 }
+
+exports.cliente_create_get = function (req, res, next) {
+    res.json();
+};
 
 exports.cliente_create_post = [
 

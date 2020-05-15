@@ -44,10 +44,11 @@ export class RegistarComponent implements OnInit {
   }
 
   registarCliente(nomeCliente: string, passwordCliente: string, moradaCliente: string, telefone: string,
-                  emailCliente: string, nif: number,): any {
+                  emailCliente: string, nif: number, ): any {
     const nome = nomeCliente.trim();
     const password = passwordCliente.trim();
     const morada = moradaCliente.trim();
+    // tslint:disable-next-line:variable-name
     const numero_telefone = telefone.trim();
     const email = emailCliente.trim();
 
@@ -55,56 +56,46 @@ export class RegistarComponent implements OnInit {
     console.log(password.length);
     console.log(email.length);
 
-    if (nome.length == 0 || password.length == 0 || email.length == 0) {
-      window.alert("Tem que inserir um nome/password/email!");
+    if (nome.length === 0 || password.length === 0 || email.length === 0) {
+      window.alert('Tem que inserir um nome/password/email!');
       return;
     }
 
-    if(numero_telefone){
+    if (numero_telefone) {
       if (!this.validatePhoneNumber(numero_telefone)) {
-        window.alert("Tem que inserir um número de telefone no formato correto!");
+        window.alert('Tem que inserir um número de telefone no formato correto!');
         return;
       }
     }
 
-    if(nif > 0){
+    if (nif > 0) {
       if (!this.validateNif(nif)) {
-        window.alert("Tem que inserir um nif no formato correto!");
+        window.alert('Tem que inserir um nif no formato correto!');
         return;
       }
     }
 
     console.log(nome);
     console.log(password);
-    console.log(morada);
-    console.log(numero_telefone);
+    console.log(morada === '');
+    console.log(numero_telefone === '');
     console.log(email);
-    console.log(nif);
+    console.log(nif === null);
 
-    this.clienteService.addCliente({nome,password,morada,numero_telefone,email,nif}).subscribe(() => this.goBack());
+    this.clienteService.addCliente({nome, password, morada, numero_telefone, email, nif}).subscribe(() => this.goBack());
 
-    window.alert("Registo efetuado com sucesso!")
+    window.alert('Registo efetuado com sucesso!');
 
   }
 
   public validatePhoneNumber(telefone: string) {
     const regex = '^\\+(?:[0-9] ?){6,14}[0-9]$';
-
-    if (telefone.match(regex)) {
-      return true;
-    } else {
-      return false;
-    }
+    return !!telefone.match(regex);
   }
 
   public validateNif(nif: number) {
     const regex =  '^[0-9]{6}$';
-
-    if (nif.toString().match(regex)) {
-      return true;
-    } else {
-      return false;
-    }
+    return !!nif.toString().match(regex);
   }
 
   private goBack(): void {
@@ -112,8 +103,8 @@ export class RegistarComponent implements OnInit {
   }
 
   mostraConf(): void {
-    this.confR= true;
-    this.botaoR=false;
+    this.confR = true;
+    this.botaoR = false;
   }
 
 }
