@@ -24,6 +24,7 @@ export class AppComponent implements OnInit {
   }
 
   private getHotels() {
+    console.log('Entrou no getHotels do app');
     this.hotelService.getHotels().subscribe(response => {
       this.hotelList = response.hotel_list;
       this.emailCliente = this.myStorage.getItem('email');

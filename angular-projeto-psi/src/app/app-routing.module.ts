@@ -11,6 +11,7 @@ const routes: Routes = [
   { path: '', component: HotelListComponent },
   { path: 'registar', component: RegistarComponent },
   { path: 'login', component: LoginComponent },
+  // { path: 'conta', component: UserDetailsComponent },
   { path: ':hotelID', component: HotelDetailComponent },
   { path: ':hotelID/:reserva', component: ReservaComponent }
 ];

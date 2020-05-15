@@ -21,17 +21,22 @@ export class LoginComponent implements OnInit {
   }
 
   loginCliente(email: string, password: string) {
-    for (const cliente of this.clienteList) {
-      if (cliente.email === email && password === cliente.password) {
-        this.myStorage.setItem('nome',  cliente.nome);
-        this.myStorage.setItem('morada',  cliente.morada);
-        this.myStorage.setItem('numero_telefone',  cliente.numero_telefone);
-        this.myStorage.setItem('email',  cliente.email);
-        this.myStorage.setItem('nif', String(cliente.nif));
+    // tslint:disable-next-line:prefer-for-of
+    for (let i = 0; i < this.clienteList.length; i++) {
+      console.log(this.clienteList[i]);
+      if (this.clienteList[i].email === email && password === this.clienteList[i].password) {
+        console.log('Entrou no if');
+        this.myStorage.setItem('nome',  this.clienteList[i].nome);
+        this.myStorage.setItem('morada',  this.clienteList[i].morada);
+        this.myStorage.setItem('numero_telefone',  this.clienteList[i].numero_telefone);
+        this.myStorage.setItem('email',  this.clienteList[i].email);
+        this.myStorage.setItem('nif', String(this.clienteList[i].nif));
         this.goBack();
+        return;
       }
     }
     window.alert('Login sem sucesso');
+    return;
   }
 
   goBack(): void {
