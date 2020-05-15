@@ -3,14 +3,9 @@ import { Component, OnInit , Input} from '@angular/core';
 import { Hotel } from '../interfaces/Hotel';
 import {HotelService} from '../hotel.service';
 import { Quarto } from '../interfaces/Quarto';
-import {QuartoService} from '../quarto.service';
-import { TipoQuarto } from '../interfaces/TipoQuarto';
-
-import { DataService } from '../data.service';
-
-import {Location} from '@angular/common';
 
 import {ActivatedRoute} from '@angular/router';
+import {TipoQuarto} from '../interfaces/TipoQuarto';
 
 
 @Component({
@@ -25,12 +20,9 @@ export class RoomTypeDetailsComponent implements OnInit {
   hotel: Hotel;
   quartos: Quarto[];
   show: boolean;
+  id: string;
 
-  constructor(private route: ActivatedRoute,
-              private hotelService: HotelService,
-              private data: DataService,
-              private quartoService: QuartoService,
-              private location: Location) { }
+  constructor(private route: ActivatedRoute, private hotelService: HotelService) { }
 
   ngOnInit(): void {
       this.getHotel();
@@ -38,23 +30,26 @@ export class RoomTypeDetailsComponent implements OnInit {
   }
 
   public getHotel(): void {
-    const id = this.route.snapshot.url[0].path;
-    this.hotelService.getHotel(id)
-      .subscribe(response => (this.hotel = response.hotel,
-        this.quartos = response.hotel_rooms));
+    this.route.params.subscribe((routeParams) => {
+      this.id = routeParams.hotelID;
+      this.hotelService
+        .getHotel(this.id)
+        .subscribe(
+          (response) => {
+            this.hotel = response.hotel;
+            this.quartos = response.hotel_rooms;
+          }
+        );
+    });
   }
 
   public getNumRoom(type): any {
-    const q = this.quartos.filter(function(quarto) {
-      return quarto.tipoQuarto === type;
-    });
+    const q = this.quartos.filter(quarto => quarto.tipoQuarto === type);
     return q.length;
   }
 
-  public getRoom(type): any {
-    const q = this.quartos.filter(function(quarto) {
-      return quarto.tipoQuarto === type;
-    });
+  public getRoom(type): Quarto {
+    const q = this.quartos.filter(quarto => quarto.tipoQuarto === type);
     return q[0];
   }
 

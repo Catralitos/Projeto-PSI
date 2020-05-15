@@ -10,14 +10,14 @@ import {Cliente} from './interfaces/Cliente';
 })
 export class ClienteService {
 
-  private clientesUrl = 'http://appserver.alunos.di.fc.ul.pt:3010/catalog/clientes';  // URL to web api
-  private clienteUrl = 'http://appserver.alunos.di.fc.ul.pt:3010/catalog/cliente';  // URL to web api
-  private clienteCreateUrl = 'http://appserver.alunos.di.fc.ul.pt:3010/catalog/clientes/create';  // URL to web api
-
   constructor(
     private http: HttpClient,
     private messageService: MessageService) {
   }
+
+  private clientesUrl = 'http://appserver.alunos.di.fc.ul.pt:3010/catalog/clientes';  // URL to web api
+  private clienteUrl = 'http://appserver.alunos.di.fc.ul.pt:3010/catalog/cliente';  // URL to web api
+  private clienteCreateUrl = 'http://appserver.alunos.di.fc.ul.pt:3010/catalog/clientes/create';  // URL to web api
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -50,15 +50,17 @@ export class ClienteService {
   /** GET cliente by id. Will 404 if id not found */
   getCliente(email: string): Observable<any> {
     const url = `${this.clienteUrl}/${email}`;
+    console.log('O url no service deu: ' + url);
     return this.http.get<any>(url).pipe(
+      map(res => res),
       tap(_ => this.log(`fetch cliente w/ email=${email} request sent`)),
-      catchError(this.handleError<any>(`getCliente id=${email}`))
+      catchError(this.handleError<any>(`getCliente email=${email}`))
     );
   }
 
-
   /** POST: add a new cliente to the server */
-  addCliente(cliente: {nome: string, password: string, email: string, morada: string, numero_telefone: string, nif: number}): Observable<Cliente> {
+  addCliente(cliente: {nome: string, password: string, email: string, morada: string,
+    numero_telefone: string, nif: number}): Observable<Cliente> {
     return this.http.post<Cliente>(this.clienteCreateUrl, cliente, this.httpOptions).pipe(
       tap((newCliente: Cliente) => this.log(`add cliente w/ id=${newCliente._id} request sent`)),
       catchError(this.handleError<Cliente>('addCliente'))
@@ -100,4 +102,5 @@ export class ClienteService {
   private log(message: string) {
     this.messageService.add(`ClienteService: ${message}`);
   }
+
 }

@@ -3,11 +3,22 @@ var Cliente = require('../models/cliente')
 const { body, validationResult } = require('express-validator/check');
 const { sanitizeBody } = require('express-validator/filter');
 
+exports.getClientes
+
+exports.getClientes = function (req, res, next) {
+    Cliente.find()
+        .sort([['name', 'ascending']])
+        .exec(function (err, list_clientes) {
+            if (err) { return next(err); }
+            res.json({ cliente_list: list_clientes });
+        })
+}
+
 exports.getCliente = function (req, res, next) {
     Cliente.find({'email' : req.params.email})
         .exec(function (err, cliente) {
             if (err) { return next(err); }
-            res.json({ cliente: cliente });
+            res.json(cliente);
         })
 }
 

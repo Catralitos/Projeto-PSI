@@ -141,10 +141,8 @@ export class ReservaComponent implements OnInit {
   }
 
   mostraConf(): void {
-    this.confR= true;
-    this.botaoR=false;
+    this.confR = true;
+    this.botaoR = false;
   }
-
-
 
 }

@@ -1,6 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { Cliente } from '../interfaces/Cliente';
+import {Component, OnInit} from '@angular/core';
 import { ClienteService } from '../cliente.service';
+import { ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
+import {Cliente} from '../interfaces/Cliente';
 
 @Component({
   selector: 'app-login',
@@ -9,35 +11,40 @@ import { ClienteService } from '../cliente.service';
 })
 export class LoginComponent implements OnInit {
 
-  clientes: Cliente[];
-  @Input cliente: Cliente;
+  clienteList: Cliente[];
+  myStorage = window.localStorage;
 
-  constructor(private clienteService: ClienteService) { }
+  constructor(private route: ActivatedRoute, private clienteService: ClienteService, private location: Location) { }
 
   ngOnInit(): void {
-    //this.getClientes();
+    this.getClientes();
   }
 
-  getClientes(): void {
-    this.clienteService.getClientes().subscribe(clientes => this.clientes = clientes.cliente_list);
+  loginCliente(email: string, password: string) {
+    // tslint:disable-next-line:prefer-for-of
+    for (let i = 0; i < this.clienteList.length; i++) {
+      console.log(this.clienteList[i]);
+      if (this.clienteList[i].email === email && password === this.clienteList[i].password) {
+        console.log('Entrou no if');
+        this.myStorage.setItem('nome',  this.clienteList[i].nome);
+        this.myStorage.setItem('morada',  this.clienteList[i].morada);
+        this.myStorage.setItem('numero_telefone',  this.clienteList[i].numero_telefone);
+        this.myStorage.setItem('email',  this.clienteList[i].email);
+        this.myStorage.setItem('nif', String(this.clienteList[i].nif));
+        this.goBack();
+        return;
+      }
+    }
+    window.alert('Login sem sucesso');
+    return;
   }
 
-  loginCliente(email: string, password: string){
-    this.clienteService.getCliente(email).subscribe(response => (this.cliente = response.cliente));
-    console.log(this.cliente);
-    console.log(email);
-    console.log(password);
-    if(!this.cliente){
-      window.alert("Tem que inserir um email existente!");
-      this.cliente = null;
-      return;
-    }
-    if(this.cliente.password != password || password == null){
-      window.alert("Password inválida! Tem que inserir a password correta!");
-      this.cliente = null;
-      return;
-    }
-    window.alert("Cliente autenticado com sucesso!");
+  goBack(): void {
+    this.location.back();
+  }
+
+  private getClientes() {
+    this.clienteService.getClientes().subscribe(response => this.clienteList = response.cliente_list);
   }
 
 }

@@ -16,7 +16,7 @@ import { ReservaComponent } from './reserva/reserva.component';
 import { RoomsByDateComponent } from './rooms-by-date/rooms-by-date.component';
 import { RegistarComponent } from './registar/registar.component';
 import { LoginComponent } from './login/login.component';
-
+import { ClienteService } from './cliente.service';
 
 @NgModule({
   declarations: [
