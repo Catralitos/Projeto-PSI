@@ -33,9 +33,12 @@ export class LoginComponent implements OnInit {
         this.myStorage.setItem('nif', String(this.clienteList[i].nif));
         this.goBack();
         return;
+      }else if(this.clienteList[i].email == email && password != this.clienteList[i].password){
+        window.alert("Password incorreta!");
+        return;
       }
     }
-    window.alert('Login sem sucesso');
+    window.alert('Email/Password incorretos!');
     return;
   }
 

@@ -1,8 +1,10 @@
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <div *ngIf="emailCliente !== null">
   <div class="grid">
     <div class="box_a">
       <div class="header">
-        <h1 style="text-align: center; ">Cadeia de Hotéis - {{emailCliente}}</h1>
+        <h1 style="text-align: center; ">Cadeia de Hotéis<!--- {{emailCliente}}!--></h1>
       </div>
     </div>
     <div class="box_b">
@@ -18,6 +20,7 @@
           <a routerLink="/login">Login</a>
         </div>
         <ng-template #elseBlock>
+          <a href="">Cliente: {{emailCliente}}</a>
           <a routerLink="/conta">Conta</a>
           <a (click)="logOut()">Logout</a>
         </ng-template>

@@ -15,17 +15,8 @@ import {ActivatedRoute} from '@angular/router';
 })
 export class RegistarComponent implements OnInit {
 
+  clienteList: Cliente[];
   @Input() cliente: Cliente;
-  nome: string;
-  password: string;
-  morada: string;
-  telefone: string;
-  email: string;
-  nif: string;
-  numeroCartao: string;
-  ano: string;
-  mes: string;
-  ccv: string;
   @Input() tipos: string[];
   tipo: string;
   botaoR: boolean;
@@ -39,16 +30,16 @@ export class RegistarComponent implements OnInit {
               private clienteService: ClienteService) { }
 
   ngOnInit(): void {
+    this.getClientes();
     this.botaoR = true;
     this.confR = false;
   }
 
   registarCliente(nomeCliente: string, passwordCliente: string, moradaCliente: string, telefone: string,
-                  emailCliente: string, nif: number, ): any {
+                  emailCliente: string, nif: number,): any {
     const nome = nomeCliente.trim();
     const password = passwordCliente.trim();
     const morada = moradaCliente.trim();
-    // tslint:disable-next-line:variable-name
     const numero_telefone = telefone.trim();
     const email = emailCliente.trim();
 
@@ -56,46 +47,75 @@ export class RegistarComponent implements OnInit {
     console.log(password.length);
     console.log(email.length);
 
-    if (nome.length === 0 || password.length === 0 || email.length === 0) {
-      window.alert('Tem que inserir um nome/password/email!');
-      return;
-    }
-
-    if (numero_telefone) {
-      if (!this.validatePhoneNumber(numero_telefone)) {
-        window.alert('Tem que inserir um número de telefone no formato correto!');
+    for (let i = 0; i < this.clienteList.length; i++) {
+      if(this.clienteList[i].email == email){
+        window.alert("Email já existente! Tem que inserir um email diferente!");
+        return;
+      }
+      if(this.clienteList[i].numero_telefone == numero_telefone){
+        window.alert("Número de telefone já existente! Tem que inserir um número diferente!");
+        return;
+      }
+      if(this.clienteList[i].nif == nif){
+        window.alert("Nif já existente! Tem que inserir um nif diferente!");
         return;
       }
     }
 
-    if (nif > 0) {
+    if (nome.length == 0 || password.length == 0 || email.length == 0) {
+      window.alert("Tem que inserir um nome/password/email!");
+      return;
+    }
+
+    if(numero_telefone){
+      if (!this.validatePhoneNumber(numero_telefone)) {
+        window.alert("Tem que inserir um número de telefone no formato correto!");
+        return;
+      }
+    }
+
+    if(nif > 0){
       if (!this.validateNif(nif)) {
-        window.alert('Tem que inserir um nif no formato correto!');
+        window.alert("Tem que inserir um nif no formato correto!");
         return;
       }
     }
 
     console.log(nome);
     console.log(password);
-    console.log(morada === '');
-    console.log(numero_telefone === '');
+    console.log(morada);
+    console.log(numero_telefone);
     console.log(email);
-    console.log(nif === null);
+    console.log(nif);
 
-    this.clienteService.addCliente({nome, password, morada, numero_telefone, email, nif}).subscribe(() => this.goBack());
+    this.clienteService.addCliente({nome,password,morada,numero_telefone,email,nif}).subscribe(() => this.goBack());
 
-    window.alert('Registo efetuado com sucesso!');
+    window.alert("Registo efetuado com sucesso!")
 
+  }
+
+  public getClientes() {
+    this.clienteService.getClientes().subscribe(response => this.clienteList = response.cliente_list);
   }
 
   public validatePhoneNumber(telefone: string) {
     const regex = '^\\+(?:[0-9] ?){6,14}[0-9]$';
-    return !!telefone.match(regex);
+
+    if (telefone.match(regex)) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   public validateNif(nif: number) {
     const regex =  '^[0-9]{6}$';
-    return !!nif.toString().match(regex);
+
+    if (nif.toString().match(regex)) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   private goBack(): void {
@@ -103,8 +123,8 @@ export class RegistarComponent implements OnInit {
   }
 
   mostraConf(): void {
-    this.confR = true;
-    this.botaoR = false;
+    this.confR= true;
+    this.botaoR=false;
   }
 
 }
