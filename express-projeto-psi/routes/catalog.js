@@ -32,6 +32,8 @@ router.get('/hoteis', hotel_controller.get_hotels);
 router.get('/quarto/:id', quarto_controller.get_quarto);
 
 //Cliente
+router.get('/clientes', cliente_controller.getClientes);
+
 router.get('/cliente/:email', cliente_controller.getCliente);
 
 router.post('/clientes/create', cliente_controller.cliente_create_post);
