@@ -38,7 +38,7 @@ body {
   /*font-family: sans-serif;*/
   /*margin-top: 80px;
   padding: 30px;*/
-  background-color: #f2e6d9;/*#deb887;*//*#dfbf9f;*/
+  background-color: #edf2f4;/*#deb887;*//*#dfbf9f;*/
 }
 
 
@@ -238,4 +238,36 @@ body {
 
 .navbar li {
   display: inline-block;
+}
+
+* {
+  box-sizing: border-box;
+  margin-top: 0px;
+}
+
+body {
+  font-family: Arial;
+  font-size: 17px;
+}
+
+.container {
+  position: relative;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+
+.container .content {
+  width: 60%;
+  max-height: 100%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 30px;
+  /*position: absolute;*/
+  bottom: 0;
+  background: rgb(0, 0, 0); /* Fallback color */
+  background: #8d99ae; /* Black background with 0.5 opacity */
+  color: #f1f1f1;
+  padding: 20px;
 }

@@ -1,12 +1,20 @@
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <body>
 <div *ngIf="hotelList" class="grid">
   <div class="box_c">
     <ul class="hotels">
       <li *ngFor="let hotel of hotelList">
+        <div class="container">
         <figure *ngIf="hotel" routerLink="/{{hotel._id}}">
           <img src="{{imgAleatoria(hotel)}}" alt={{hotel.nome}}>
-          <figcaption style="text-align: center">{{hotel.nome}}</figcaption>
-        </figure>
+            <div class="content">
+              <h1 style="text-align: center;">{{hotel.nome}}</h1>
+                <p>Situado na pitoresca vila da Ericeira, mesmo em cima da praia, este hotel com história e tradição, que resulta da reabilitação do marcante Hotel de Turismo da Ericeira, tem como cenário o Oceano Atlântico.</p>
+            </div>
+            <!--<figcaption style="text-align: center">{{hotel.nome}}</figcaption>!-->
+          </figure>
+          </div>
       </li>
     </ul>
   </div>
