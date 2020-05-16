@@ -9,24 +9,24 @@
   <input type="text" value="{{myStorage.getItem('morada')}}" #morada/>
 </label> <br>
 <label >Telefone:
-  <input type="text" value="{{myStorage.getItem('numero_telefone')}}" #telefone/>
+  <input type="text" value="{{myStorage.getItem('numero_telefone')}}" #telefone placeholder="+351 961111111"/>
 </label> <br>
 <label >Email:
   <input type="text" value="{{myStorage.getItem('email')}}" #email/>
 </label><br>
 <label >Nif:
-  <input type="number" value="{{myStorage.getItem('nif')}}" #nif/>
+  <input type="number" value="{{myStorage.getItem('nif')}}" #nif placeholder="123456789"/>
 </label>
 
 
 <h3>Dados de Pagamento:</h3>
 <label >Numero Cartão:
-  <input #numeroCartao/>
+  <input #numeroCartao placeholder="1111222233334444"/>
 </label> <br>
 <label > Ano:
-  <input #ano/> <br>
+  <input #ano placeholder="20"/> <br>
   Mês:
-  <input #mes /><br>
+  <input #mes placeholder="05"/><br>
   CCV:
   <input #ccv /><br>
 </label>
