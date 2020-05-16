@@ -23,7 +23,6 @@ import {ActivatedRoute} from '@angular/router';
 })
 export class ReservaComponent implements OnInit {
 
-  hotel: Hotel;
   @Input() cliente: Cliente;
   nome: string;
   morada: string;
@@ -34,10 +33,17 @@ export class ReservaComponent implements OnInit {
   ano: string;
   mes: string;
   ccv: string;
-  @Input() tipos: string[];
-  tipo: string;
+  @Input() tipo: string;
   botaoR: boolean;
   confR: boolean;
+  inputReserva: boolean;
+  confirmacao: boolean;
+
+  hotel: Hotel;
+  quartos: Quarto[];
+  id: string;
+  reservas: Reserva[];
+
 
   @Input() dataInicial: Date;
   @Input() dataFinal: Date;
@@ -49,57 +55,102 @@ export class ReservaComponent implements OnInit {
               private reservaService: ReservaService,
               private location: Location) { }
 
+ myStorage = window.localStorage;
+
   ngOnInit(): void {
     this.botaoR = true;
     this.confR = false;
+    this.inputReserva = true;
+    this.confirmacao = false;
+    this.getHotel();
+    this.getReservasDoHotel();
   }
 
-  public addReserva(quarto: Quarto, checkIn: Date, checkOut: Date): void {
+  public addReserva(): void {
 
-    if (!quarto && !checkIn && !checkOut) { return; }
-
-    /*this.reservaService.addReserva({quarto: quarto, checkin: checkIn, checkout: checkOut,
-      cliente: this.constroiCliente()}).subscribe(() => this.goBack());*/
+    this.reservaService.addReserva({quarto: this.getRoom(this.tipo), checkin: this.dataInicial,
+      checkout: this.dataFinal, nome: this.nome, email: this.email, morada: this.morada,
+      numero_telefone: this.telefone, nif: +this.nif, numeroCartao: Number(this.numeroCartao),
+      ccv: Number(this.ccv), anoValidade: Number(this.ano), mesValidade: Number(this.mes) }).subscribe(() => window.location.reload());
   }
 
 
-  /*public constroiCliente(nome: string, morada: string, telefone: string, email: string, nif: number,
-                         numeroCartao: number, anoValidade: number, mesValidade: number, ccv: number): any {
+  mostraConf(nome: string, morada: string, telefone: string, email: string, nif: string, numeroCartao: string,
+             ano: string, mes: string, ccv: string): void {
 
-    nome = nome.trim();
-    morada = morada.trim();
-    telefone = telefone.trim();
-    email = email.trim();
-
-    if (!nome && !morada && !telefone && !email && !nif && !numeroCartao &&
-        !anoValidade && !mesValidade && !ccv ) { return; }
+    if (!nome || !morada || !telefone || !email || !nif || !numeroCartao ||
+      !ano || !mes || !ccv ) {
+      window.alert('Existem dados por preencher!');
+      return;
+    }
 
     if (!this.validatePhoneNumber(telefone)) {
+      window.alert('Tem que inserir um número de telefone no formato correto. Exemplo: +351 912345678!');
       return;
     }
 
     if (!this.validateNif(nif)) {
+      window.alert('Tem que inserir um nif no formato correto!');
       return;
     }
 
-    if (!this.validateCreditCard(numeroCartao, anoValidade, mesValidade, ccv)) {
+    if (!this.validateCreditCard(numeroCartao, ano, mes, ccv)) {
+      window.alert('Tem que inserir dados de pagamento no formato correto!');
       return;
     }
 
-    const client = {} as Cliente;
+    this.confR = true;
+    this.botaoR = false;
+    this.confirmacao = true;
+    this.inputReserva = false;
 
-    client.nome = nome;
-    client.morada = morada;
-    client.numero_telefone = telefone;
-    client.email = email;
-    client.nif = nif;
-    client.numeroCartao = numeroCartao;
-    client.anoValidade = anoValidade;
-    client.mesValidade = mesValidade;
-    client.ccv = ccv;
+    this.nome = nome;
+    this.morada = morada;
+    this.email = email;
+    this.telefone = telefone;
+    this.nif = nif;
+    this.numeroCartao = numeroCartao;
+    this.ano = ano;
+    this.mes = mes;
+    this.ccv = ccv;
+  }
 
-    return client;
-  }*/
+  public getHotel(): void {
+    this.route.params.subscribe((routeParams) => {
+      this.id = routeParams.hotelID;
+      this.hotelService
+        .getHotel(this.id)
+        .subscribe(
+          (response) => {
+            this.hotel = response.hotel;
+            this.quartos = response.hotel_rooms;
+          }
+        );
+    });
+  }
+
+  public getRoom(type): any {
+    const q = this.quartos.filter(quarto => quarto.tipoQuarto === type);
+
+    for (const quarto of q) {
+      if (this.reservas.length === 0) {
+        return quarto;
+      } else {
+        for (const reserva of this.reservas) {
+          if (this.dataFinal < reserva.checkin
+            && this.dataInicial > reserva.checkout) {
+            return quarto;
+          }
+        }
+      }
+    }
+  }
+
+  private getReservasDoHotel(): void {
+      this.reservaService.getReservas().subscribe(response => this.reservas = response.reservas_list);
+    }
+
+
 
   public validatePhoneNumber(telefone: string) {
     const regex = '^\\+(?:[0-9] ?){6,14}[0-9]$';
@@ -111,38 +162,35 @@ export class ReservaComponent implements OnInit {
     }
   }
 
-  public validateNif(nif: number) {
-    const regex =  '^[0-9]{6}$';
+  public validateNif(nif: string) {
+    const regex =  '^[0-9]{9}$';
 
-    if (nif.toString().match(regex)) {
+    if (nif.match(regex)) {
       return true;
     } else {
       return false;
     }
   }
 
-  public validateCreditCard(numero: number, anoValidade: number, mesValidade: number, ccv: number) {
+  public validateCreditCard(numero: string, anoValidade: string, mesValidade: string, ccv: string) {
     const regexNumero =  '^[0-9]{16}$';
-    const regexAno =  '^[20-99]';
-    const regexMes =  '^[1-12]$';
+    const regexAno =  '[2-9][0-9]$';
+    const regexMes =  '0[1-9]|1[0-2]$';
     const regexCcv =  '^[0-9]{3}$';
 
-    if (numero.toString().match(regexNumero) && anoValidade.toString().match(regexAno)
-        && mesValidade.toString().match(regexMes) && ccv.toString().match(regexCcv) ) {
+    if (numero.match(regexNumero) && anoValidade.match(regexAno)
+        && mesValidade.match(regexMes) && ccv.match(regexCcv) ) {
       return true;
     } else {
       return false;
     }
   }
+
 
 
   private goBack(): void {
     this.location.back();
   }
 
-  mostraConf(): void {
-    this.confR = true;
-    this.botaoR = false;
-  }
 
 }

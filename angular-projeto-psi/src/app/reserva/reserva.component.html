@@ -1,44 +1,55 @@
-<h3>Reserva de {{dataInicial | date: 'dd-MM-yyyy'}} até {{dataFinal | date: 'dd-MM-yyyy'}}</h3>
-
-<label> Tipo de Quarto <select [(ngModel)]="tipo">
-  <option *ngFor="let tipo of tipos" >{{tipo}}</option>
-</select> </label>
+<h3>Reserva de {{dataInicial | date: 'dd-MM-yyyy'}} até {{dataFinal | date: 'dd-MM-yyyy'}} de {{tipo}}</h3>
 
 <br>
-<br>
-
+<div *ngIf="inputReserva">
 <label >Nome:
-  <input type="text" value=nome [(ngModel)]="nome" placeholder="0"/>
+  <input type="text" value="{{myStorage.getItem('nome')}}" #nome/>
 </label> <br>
 <label >Morada:
-  <input type="text" value=nome [(ngModel)]="morada" placeholder="0"/>
+  <input type="text" value="{{myStorage.getItem('morada')}}" #morada/>
 </label> <br>
 <label >Telefone:
-  <input type="text" value=nome [(ngModel)]="telefone" placeholder="0"/>
+  <input type="text" value="{{myStorage.getItem('numero_telefone')}}" #telefone placeholder="+351 961111111"/>
 </label> <br>
 <label >Email:
-  <input type="text" value=nome [(ngModel)]="email" placeholder="0"/>
+  <input type="text" value="{{myStorage.getItem('email')}}" #email/>
 </label><br>
 <label >Nif:
-  <input type="number" value=nome [(ngModel)]="nif" placeholder="0"/>
+  <input type="number" value="{{myStorage.getItem('nif')}}" #nif placeholder="123456789"/>
 </label>
 
 
 <h3>Dados de Pagamento:</h3>
 <label >Numero Cartão:
-  <input type="number" value=nome [(ngModel)]="numeroCartao" placeholder="0"/>
+  <input #numeroCartao placeholder="1111222233334444"/>
 </label> <br>
 <label > Ano:
-  <input type="number" value=nome [(ngModel)]="ano" placeholder="0"/> <br>
+  <input #ano placeholder="20"/> <br>
   Mês:
-  <input type="number" value=nome [(ngModel)]="mes" placeholder="0"/><br>
+  <input #mes placeholder="05"/><br>
   CCV:
-  <input type="number" value=nome [(ngModel)]="ccv" placeholder="0"/><br>
+  <input #ccv /><br>
 </label>
 
-<br>
-<button *ngIf="botaoR" (click)="mostraConf()" class="button">Reservar</button>
+  <br>
+  <button *ngIf="botaoR" (click)="mostraConf(nome.value, morada.value, telefone.value, email.value,
+  nif.value, numeroCartao.value, ano.value, mes.value, ccv.value)" class="button">Reservar</button>
+</div>
+
+<div *ngIf="confirmacao">
+
+  <h4>Nome: {{nome}}</h4>
+  <h4>Morada: {{morada}}</h4>
+  <h4>Telefone: {{telefone}}</h4>
+  <h4>Email: {{email}}</h4>
+  <h4>Nif: {{nif}}</h4>
+  <h4>Numero de cartao: {{numeroCartao}}</h4>
+  <h4>Validade do cartão: {{ano}}/{{mes}}</h4>
+  <h4>ccv: {{ccv}}</h4>
+
+
 <input *ngIf="confR" type="checkbox" ng-model="checkbox.value">
 <label *ngIf="confR"> *Confirmo que todos os dados estão corretos</label>
 <br>
-<button *ngIf="confR" class="button">Confirmar reserva</button>
+<button *ngIf="confR" (click)="addReserva()" class="button">Confirmar reserva</button>
+</div>

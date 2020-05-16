@@ -48,15 +48,13 @@
   </li>
 </ul>
 
+<div *ngIf="esconderDatas">
 <h3>Verifique disponibilidade dos quartos</h3>
 <label >De:
   <input type="Date" [(ngModel)]="dataInicial" placeholder="0"/>
   Até
   <input  type="Date" [(ngModel)]="dataFinal" placeholder="0" />
-
-  <button *ngIf="botaoR" (click)="mostraReserva()" class="button">Reservar</button>
 </label>
-
 <br>
 
 <h3 *ngIf="botaoR" >Disponibilidade: </h3>
@@ -66,7 +64,15 @@
   </li>
 </ul>
 
-<app-reserva *ngIf="show" [tipos]="getRoomTypesByDate()" [dataInicial]="dataInicial" [dataFinal]="dataFinal"></app-reserva>
+<label *ngIf="botaoR"> Tipo de Quarto <select [(ngModel)]="tipo">
+  <option *ngFor="let tipo of getRoomTypes()" >{{tipo}}</option>
+</select> </label>
+
+<h4 *ngIf="botaoR"> *Confirme as datas e o tipo de quarto</h4>
+<button *ngIf="botaoR" (click)="mostraReserva()" class="button">Reservar</button>
+</div>
+
+<app-reserva *ngIf="show" [tipo]="tipo" [dataInicial]="dataInicial" [dataFinal]="dataFinal"></app-reserva>
 
 <ul class="imagens">
   <li *ngFor="let imagem of hotel.imagens">

@@ -17,6 +17,7 @@ import { RoomsByDateComponent } from './rooms-by-date/rooms-by-date.component';
 import { RegistarComponent } from './registar/registar.component';
 import { LoginComponent } from './login/login.component';
 import { ClienteService } from './cliente.service';
+import { UserDetailsComponent } from './user-details/user-details.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { ClienteService } from './cliente.service';
     RoomsByDateComponent,
     RegistarComponent,
     LoginComponent,
+    UserDetailsComponent,
   ],
     imports: [
         BrowserModule,
