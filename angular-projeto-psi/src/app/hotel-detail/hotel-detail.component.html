@@ -1,3 +1,5 @@
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <body>
 <!--<div class="header">
   <h1 style="text-align: center">{{hotel.nome}}</h1>
@@ -7,9 +9,12 @@
   <a href="#home">Home</a>
 </div>!-->
 
-<h1 style="text-align: center">{{hotel.nome}}</h1>
-
-<h3>{{hotel.descricao}}</h3>
+<div class="container">
+  <div class="content">
+    <div id="patty">
+    <h1 style="text-align: center"><b>{{hotel.nome}}</b></h1>
+    <p>{{hotel.descricao}}</p>
+    </div>
 <div class="grid-container">
   <div class="item1">
     <h3>Morada: {{hotel.morada}}</h3>
@@ -26,20 +31,24 @@
     </ul>
   </div>
 </div>
+</div>
+</div>
 
+<div id="quartos">
 <h3>Numero de quartos disponiveis: {{numeroQuartos()}}</h3>
 <h4>Época Baixa: 15/01-31/05 e 30/09-15/12</h4>
 <h4>Época Alta: Resto do Ano</h4>
 <h3>Desde: {{lowestPrice()}}€</h3>
+</div>
 
-<h3>Preço</h3>
+<h3>Preço:</h3>
 <label >De:
   <input type="number" [(ngModel)]="precoMinimo" placeholder="0"/>
   Até
   <input type="number" [(ngModel)]="precoMaximo" placeholder="0" />
 </label>
 
-<br>
+<br>   
 
 <h3>Tipos de quartos:</h3>
 <ul class="rooms">
@@ -74,10 +83,12 @@
 
 <app-reserva *ngIf="show" [tipo]="tipo" [dataInicial]="dataInicial" [dataFinal]="dataFinal"></app-reserva>
 
+
 <ul class="imagens">
   <li *ngFor="let imagem of hotel.imagens">
     <img src="{{imagem}}">
   </li>
 </ul>
+
 
 </body>

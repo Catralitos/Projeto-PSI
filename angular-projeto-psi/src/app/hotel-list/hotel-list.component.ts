@@ -30,4 +30,9 @@ export class HotelListComponent implements OnInit {
   public imgAleatoria(hotel) {
     return hotel.imagens[HotelListComponent.randomInt(0, hotel.imagens.length - 1)];
   }
+
+  public primeiraFrase(descricao: string): string {
+    return descricao.split('.')[0] + '.';
+  }
+
 }
