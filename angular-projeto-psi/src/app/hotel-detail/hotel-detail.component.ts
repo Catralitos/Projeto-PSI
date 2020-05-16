@@ -34,6 +34,8 @@ export class HotelDetailComponent implements OnInit {
   reservas: Reserva[];
   id: string;
   myStorage = window.localStorage;
+  tipo: string;
+  esconderDatas: boolean;
 
   constructor(private route: ActivatedRoute,
               private data: DataService,
@@ -47,6 +49,7 @@ export class HotelDetailComponent implements OnInit {
     this.getReservasDoHotel();
     this.show = false;
     this.botaoR = false;
+    this.esconderDatas = true;
   }
 
   public getHotel(): void {
@@ -135,8 +138,11 @@ export class HotelDetailComponent implements OnInit {
   public mostraReserva(): void {
     if (this.myStorage.length === 0){
       window.alert('Tem de fazer login ou registar-se primeiro');
-    }else{
-      this.show = true;
+    } else {
+      if(this.tipo) {
+        this.show = true;
+        this.esconderDatas = false;
+      }
     }
   }
 

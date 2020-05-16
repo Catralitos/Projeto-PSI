@@ -34,10 +34,11 @@ export class ReservaComponent implements OnInit {
   ano: string;
   mes: string;
   ccv: string;
-  @Input() tipos: string[];
-  tipo: string;
+  @Input() tipo: string;
   botaoR: boolean;
   confR: boolean;
+  inputReserva: boolean;
+  confirmacao: boolean;
 
 
   @Input() dataInicial: Date;
@@ -55,6 +56,8 @@ export class ReservaComponent implements OnInit {
   ngOnInit(): void {
     this.botaoR = true;
     this.confR = false;
+    this.inputReserva = true;
+    this.confirmacao = false;
   }
 
   public addReserva(quarto: Quarto, checkIn: Date, checkOut: Date): void {
@@ -66,43 +69,47 @@ export class ReservaComponent implements OnInit {
   }
 
 
-  /*public constroiCliente(nome: string, morada: string, telefone: string, email: string, nif: number,
-                         numeroCartao: number, anoValidade: number, mesValidade: number, ccv: number): any {
+  mostraConf(nome: string, morada: string, telefone: string, email: string, nif: string, numeroCartao: string,
+             ano: string, mes: string, ccv: string): void {
 
-    nome = nome.trim();
-    morada = morada.trim();
-    telefone = telefone.trim();
-    email = email.trim();
-
-    if (!nome && !morada && !telefone && !email && !nif && !numeroCartao &&
-        !anoValidade && !mesValidade && !ccv ) { return; }
-
+    if (!nome || !morada || !telefone || !email || !nif || !numeroCartao ||
+      !ano || !mes || !ccv ) {
+      window.alert('Existem dados por preencher!');
+      return;
+    }
+    console.log('numero cartao:' + numeroCartao);
     if (!this.validatePhoneNumber(telefone)) {
+      window.alert('Tem que inserir um número de telefone no formato correto. Exemplo: +351 912345678!');
       return;
     }
 
     if (!this.validateNif(nif)) {
+      window.alert('Tem que inserir um nif no formato correto!');
       return;
     }
 
-    if (!this.validateCreditCard(numeroCartao, anoValidade, mesValidade, ccv)) {
+    if (!this.validateCreditCard(numeroCartao, ano, mes, ccv)) {
+      window.alert('Tem que inserir dados de pagamento no formato correto!');
       return;
     }
 
-    const client = {} as Cliente;
+    this.confR = true;
+    this.botaoR = false;
+    this.confirmacao = true;
+    this.inputReserva = false;
 
-    client.nome = nome;
-    client.morada = morada;
-    client.numero_telefone = telefone;
-    client.email = email;
-    client.nif = nif;
-    client.numeroCartao = numeroCartao;
-    client.anoValidade = anoValidade;
-    client.mesValidade = mesValidade;
-    client.ccv = ccv;
+    this.nome = nome;
+    this.morada = morada;
+    this.email = email;
+    this.telefone = telefone;
+    this.nif = nif;
+    this.numeroCartao = numeroCartao;
+    this.ano = ano;
+    this.mes = mes;
+    this.ccv = ccv;
+  }
 
-    return client;
-  }*/
+
 
   public validatePhoneNumber(telefone: string) {
     const regex = '^\\+(?:[0-9] ?){6,14}[0-9]$';
@@ -114,24 +121,24 @@ export class ReservaComponent implements OnInit {
     }
   }
 
-  public validateNif(nif: number) {
-    const regex =  '^[0-9]{6}$';
+  public validateNif(nif: string) {
+    const regex =  '^[0-9]{9}$';
 
-    if (nif.toString().match(regex)) {
+    if (nif.match(regex)) {
       return true;
     } else {
       return false;
     }
   }
 
-  public validateCreditCard(numero: number, anoValidade: number, mesValidade: number, ccv: number) {
+  public validateCreditCard(numero: string, anoValidade: string, mesValidade: string, ccv: string) {
     const regexNumero =  '^[0-9]{16}$';
-    const regexAno =  '^[20-99]';
-    const regexMes =  '^[1-12]$';
+    const regexAno =  '[2-9][0-9]$';
+    const regexMes =  '0[1-9]|1[0-2]$';
     const regexCcv =  '^[0-9]{3}$';
 
-    if (numero.toString().match(regexNumero) && anoValidade.toString().match(regexAno)
-        && mesValidade.toString().match(regexMes) && ccv.toString().match(regexCcv) ) {
+    if (numero.match(regexNumero) && anoValidade.match(regexAno)
+        && mesValidade.match(regexMes) && ccv.match(regexCcv) ) {
       return true;
     } else {
       return false;
@@ -144,9 +151,5 @@ export class ReservaComponent implements OnInit {
     this.location.back();
   }
 
-  mostraConf(): void {
-    this.confR = true;
-    this.botaoR = false;
-  }
 
 }
