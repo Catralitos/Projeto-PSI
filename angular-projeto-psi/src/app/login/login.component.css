@@ -8,6 +8,7 @@ input[type=text], input[type=password] {
   display: inline-block;
   border: 1px solid #ccc;
   box-sizing: border-box;
+  font-size: 20px;
 }
 
 /* Set a style for all buttons */
@@ -19,6 +20,7 @@ button {
   border: none;
   cursor: pointer;
   width: 100%;
+  font-size: 15px;
 }
 
 button:hover {
@@ -46,6 +48,7 @@ img.avatar {
 
 .container {
   padding: 16px;
+  font-size: 20px;
 }
 
 span.psw {
