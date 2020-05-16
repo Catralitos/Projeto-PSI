@@ -22,14 +22,15 @@ table {
 }
 
 table td, table th, table tr {
-  border: 1px solid #ddd;
+  border: 1px solid /*#ddd*/black;
   padding: 8px;
   /*font-size: 35px;*/
-  font-size: 20px;
+  font-size: 25px;
 }
 
 table td {
-  background-color: #e6ccb3;
+  background-color: /*#9F9C99*/#8d99ae;
+  color: white;
 }
 
 table th {
@@ -39,11 +40,12 @@ table th {
   background-color: #4CAF50;
   color: white;*/
   text-align: center;
-  background-color: #d2a679;
+  background-color: #2b2d42;
+  color: white;
 }
 
 table tr {
-  border: 1px solid #ddd;
+  border: 1px solid black;
   padding: 8px;
 }
 
@@ -52,15 +54,15 @@ table .nome {
 }
 
 button {
-  background-color: #555555; /* Green */
+  background-color: /*#555555*/#2b2d42; /* Green */
   border: none;
   color: white;
   padding: 15px 32px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
+  font-size: 25px;
+  /*margin: 4px 2px;*/
   cursor: pointer;
   width: 100%;
 }

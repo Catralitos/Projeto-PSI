@@ -127,6 +127,7 @@ body {
 
 .navbar li {
   display: inline-block;
+  height: 40px;
 }
 
 .topnav-right {
