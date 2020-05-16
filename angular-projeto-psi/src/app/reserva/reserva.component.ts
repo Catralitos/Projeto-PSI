@@ -23,7 +23,6 @@ import {ActivatedRoute} from '@angular/router';
 })
 export class ReservaComponent implements OnInit {
 
-  hotel: Hotel;
   @Input() cliente: Cliente;
   nome: string;
   morada: string;
@@ -39,6 +38,11 @@ export class ReservaComponent implements OnInit {
   confR: boolean;
   inputReserva: boolean;
   confirmacao: boolean;
+
+  hotel: Hotel;
+  quartos: Quarto[];
+  id: string;
+  reservas: Reserva[];
 
 
   @Input() dataInicial: Date;
@@ -58,14 +62,16 @@ export class ReservaComponent implements OnInit {
     this.confR = false;
     this.inputReserva = true;
     this.confirmacao = false;
+    this.getHotel();
+    this.getReservasDoHotel();
   }
 
-  public addReserva(quarto: Quarto, checkIn: Date, checkOut: Date): void {
+  public addReserva(): void {
 
-    if (!quarto && !checkIn && !checkOut) { return; }
-
-    /*this.reservaService.addReserva({quarto: quarto, checkin: checkIn, checkout: checkOut,
-      cliente: this.constroiCliente()}).subscribe(() => this.goBack());*/
+    this.reservaService.addReserva({quarto: this.getRoom(this.tipo), checkin: this.dataInicial,
+      checkout: this.dataFinal, nome: this.nome, email: this.email, morada: this.morada,
+      numero_telefone: this.telefone, nif: +this.nif, numeroCartao: Number(this.numeroCartao),
+      ccv: Number(this.ccv), anoValidade: Number(this.ano), mesValidade: Number(this.mes) }).subscribe(() => window.location.reload());
   }
 
 
@@ -77,7 +83,7 @@ export class ReservaComponent implements OnInit {
       window.alert('Existem dados por preencher!');
       return;
     }
-    console.log('numero cartao:' + numeroCartao);
+
     if (!this.validatePhoneNumber(telefone)) {
       window.alert('Tem que inserir um número de telefone no formato correto. Exemplo: +351 912345678!');
       return;
@@ -108,6 +114,41 @@ export class ReservaComponent implements OnInit {
     this.mes = mes;
     this.ccv = ccv;
   }
+
+  public getHotel(): void {
+    this.route.params.subscribe((routeParams) => {
+      this.id = routeParams.hotelID;
+      this.hotelService
+        .getHotel(this.id)
+        .subscribe(
+          (response) => {
+            this.hotel = response.hotel;
+            this.quartos = response.hotel_rooms;
+          }
+        );
+    });
+  }
+
+  public getRoom(type): any {
+    const q = this.quartos.filter(quarto => quarto.tipoQuarto === type);
+
+    for (const quarto of q) {
+      if (this.reservas.length === 0) {
+        return quarto;
+      } else {
+        for (const reserva of this.reservas) {
+          if (this.dataFinal < reserva.checkin
+            && this.dataInicial > reserva.checkout) {
+            return quarto;
+          }
+        }
+      }
+    }
+  }
+
+  private getReservasDoHotel(): void {
+      this.reservaService.getReservas().subscribe(response => this.reservas = response.reservas_list);
+    }
 
 
 

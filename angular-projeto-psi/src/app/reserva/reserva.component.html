@@ -51,5 +51,5 @@
 <input *ngIf="confR" type="checkbox" ng-model="checkbox.value">
 <label *ngIf="confR"> *Confirmo que todos os dados estão corretos</label>
 <br>
-<button *ngIf="confR" class="button">Confirmar reserva</button>
+<button *ngIf="confR" (click)="addReserva()" class="button">Confirmar reserva</button>
 </div>

@@ -4,6 +4,8 @@ import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import {Cliente} from '../interfaces/Cliente';
 
+
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -14,7 +16,8 @@ export class LoginComponent implements OnInit {
   clienteList: Cliente[];
   myStorage = window.localStorage;
 
-  constructor(private route: ActivatedRoute, private clienteService: ClienteService, private location: Location) { }
+  constructor(private route: ActivatedRoute, private clienteService: ClienteService,
+              private location: Location) { }
 
   ngOnInit(): void {
     this.getClientes();
@@ -31,13 +34,16 @@ export class LoginComponent implements OnInit {
         this.myStorage.setItem('numero_telefone',  this.clienteList[i].numero_telefone);
         this.myStorage.setItem('email',  this.clienteList[i].email);
         this.myStorage.setItem('nif', String(this.clienteList[i].nif));
-        this.goBack();
+
+        window.location.replace('/');
         return;
       }
     }
     window.alert('Login sem sucesso');
     return;
   }
+
+
 
   goBack(): void {
     this.location.back();
