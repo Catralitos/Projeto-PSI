@@ -45,11 +45,11 @@ exports.reserva_create_post = [
   sanitizeBody('email').escape(),
   sanitizeBody('morada').escape(),
   sanitizeBody('numero_telefone').escape(),  
-  /*sanitizeBody('nif').escape(),
+  sanitizeBody('nif').escape(),
   sanitizeBody('numeroCartao').escape(),
   sanitizeBody('ccv').escape(),
   sanitizeBody('anoValidade').escape(),
-  sanitizeBody('mesValidade').escape(),*/
+  sanitizeBody('mesValidade').escape(),
   // Process request after validation and sanitization.
   (req, res, next) => {
 
