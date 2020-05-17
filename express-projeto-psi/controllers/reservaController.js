@@ -25,6 +25,8 @@ exports.getReservas = function (req, res, next) {
 }
 
 exports.reserva_create_post = [
+
+    //Tentar com o check
     /*
      check('quarto').escape(),
      check('nome').isLength({ min: 3}).trim().escape(),
@@ -39,6 +41,8 @@ exports.reserva_create_post = [
      check('anoValidade').isNumeric().trim().escape(),
      check('ccv').isNumeric().trim().escape(),
      */
+
+    //tentar com o body
     // Validate fields.
     body('nome').isLength({ min: 1 }).trim().withMessage('Cliente nome must be specified.'),
     //.isAlphanumeric().withMessage('Cliente nome has non-alphanumeric characters.'),
@@ -56,7 +60,7 @@ exports.reserva_create_post = [
     body('numeroCartao').isLength({ min: 1 }).withMessage('Cliente numeroCartao must be specified.'),
     body('ccv').isLength({ min: 1 }).withMessage('Cliente ccv must be specified.'),
     */
-   
+
     // Sanitize fields.
     sanitizeBody('quarto').escape(),
     sanitizeBody('checkin').toDate(),

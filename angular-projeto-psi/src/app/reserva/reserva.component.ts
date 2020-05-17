@@ -64,11 +64,10 @@ export class ReservaComponent implements OnInit {
   public addReserva(): void {
 
     this.reservaService.addReserva({quarto: this.getRoom(this.tipo), checkin: this.dataInicial,
-      checkout: this.dataFinal, nome: this.nome, email: this.email, morada: this.morada,
-      numero_telefone: this.telefone, nif: Number(this.nif), numeroCartao: Number(this.numeroCartao),
+      checkout: this.dataFinal, nome: this.nome.trim(), email: this.email.trim(), morada: this.morada.trim(),
+      numero_telefone: this.telefone.trim(), nif: Number(this.nif), numeroCartao: Number(this.numeroCartao),
       ccv: Number(this.ccv), anoValidade: Number(this.ano), mesValidade: Number(this.mes) }).subscribe(() => window.location.reload());
   }
-
 
   mostraConf(nome: string, morada: string, telefone: string, email: string, nif: string, numeroCartao: string,
              ano: string, mes: string, ccv: string): void {
