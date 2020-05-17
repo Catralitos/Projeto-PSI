@@ -79,6 +79,8 @@ exports.reserva_create_post = [
 
         if (!errors.isEmpty()) {
             // There are errors. Render form again with sanitized values/errors messages.
+            console.log("Reserva: %j", reserva);
+            console.log("Erros: %j", errors.array());
             res.json({ reserva: reserva, errors: errors.array() });
             return;
         }
