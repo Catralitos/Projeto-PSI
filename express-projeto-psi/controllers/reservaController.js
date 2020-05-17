@@ -1,7 +1,7 @@
 var Reserva = require('../models/reserva')
 var async = require('async')
 var Quarto = require('../models/quarto')
-var check  = require('express-validator/check');
+//var check  = require('express-validator/check');
 //var validationResult = require('express-validator/check');
 
 const { body, validationResult } = require('express-validator/check');
@@ -26,7 +26,7 @@ exports.getReservas = function (req, res, next) {
 
 exports.reserva_create_post = [
 
-    check('quarto').escape(),
+    validationResult.check('quarto').escape(),
     check('nome').isLength({ min: 3}).trim().escape(),
     check('email').isEmail().normalizeEmail(),
     check('checkin').toDate().escape(),
