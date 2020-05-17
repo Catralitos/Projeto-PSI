@@ -73,6 +73,11 @@ export class ReservaComponent implements OnInit {
   mostraConf(nome: string, morada: string, telefone: string, email: string, nif: string, numeroCartao: string,
              ano: string, mes: string, ccv: string): void {
 
+    nome.trim();
+    morada.trim();
+    telefone.trim();
+    email.trim();
+
     if (!nome || !morada || !telefone || !email || !nif || !numeroCartao ||
       !ano || !mes || !ccv ) {
       window.alert('Existem dados por preencher!');
