@@ -114,18 +114,25 @@ export class HotelDetailComponent implements OnInit {
     if (di < df && (di >= dat)) {
       this.mostraBotao();
       for (const quarto of this.quartos) {
+        const q = this.reservas.filter(reserva => reserva.quarto === quarto);
         if (!t.includes(quarto.tipoQuarto)) {
-          if (this.reservas.length === 0) {
+          if (q.length === 0) {
             t.push(quarto.tipoQuarto);
           } else {
-            for (const reserva of this.reservas) {
-              if (df < reserva.checkin
-                && di > reserva.checkout) {
-                t.push(quarto.tipoQuarto);
+            for (const reserva of q) {
+              const ri = new Date(reserva.checkin);
+              const rf = new Date(reserva.checkout);
+              //window.alert(df < ri);
+              if ((df < ri)
+                || (di > rf)) {
+               
+                  t.push(quarto.tipoQuarto);
+                //return;
               }
             }
           }
         }
+        
       }
     }
     return t;

@@ -74,7 +74,7 @@
 </ul>
 
 <label *ngIf="botaoR"> Tipo de Quarto <select [(ngModel)]="tipo">
-  <option *ngFor="let tipo of getRoomTypes()" >{{tipo}}</option>
+  <option *ngFor="let tipo of getRoomTypesByDate()" >{{tipo}}</option>
 </select> </label>
 
 <h4 *ngIf="botaoR"> *Confirme as datas e o tipo de quarto</h4>
