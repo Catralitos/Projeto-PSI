@@ -1,8 +1,6 @@
 var Reserva = require('../models/reserva')
 var async = require('async')
 var Quarto = require('../models/quarto')
-//var check  = require('express-validator/check');
-//var validationResult = require('express-validator/check');
 
 const { check, validationResult } = require('express-validator');
 //const { body, validationResult } = require('express-validator/check');
@@ -27,22 +25,20 @@ exports.getReservas = function (req, res, next) {
 }
 
 exports.reserva_create_post = [
-   /*
-    check('quarto').escape(),
-    */
-    check('nome').isLength({ min: 3}).trim().escape(),
     /*
-    check('email').isEmail().normalizeEmail(),
-    check('checkin').toDate().escape(),
-    check('checkout').toDate().escape(),
-    check('morada').isLength({ min: 3}).trim().escape(),
-    check('numero_telefone').isLength({ min: 13, max: 14}).trim().escape(),
-    check('nif').isNumeric().trim().escape(),
-    check('numeroCartao').isNumeric().trim().escape(),
-    check('mesValidade').isNumeric().trim().escape(),
-    check('anoValidade').isNumeric().trim().escape(),
-    check('ccv').isNumeric().trim().escape(),
-    */
+     check('quarto').escape(),
+     check('nome').isLength({ min: 3}).trim().escape(),
+     check('email').isEmail().normalizeEmail(),
+     check('checkin').toDate().escape(),
+     check('checkout').toDate().escape(),
+     check('morada').isLength({ min: 3}).trim().escape(),
+     check('numero_telefone').isLength({ min: 13, max: 14}).trim().escape(),
+     check('nif').isNumeric().trim().escape(),
+     check('numeroCartao').isNumeric().trim().escape(),
+     check('mesValidade').isNumeric().trim().escape(),
+     check('anoValidade').isNumeric().trim().escape(),
+     check('ccv').isNumeric().trim().escape(),
+     */
     /*  // Validate fields.
     body('nome').isLength({ min: 1 }).trim().withMessage('Cliente nome must be specified.'),
         //.isAlphanumeric().withMessage('Cliente nome has non-alphanumeric characters.'),
