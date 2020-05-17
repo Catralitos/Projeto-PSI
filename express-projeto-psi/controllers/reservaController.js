@@ -29,7 +29,9 @@ exports.getReservas = function (req, res, next) {
 exports.reserva_create_post = [
    /*
     check('quarto').escape(),
+    */
     check('nome').isLength({ min: 3}).trim().escape(),
+    /*
     check('email').isEmail().normalizeEmail(),
     check('checkin').toDate().escape(),
     check('checkout').toDate().escape(),
