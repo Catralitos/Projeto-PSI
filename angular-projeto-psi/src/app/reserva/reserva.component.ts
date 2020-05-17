@@ -4,15 +4,11 @@ import { Hotel } from '../interfaces/Hotel';
 import {HotelService} from '../hotel.service';
 import { Quarto } from '../interfaces/Quarto';
 import {QuartoService} from '../quarto.service';
-import { TipoQuarto } from '../interfaces/TipoQuarto';
 import { Reserva } from '../interfaces/Reserva';
 import {ReservaService} from '../reserva.service';
 import { Cliente } from '../interfaces/Cliente';
 
 import { DataService } from '../data.service';
-
-import {Location} from '@angular/common';
-
 import {ActivatedRoute} from '@angular/router';
 
 
@@ -52,10 +48,9 @@ export class ReservaComponent implements OnInit {
               private data: DataService,
               private hotelService: HotelService,
               private quartoService: QuartoService,
-              private reservaService: ReservaService,
-              private location: Location) { }
+              private reservaService: ReservaService) { }
 
- myStorage = window.localStorage;
+  myStorage = window.localStorage;
 
   ngOnInit(): void {
     this.botaoR = true;
@@ -147,29 +142,17 @@ export class ReservaComponent implements OnInit {
   }
 
   private getReservasDoHotel(): void {
-      this.reservaService.getReservas().subscribe(response => this.reservas = response.reservas_list);
-    }
-
-
+    this.reservaService.getReservas().subscribe(response => this.reservas = response.reservas_list);
+  }
 
   public validatePhoneNumber(telefone: string) {
     const regex = '^\\+(?:[0-9] ?){6,14}[0-9]$';
-
-    if (telefone.match(regex)) {
-      return true;
-    } else {
-      return false;
-    }
+    return !!telefone.match(regex);
   }
 
   public validateNif(nif: string) {
     const regex =  '^[0-9]{9}$';
-
-    if (nif.match(regex)) {
-      return true;
-    } else {
-      return false;
-    }
+    return !!nif.match(regex);
   }
 
   public validateCreditCard(numero: string, anoValidade: string, mesValidade: string, ccv: string) {
@@ -177,20 +160,8 @@ export class ReservaComponent implements OnInit {
     const regexAno =  '[2-9][0-9]$';
     const regexMes =  '0[1-9]|1[0-2]$';
     const regexCcv =  '^[0-9]{3}$';
-
-    if (numero.match(regexNumero) && anoValidade.match(regexAno)
-        && mesValidade.match(regexMes) && ccv.match(regexCcv) ) {
-      return true;
-    } else {
-      return false;
-    }
+    return !!(numero.match(regexNumero) && anoValidade.match(regexAno)
+      && mesValidade.match(regexMes) && ccv.match(regexCcv));
   }
-
-
-
-  private goBack(): void {
-    this.location.back();
-  }
-
 
 }

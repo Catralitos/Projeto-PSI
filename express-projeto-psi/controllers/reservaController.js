@@ -28,10 +28,12 @@ exports.reserva_create_post = [
   /*body('quarto').isLength({ min: 1 }).withMessage('Reserva quarto must be specified.'),
   body('checkin').isLength({ min: 1 }).withMessage('Reserva checkin must be specified.'),
   body('checkout').isLength({ min: 1 }).withMessage('Reserva checkout must be specified.'),
+  */
   body('nome').isLength({ min: 1 }).trim().withMessage('Cliente nome must be specified.'),
   body('email').isLength({ min: 1 }).trim().withMessage('Cliente email must be specified.'),
   body('numero_telefone').isLength({ min: 1 }).trim().withMessage('Cliente numero_telefone must be specified.'),
   body('nif').isLength({ min: 1 }).trim().withMessage('Cliente nif must be specified.'),
+  /*
   body('numeroCartao').isLength({ min: 1 }).trim().withMessage('Cliente numeroCartao must be specified.'),
   body('ccv').isLength({ min: 1 }).trim().withMessage('Cliente ccv must be specified.'),
   body('anoValidade').isLength({ min: 1 }).trim().withMessage('Cliente anoValidade must be specified.'),
