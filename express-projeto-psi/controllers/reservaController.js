@@ -27,7 +27,7 @@ exports.getReservas = function (req, res, next) {
 }
 
 exports.reserva_create_post = [
-
+   /*
     check('quarto').escape(),
     check('nome').isLength({ min: 3}).trim().escape(),
     check('email').isEmail().normalizeEmail(),
@@ -40,7 +40,7 @@ exports.reserva_create_post = [
     check('mesValidade').isNumeric().trim().escape(),
     check('anoValidade').isNumeric().trim().escape(),
     check('ccv').isNumeric().trim().escape(),
-
+    */
     /*  // Validate fields.
     body('nome').isLength({ min: 1 }).trim().withMessage('Cliente nome must be specified.'),
         //.isAlphanumeric().withMessage('Cliente nome has non-alphanumeric characters.'),
