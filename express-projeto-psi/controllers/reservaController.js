@@ -26,18 +26,18 @@ exports.getReservas = function (req, res, next) {
 
 exports.reserva_create_post = [
 
-    validationResult.check('quarto').escape(),
-    check('nome').isLength({ min: 3}).trim().escape(),
-    check('email').isEmail().normalizeEmail(),
-    check('checkin').toDate().escape(),
-    check('checkout').toDate().escape(),
-    check('morada').isLength({ min: 3}).trim().escape(),
-    check('numero_telefone').isLength({ min: 13, max: 14}).trim().escape(),
-    check('nif').isNumeric().trim().escape(),
-    check('numeroCartao').isNumeric().trim().escape(),
-    check('mesValidade').isNumeric().trim().escape(),
-    check('anoValidade').isNumeric().trim().escape(),
-    check('ccv').isNumeric().trim().escape(),
+    validationResult('quarto').escape(),
+    validationResult('nome').isLength({ min: 3}).trim().escape(),
+    validationResult('email').isEmail().normalizeEmail(),
+    validationResult('checkin').toDate().escape(),
+    validationResult('checkout').toDate().escape(),
+    validationResult('morada').isLength({ min: 3}).trim().escape(),
+    validationResult('numero_telefone').isLength({ min: 13, max: 14}).trim().escape(),
+    validationResult('nif').isNumeric().trim().escape(),
+    validationResult('numeroCartao').isNumeric().trim().escape(),
+    validationResult('mesValidade').isNumeric().trim().escape(),
+    validationResult('anoValidade').isNumeric().trim().escape(),
+    validationResult('ccv').isNumeric().trim().escape(),
 
     /*  // Validate fields.
     body('nome').isLength({ min: 1 }).trim().withMessage('Cliente nome must be specified.'),
