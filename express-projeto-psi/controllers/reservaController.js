@@ -44,13 +44,12 @@ exports.reserva_create_post = [
 
     //tentar com o body
     // Validate fields.
-    body('nome').isLength({ min: 1 }).trim().withMessage('Cliente nome must be specified.'),
-    //.isAlphanumeric().withMessage('Cliente nome has non-alphanumeric characters.'),
+    body('nome').isLength({ min: 1 }).trim().withMessage('Cliente nome must be specified.')
+        .isAlphanumeric().withMessage('Cliente nome has non-alphanumeric characters.'),
     body('email').isLength({ min: 1 }).trim().withMessage('Cliente email must be specified.'),
-    //.isAlphanumeric().withMessage('Cliente email has non-alphanumeric characters.'),
     body('numero_telefone').isLength({ min: 1 }).trim().withMessage('Cliente numero_telefone must be specified.'),
-    body('morada').isLength({ min: 1 }).trim().withMessage('Cliente morada must be specified.'),
-    //.isAlphanumeric().withMessage('Cliente morada has non-alphanumeric characters.'),
+    body('morada').isLength({ min: 1 }).trim().withMessage('Cliente morada must be specified.')
+        .isAlphanumeric().withMessage('Cliente morada has non-alphanumeric characters.'),
     body('checkin', 'Invalid checkin').optional({ checkFalsy: true }).isISO8601(),
     body('checkout', 'Invalid checkout').optional({ checkFalsy: true }).isISO8601(),
     /*
