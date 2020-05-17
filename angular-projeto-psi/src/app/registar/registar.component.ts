@@ -109,13 +109,8 @@ export class RegistarComponent implements OnInit {
   }
 
   public validateNif(nif: number) {
-    const regex =  '^[0-9]{6}$';
-
-    if (nif.toString().match(regex)) {
-      return true;
-    } else {
-      return false;
-    }
+    const regex =  '^[0-9]{9}$';
+    return nif.toString().match(regex);
   }
 
   private goBack(): void {

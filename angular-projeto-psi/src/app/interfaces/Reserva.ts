@@ -6,6 +6,7 @@ export interface Reserva {
   checkin: Date;
   checkout: Date;
   nome: string;
+  morada: string;
   numero_telefone: string;
   email: string;
   nif: number;
