@@ -64,7 +64,7 @@ export class ReservaService {
   addReserva(reserva: {quarto: Quarto, checkin: Date, checkout: Date, nome: string, email: string, morada: string, numero_telefone: string,
     nif: number, numeroCartao: number, ccv: number, anoValidade: number, mesValidade: number}): Observable<Reserva> {
     return this.http.post<Reserva>(this.reservaCreateUrl, reserva, this.httpOptions).pipe(
-      tap((newReserva: Reserva) => this.log(`add reserva w/ id=${newReserva._id} request sent`)),
+      tap((newReserva: Reserva) => this.log(`add reserva w/ id=${newReserva} request sent`)),
       catchError(this.handleError<Reserva>('addReserva'))
     );
   }
