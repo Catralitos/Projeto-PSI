@@ -131,9 +131,9 @@ export class ReservaComponent implements OnInit {
 
   public getRoom(type): any {
     const q = this.quartos.filter(quarto => quarto.tipoQuarto === type);
-
     for (const quarto of q) {
-      if (this.reservas.length === 0) {
+      const r = this.reservas.filter(reserva => reserva.quarto === quarto);
+      if (r.length === 0) {
         return quarto;
       } else {
         for (const reserva of this.reservas) {
