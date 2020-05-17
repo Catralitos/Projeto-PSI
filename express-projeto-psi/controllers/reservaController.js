@@ -15,7 +15,7 @@ exports.getReserva = function (req, res, next) {
 
 exports.getReservas = function (req, res, next) {
     Reserva.find()
-        .sort([['quarto', 'ascending']])
+        .sort([['nif', 'ascending']])
         .exec(function (err, list_reservas) {
             if (err) { return next(err); }
             res.json({ reservas_list: list_reservas });
