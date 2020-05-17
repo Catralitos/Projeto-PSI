@@ -20,6 +20,7 @@ body {
 
 .box_a h1 {
   color: /*#003049*/#edf2f4;
+  margin-top: 0px;
 }
 
 .grid {

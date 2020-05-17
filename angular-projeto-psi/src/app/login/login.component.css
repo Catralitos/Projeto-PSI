@@ -1,3 +1,7 @@
+h1 {
+  text-align: center;
+}
+
 body {font-family: Arial, Helvetica, sans-serif;}
 
 /* Full-width input fields */
@@ -8,6 +12,7 @@ input[type=text], input[type=password] {
   display: inline-block;
   border: 1px solid #ccc;
   box-sizing: border-box;
+  font-size: 20px;
 }
 
 /* Set a style for all buttons */
@@ -19,6 +24,7 @@ button {
   border: none;
   cursor: pointer;
   width: 100%;
+  font-size: 15px;
 }
 
 button:hover {
@@ -46,6 +52,7 @@ img.avatar {
 
 .container {
   padding: 16px;
+  font-size: 20px;
 }
 
 span.psw {
@@ -70,10 +77,11 @@ span.psw {
 
 /* Modal Content/Box */
 .modal-content {
-  background-color: #fefefe;
+  background-color: #2b2d42;
   margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
   border: 1px solid #888;
   width: 80%; /* Could be more or less, depending on screen size */
+  color: white;
 }
 
 /* The Close Button (x) */
