@@ -7,7 +7,7 @@ html, body {
 }
 
 body {
-  background-color: #f2e6d9;
+  background-color: #edf2f4/*#f2e6d9*/;
 }
 
 @media screen and (max-width: 500px) {
@@ -18,9 +18,17 @@ body {
   }
 }
 
+.box_a h1 {
+  color: /*#003049*/#edf2f4;
+}
+
+.grid {
+  background-color: #2b2d42/*#FCBF49*//*#1D3557*//*#cc9900*/;/*#4d2600;*/
+}
+
 .navbar {
   overflow: hidden;
-  background-color: #333;
+  background-color: /*#333*//*#003049*/#8d99ae;
   /*
   margin-top: !*-57px;*!50px;
   */
@@ -30,8 +38,8 @@ body {
 
 .navbar a {
   float: left;
-  font-size: 16px;
-  color: white;
+  font-size: 20px;
+  color: #edf2f4/*white*/;;
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
@@ -90,7 +98,7 @@ body {
 }
 
 .navbar a:hover, .subnav:hover .subnavbtn {
-  background-color: #4d2600;
+  background-color: #2b2d42;
 }
 
 .subnav-content {
@@ -119,4 +127,9 @@ body {
 
 .navbar li {
   display: inline-block;
+  height: 40px;
+}
+
+.topnav-right {
+  float: right;
 }

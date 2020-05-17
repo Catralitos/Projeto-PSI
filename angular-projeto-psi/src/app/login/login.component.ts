@@ -37,9 +37,12 @@ export class LoginComponent implements OnInit {
 
         window.location.replace('/');
         return;
+      }else if(this.clienteList[i].email == email && password != this.clienteList[i].password){
+        window.alert("Password incorreta!");
+        return;
       }
     }
-    window.alert('Login sem sucesso');
+    window.alert('Email/Password incorretos!');
     return;
   }
 
