@@ -4,13 +4,7 @@ import { Hotel } from '../interfaces/Hotel';
 import {HotelService} from '../hotel.service';
 import { Quarto } from '../interfaces/Quarto';
 import {QuartoService} from '../quarto.service';
-import { TipoQuarto } from '../interfaces/TipoQuarto';
-import { Reserva } from '../interfaces/Reserva';
-import { ReservaService } from '../reserva.service';
-
-
 import {ActivatedRoute} from '@angular/router';
-import {DataService} from "../data.service";
 
 @Component({
   selector: 'app-rooms-by-date',
@@ -24,19 +18,13 @@ export class RoomsByDateComponent implements OnInit {
   @Input() dataFinal: Date;
   hotel: Hotel;
   quartos: Quarto[];
-  //allR: Reserva[];
-  //reservas: Reserva[];
-  show: boolean;
 
   constructor(private route: ActivatedRoute,
               private hotelService: HotelService,
-              //private reservaService: ReservaService,
               private quartoService: QuartoService) { }
 
   ngOnInit(): void {
     this.getHotel();
-    //this.getReservas();
-    //this.getReservasDoHotel();
   }
 
   public getHotel(): void {
@@ -46,39 +34,8 @@ export class RoomsByDateComponent implements OnInit {
         this.quartos = response.hotel_rooms));
   }
 
-  /*private getReservas(): any {
-    //let allR: Reserva[];
-    this.reservaService.getReservas().subscribe(response => this.allR = response.reservas_list);
-    /*return this.allR.filter(function(reserva) {
-      let quarto: Quarto;
-      this.quartoService.getQuarto(reserva.quarto).subscribe(response => quarto =response.quarto );
-      return quarto.hotel === this.hotel;
-    });*/
-    /*for (const reserva of this.allR) {
-      let quarto;
-      this.quartoService.getQuarto(reserva.quarto.id).subscribe(response => quarto =response.quarto );
-      if ( quarto.hotel=== this.hotel) {
-        this.reservas.push(reserva);
-      }
-    }
-  }
-
-  public getReservasDoHotel(): any {
-    let r: Reserva[];
-   for (const reserva of this.allR) {
-      let quarto;
-      this.quartoService.getQuarto(reserva.quarto).subscribe(response => quarto =response );
-      if ( quarto.hotel=== this.hotel._id) {
-        r.push(reserva);
-      }
-    }
-    return r;
-  }*/
-
   public getNumRoom(type): any {
-    const q = this.quartos.filter(function(quarto) {
-      return quarto.tipoQuarto === type;
-    });
+    const q = this.quartos.filter(quarto => quarto.tipoQuarto === type);
     return q.length;
   }
 
@@ -87,34 +44,31 @@ export class RoomsByDateComponent implements OnInit {
   }
 
   public getRoom(type): any {
-    const q = this.quartos.filter(function(quarto) {
-      return quarto.tipoQuarto === type;
-    });
+    const q = this.quartos.filter(quarto => quarto.tipoQuarto === type);
     return q[0];
   }
 
   calculaPreco(): any {
-    let di = new Date(this.dataInicial);
-    let df = new Date(this.dataFinal);
-    const epocaBaixa = [1, 2,3,4,5, 10, 11,12];
-    let diasAltos=0;
-    let diasBaixos=0;
-    let days=0;
+    const di = new Date(this.dataInicial);
+    const df = new Date(this.dataFinal);
+    const epocaBaixa = [1, 2, 3, 4, 5, 10, 11, 12];
+    let diasAltos = 0;
+    let diasBaixos = 0;
     while ( di.getTime() <= df.getTime()) {
-      if (epocaBaixa.includes(di.getMonth()+1)) {
-        if( di.getMonth()+1 === 1) {
+      if (epocaBaixa.includes(di.getMonth() + 1)) {
+        if ( di.getMonth() + 1 === 1) {
           if ( di.getDate() < 15 ) {
             diasAltos++;
           } else {
             diasBaixos++;
           }
-        } else if (di.getMonth()+1 === 9) {
+        } else if (di.getMonth() + 1 === 9) {
           if ( di.getDate() < 30 ) {
             diasAltos++;
           } else {
             diasBaixos++;
           }
-        } else if (di.getMonth()+1 === 12) {
+        } else if (di.getMonth() + 1 === 12) {
           if ( di.getDate() > 15 ) {
             diasAltos++;
           } else {
@@ -129,7 +83,7 @@ export class RoomsByDateComponent implements OnInit {
       di.setDate(di.getDate() + 1);
     }
     const q = this.getRoom(this.tipo);
-    return diasAltos*q.precoAlto + diasBaixos*q.precoBaixo ;
+    return diasAltos * q.precoAlto + diasBaixos * q.precoBaixo ;
   }
 
 }

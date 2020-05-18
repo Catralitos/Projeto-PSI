@@ -12,33 +12,33 @@
 <div class="container">
   <div class="content">
     <div id="patty">
-    <h1 style="text-align: center"><b>{{hotel.nome}}</b></h1>
-    <p>{{hotel.descricao}}</p>
+      <h1 style="text-align: center"><b>{{hotel.nome}}</b></h1>
+      <p>{{hotel.descricao}}</p>
     </div>
-<div class="grid-container">
-  <div class="item1">
-    <h3>Morada: {{hotel.morada}}</h3>
-    <h3>Coordenadas: {{hotel.coordenadas}} </h3>
-    <h3>Telefone: {{hotel.numero_telefone}} </h3>
-    <h3>Email: {{hotel.email}} </h3>
+    <div class="grid-container">
+      <div class="item1">
+        <h3>Morada: {{hotel.morada}}</h3>
+        <h3>Coordenadas: {{hotel.coordenadas}} </h3>
+        <h3>Telefone: {{hotel.numero_telefone}} </h3>
+        <h3>Email: {{hotel.email}} </h3>
+      </div>
+      <div class="item2">
+        <h3>Serviços Disponíveis:</h3>
+        <ul class="services">
+          <li *ngFor="let servico of hotel.servicos">
+            <a><span class="nome">{{servico}}</span> </a>
+          </li>
+        </ul>
+      </div>
+    </div>
   </div>
-  <div class="item2">
-    <h3>Serviços Disponíveis:</h3>
-    <ul class="services">
-      <li *ngFor="let servico of hotel.servicos">
-        <a><span class="nome">{{servico}}</span> </a>
-      </li>
-    </ul>
-  </div>
-</div>
-</div>
 </div>
 
 <div id="quartos">
-<h3>Numero de quartos disponiveis: {{numeroQuartos()}}</h3>
-<h4>Época Baixa: 15/01-31/05 e 30/09-15/12</h4>
-<h4>Época Alta: Resto do Ano</h4>
-<h3>Desde: {{lowestPrice()}}€</h3>
+  <h3>Numero de quartos disponiveis: {{numeroQuartos()}}</h3>
+  <h4>Época Baixa: 15/01-31/05 e 30/09-15/12</h4>
+  <h4>Época Alta: Resto do Ano</h4>
+  <h3>Desde: {{lowestPrice()}}€</h3>
 </div>
 
 <h3>Preço:</h3>
@@ -47,42 +47,51 @@
   Até
   <input type="number" [(ngModel)]="precoMaximo" placeholder="0" />
 </label>
-
-<br>   
-
-<h3>Tipos de quartos:</h3>
-<ul class="rooms">
-  <li *ngFor="let tipo of getRoomTypes()">
-    <app-room-type-details [tipo]="tipo"></app-room-type-details>
-  </li>
-</ul>
-
-<div *ngIf="esconderDatas">
 <h3>Verifique disponibilidade dos quartos</h3>
 <label >De:
   <input type="Date" [(ngModel)]="dataInicial" placeholder="0"/>
   Até
   <input  type="Date" [(ngModel)]="dataFinal" placeholder="0" />
 </label>
+
 <br>
 
-<h3 *ngIf="botaoR" >Disponibilidade: </h3>
+<h3>Tipos de quartos:</h3>
 <ul class="rooms">
-  <li *ngFor="let tipo of getRoomTypesByDate()">
-    <app-rooms-by-date [tipo]="tipo" [dataInicial]="dataInicial" [dataFinal]="dataFinal"></app-rooms-by-date>
+  <li *ngFor="let tipo of getRooms()">
+    <app-room-type-details [tipo]="tipo"></app-room-type-details>
   </li>
 </ul>
-
-<label *ngIf="botaoR"> Tipo de Quarto <select [(ngModel)]="tipo">
-  <option *ngFor="let tipo of getRoomTypesByDate()" >{{tipo}}</option>
-</select> </label>
-
 <h4 *ngIf="botaoR"> *Confirme as datas e o tipo de quarto</h4>
 <button *ngIf="botaoR" (click)="mostraReserva()" class="button">Reservar</button>
+<app-reserva *ngIf="show" [tipo]="tipo" [dataInicial]="dataInicial" [dataFinal]="dataFinal"></app-reserva>
+
+<!--<div *ngIf="esconderDatas">
+  <h3>Verifique disponibilidade dos quartos</h3>
+  <label >De:
+    <input type="Date" [(ngModel)]="dataInicial" placeholder="0"/>
+    Até
+    <input  type="Date" [(ngModel)]="dataFinal" placeholder="0" />
+  </label>
+  <br>
+
+  <h3 *ngIf="botaoR" >Disponibilidade:</h3>
+  <ul class="rooms">
+    <li *ngFor="let tipo of getRoomTypesByDate()">
+      <app-rooms-by-date [tipo]="tipo" [dataInicial]="dataInicial" [dataFinal]="dataFinal"></app-rooms-by-date>
+    </li>
+  </ul>
+
+  <label *ngIf="botaoR"> Tipo de Quarto <select [(ngModel)]="tipo">
+    <option *ngFor="let tipo of getRoomTypesByDate()" >{{tipo}}</option>
+  </select> </label>
+
+  <h4 *ngIf="botaoR"> *Confirme as datas e o tipo de quarto</h4>
+  <button *ngIf="botaoR" (click)="mostraReserva()" class="button">Reservar</button>
 </div>
 
 <app-reserva *ngIf="show" [tipo]="tipo" [dataInicial]="dataInicial" [dataFinal]="dataFinal"></app-reserva>
-
+-->
 
 <ul class="imagens">
   <li *ngFor="let imagem of hotel.imagens">
