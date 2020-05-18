@@ -24,16 +24,19 @@ export class RoomsByDateComponent implements OnInit {
   @Input() dataFinal: Date;
   hotel: Hotel;
   quartos: Quarto[];
-  reservas: Reserva[];
+  //allR: Reserva[];
+  //reservas: Reserva[];
   show: boolean;
 
   constructor(private route: ActivatedRoute,
               private hotelService: HotelService,
-              private reservaService: ReservaService) { }
+              //private reservaService: ReservaService,
+              private quartoService: QuartoService) { }
 
   ngOnInit(): void {
     this.getHotel();
-    this.getReservasDoHotel();
+    //this.getReservas();
+    //this.getReservasDoHotel();
   }
 
   public getHotel(): void {
@@ -43,16 +46,34 @@ export class RoomsByDateComponent implements OnInit {
         this.quartos = response.hotel_rooms));
   }
 
-  private getReservasDoHotel(): void {
-    let allR;
-    this.reservaService.getReservas().subscribe(response => allR = response.reservas_list);
-
-    for (const reserva of allR) {
-      if (reserva.quarto.hotel === this.hotel) {
+  /*private getReservas(): any {
+    //let allR: Reserva[];
+    this.reservaService.getReservas().subscribe(response => this.allR = response.reservas_list);
+    /*return this.allR.filter(function(reserva) {
+      let quarto: Quarto;
+      this.quartoService.getQuarto(reserva.quarto).subscribe(response => quarto =response.quarto );
+      return quarto.hotel === this.hotel;
+    });*/
+    /*for (const reserva of this.allR) {
+      let quarto;
+      this.quartoService.getQuarto(reserva.quarto.id).subscribe(response => quarto =response.quarto );
+      if ( quarto.hotel=== this.hotel) {
         this.reservas.push(reserva);
       }
     }
   }
+
+  public getReservasDoHotel(): any {
+    let r: Reserva[];
+   for (const reserva of this.allR) {
+      let quarto;
+      this.quartoService.getQuarto(reserva.quarto).subscribe(response => quarto =response );
+      if ( quarto.hotel=== this.hotel._id) {
+        r.push(reserva);
+      }
+    }
+    return r;
+  }*/
 
   public getNumRoom(type): any {
     const q = this.quartos.filter(function(quarto) {
