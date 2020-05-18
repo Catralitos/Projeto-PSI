@@ -88,7 +88,7 @@ export class RegistarComponent implements OnInit {
     console.log(email);
     console.log(nif);
 
-    this.clienteService.addCliente({nome,password,morada,numero_telefone,email,nif}).subscribe(() => this.goBack());
+    this.clienteService.addCliente({nome,password,morada,numero_telefone,email,nif}).subscribe(() => window.location.replace('/login'));
 
     window.alert("Registo efetuado com sucesso!")
 
