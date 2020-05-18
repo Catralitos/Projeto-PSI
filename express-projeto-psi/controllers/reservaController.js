@@ -26,7 +26,7 @@ exports.getReservas = function (req, res, next) {
 
 exports.reserva_create_post = [
 
-    //Tentar com o check
+   /*  //Tentar com o check
     /*
      check('quarto').escape(),
      check('nome').isLength({ min: 3}).trim().escape(),
@@ -44,6 +44,7 @@ exports.reserva_create_post = [
 
     //tentar com o body
     // Validate fields.
+    /*
     body('nome').isLength({ min: 1 }).trim().withMessage('Cliente nome must be specified.')
         .isAlphanumeric().withMessage('Cliente nome has non-alphanumeric characters.'),
     body('email').isLength({ min: 1 }).trim().withMessage('Cliente email must be specified.'),
@@ -52,13 +53,13 @@ exports.reserva_create_post = [
         .isAlphanumeric().withMessage('Cliente morada has non-alphanumeric characters.'),
     body('checkin', 'Invalid checkin').optional({ checkFalsy: true }).isISO8601(),
     body('checkout', 'Invalid checkout').optional({ checkFalsy: true }).isISO8601(),
-    /*
+
     body('nif').isLength({ min: 1 }).withMessage('Cliente nif must be specified.'),
     body('anoValidade').isLength({ min: 1 }).withMessage('Cliente anoValidade must be specified.'),
     body('mesValidade').isLength({ min: 1 }).withMessage('Cliente mesValidade must be specified.'),
     body('numeroCartao').isLength({ min: 1 }).withMessage('Cliente numeroCartao must be specified.'),
     body('ccv').isLength({ min: 1 }).withMessage('Cliente ccv must be specified.'),
-    */
+    */ 
 
     // Sanitize fields.
     sanitizeBody('quarto').escape(),
