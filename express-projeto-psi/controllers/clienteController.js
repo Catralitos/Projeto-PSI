@@ -28,7 +28,7 @@ exports.cliente_create_get = function (req, res, next) {
 
 exports.cliente_create_post = [
 
-     // Validate fields.
+   /*  // Validate fields.
     body('nome').isLength({ min: 1 }).trim().withMessage('Cliente nome must be specified.'),
     body('password').isLength({ min: 1 }).trim().withMessage('Cliente password must be specified.'),
     body('email').isLength({ min: 1 }).trim().withMessage('Cliente email must be specified.'),
@@ -39,7 +39,7 @@ exports.cliente_create_post = [
     sanitizeBody('email').escape(),
     sanitizeBody('morada').escape(),
     sanitizeBody('numero_telefone').escape(),
-    sanitizeBody('nif').escape(), 
+    sanitizeBody('nif').escape(), */
 
     // Process request after validation and sanitization.
     (req, res, next) => {
