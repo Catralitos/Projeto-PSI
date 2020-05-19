@@ -58,7 +58,6 @@ exports.cliente_create_post = [
               nif: req.body.nif,
           }
       );
-      console.log(cliente.nome);
       if (!errors.isEmpty()) {
           // There are errors. Render form again with sanitized values/errors messages.
           res.json({cliente: cliente, errors: errors.array() });
@@ -67,6 +66,7 @@ exports.cliente_create_post = [
       else {
           // Save cliente.
           cliente.save(function (err) {
+            console.log("FOI SALVO")
               if (err) { return next(err); }
               // Successful - redirect to new Cliente record.
               res.redirect(cliente.url);
