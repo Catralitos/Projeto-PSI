@@ -134,6 +134,8 @@ export class HotelDetailComponent implements OnInit {
         }
         
       }
+    }else{
+      this.botaoR = false;
     }
     return t;
   }
@@ -149,6 +151,8 @@ export class HotelDetailComponent implements OnInit {
       if(this.tipo) {
         this.show = true;
         this.esconderDatas = false;
+      } else{
+        window.alert('Tem de selecionar um tipo de quarto');
       }
     }
   }
