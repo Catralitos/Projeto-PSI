@@ -67,7 +67,6 @@ exports.cliente_create_post = [
       else {
           // Save cliente.
           cliente.save(function (err) {
-            console.log("FOI SALVO");
               if (err) { return next(err); }
               // Successful - redirect to new Cliente record.
               res.redirect(cliente.url);
