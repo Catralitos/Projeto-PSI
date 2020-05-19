@@ -16,8 +16,8 @@ export class ClienteService {
   }
 
   //private clientesUrl = 'http://appserver.alunos.di.fc.ul.pt:3010/catalog/clientes';  // URL to web api
-  private clienteUrl = 'http://appserver.alunos.di.fc.ul.pt:3010/catalog/cliente';  // URL to web api
-  private clienteCreateUrl = 'http://appserver.alunos.di.fc.ul.pt:3010/catalog/clientes/create';  // URL to web api
+  private clienteUrl = 'http://10.101.151.25:3010/catalog/cliente';  // URL to web api
+  private clienteCreateUrl = 'http://10.101.151.25:3010/catalog/clientes/create';  // URL to web api
 
   private clientesUrl = 'http://10.101.151.25:3010/catalog/clientes';  // URL to web api
 
