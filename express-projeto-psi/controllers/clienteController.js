@@ -34,12 +34,12 @@ exports.cliente_create_post = [
   //body('email').isLength({ min: 1 }).trim().withMessage('Cliente email must be specified.'),
 
   // Sanitize fields.
-  body('nome').isLength({min: 2}).trim().isAlpha().escape(),
-  body('password').isLength({min: 2}).trim().escape(),
-  body('email').isEmail().trim().normalizeEmail(),
-  body('morada').isLength({min: 2}).trim().escape(),
-  body('numero_telefone').trim(),
-  body('nif').isLength({min: 8}).isNumeric().trim(),
+  //body('nome').isLength({min: 2}).trim().isAlpha().escape(),
+  //body('password').isLength({min: 2}).trim().escape(),
+  //body('email').isEmail().trim().normalizeEmail(),
+  //body('morada').isLength({min: 2}).trim().escape(),
+  //body('numero_telefone').trim(),
+  //body('nif').isLength({min: 8}).isNumeric().trim(),
 
   // Process request after validation and sanitization.
   (req, res, next) => {

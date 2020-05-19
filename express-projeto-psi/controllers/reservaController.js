@@ -68,17 +68,17 @@ exports.reserva_create_post = [
     sanitizeBody('ccv').escape(),
     sanitizeBody('anoValidade').escape(),
     sanitizeBody('mesValidade').escape(), */
-    body('checkin').isISO8601().toDate(),
-    body('checkout').isISO8601().toDate(),
-    body('nome').isLength({min: 2}).trim().isAlpha().escape(),
-    body('morada').isLength({min: 2}).trim().escape(),
-    body('numero_telefone').trim(),
-    body('email').isEmail().trim().normalizeEmail(),
-    body('nif').isLength({min: 8}).isNumeric().trim(),
-    body('numeroCartao').isCreditCard().trim(),
-    body('ccv').isLength({min: 2}).isLength({max: 3}).isNumeric().trim(),
-    body('anoValidade').isLength({min: 2}).isLength({max: 4}).isNumeric().trim(),
-    body('mesValidade').isLength({min: 1}).isLength({max: 2}).isNumeric().trim(),
+    //body('checkin').isISO8601().toDate(),
+    //body('checkout').isISO8601().toDate(),
+    //body('nome').isLength({min: 2}).trim().isAlpha().escape(),
+    //body('morada').isLength({min: 2}).trim().escape(),
+    //body('numero_telefone').trim(),
+    //body('email').isEmail().trim().normalizeEmail(),
+    //body('nif').isLength({min: 8}).isNumeric().trim(),
+    //body('numeroCartao').isCreditCard().trim(),
+    //body('ccv').isLength({min: 2}).isLength({max: 3}).isNumeric().trim(),
+    //body('anoValidade').isLength({min: 2}).isLength({max: 4}).isNumeric().trim(),
+    //body('mesValidade').isLength({min: 1}).isLength({max: 2}).isNumeric().trim(),
     // Process request after validation and sanitization.
     (req, res, next) => {
 
