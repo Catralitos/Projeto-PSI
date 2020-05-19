@@ -29,17 +29,17 @@ exports.cliente_create_get = function (req, res, next) {
 exports.cliente_create_post = [
 
   // Validate fields.
-  body('nome').isLength({ min: 1 }).trim().withMessage('Cliente nome must be specified.'),
-  body('password').isLength({ min: 1 }).trim().withMessage('Cliente password must be specified.'),
-  body('email').isLength({ min: 1 }).trim().withMessage('Cliente email must be specified.'),
+  //body('nome').isLength({ min: 1 }).trim().withMessage('Cliente nome must be specified.'),
+  //body('password').isLength({ min: 1 }).trim().withMessage('Cliente password must be specified.'),
+  //body('email').isLength({ min: 1 }).trim().withMessage('Cliente email must be specified.'),
 
   // Sanitize fields.
-  sanitizeBody('nome').escape(),
-  sanitizeBody('password').escape(),
-  sanitizeBody('email').escape(),
-  sanitizeBody('morada').escape(),
-  sanitizeBody('numero_telefone').escape(),
-  sanitizeBody('nif').escape(),
+  body('nome').isLength({min: 2}).trim().isAlpha().escape(),
+  body('password').isLength({min: 2}).trim().isAlpha().escape(),
+  body('email').isEmail().trim().normalizeEmail(),
+  body('morada').isLength({min: 2}).trim().escape(),
+  body('numero_telefone').trim(),
+  body('nif').isLength({min: 8}).isNumeric().trim(),
 
   // Process request after validation and sanitization.
   (req, res, next) => {
