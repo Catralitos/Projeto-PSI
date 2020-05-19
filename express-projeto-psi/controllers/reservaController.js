@@ -74,7 +74,7 @@ exports.reserva_create_post = [
     body('morada').isLength({min: 2}).trim().escape(),
     body('numero_telefone').trim(),
     body('email').isEmail().trim().normalizeEmail(),
-    body.('nif').isLength({min: 8}).isNumeric().trim(),
+    body('nif').isLength({min: 8}).isNumeric().trim(),
     body('numeroCartao').isCreditCard().trim(),
     body('ccv').isLength({min: 2}).isLength({max: 3}).isNumeric().trim(),
     body('anoValidade').isLength({min: 2}).isLength({max: 4}).isNumeric().trim(),
