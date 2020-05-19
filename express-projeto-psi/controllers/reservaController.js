@@ -2,8 +2,8 @@ var Reserva = require('../models/reserva')
 var async = require('async')
 var Quarto = require('../models/quarto')
 
-const { check, validationResult } = require('express-validator');
-//const { body, validationResult } = require('express-validator/check');
+//const { check, validationResult } = require('express-validator');
+const { body, validationResult } = require('express-validator/check');
 
 const { sanitizeBody } = require('express-validator/filter');
 
