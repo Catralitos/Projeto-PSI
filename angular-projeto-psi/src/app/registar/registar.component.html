@@ -2,32 +2,29 @@
   <form class="modal-content" action="/action_page.php">
     <div class="container">
       <h1>Registo</h1>
-      <p>Por favor preencha os dados necessários para criar uma conta.</p>
+      <p>Por favor preencha os dados necessários para criar uma conta. (Os campos com * são obrigatórios)</p>
       <hr>
-      <label for="nome"><b>Nome</b></label>
+      <label for="nome"><b>Nome * </b></label>
       <input #nome type="text" placeholder="Ex:Pedro Oliveira"/>
 
-      <label for="psw"><b>Password</b></label>
+      <label for="psw"><b>Password * </b></label>
       <input #pass type="password" placeholder="Ex:123456"/>
 
-      <label for="psw-repeat"><b>Repeat Password</b></label>
+      <label for="psw-repeat"><b>Repeat Password * </b></label>
       <input #pass type="password" placeholder="Ex:123456"/>
 
       <label for="morada"><b>Morada</b></label>
       <input #morada type="text" placeholder="Ex:Rua das Macieiras"/>
 
-      <label for="telefone"><b>Telefone</b></label>
+      <label for="telefone"><b>Telefone (por favor inclua o espaço entre o indicativo e o número)</b></label>
       <input #tele type="text" placeholder="Ex:+351 912345678"/>
 
-      <label for="email"><b>Email</b></label>
+      <label for="email"><b>Email * </b></label>
       <input #email type="text" placeholder="Ex:pedrooliveira@outlook.pt"/>
 
       <label for="nif"><b>NIF</b></label>
       <input #nif type="number" placeholder="Ex:123456789"/>
 
-      <label>
-        <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Remember me
-      </label>
 
       <p>Ao criar uma conta concorda com os nossos <a href="#" style="color:dodgerblue">Termos & Privacidade</a>.</p>
 
