@@ -70,7 +70,7 @@ export class ReservaComponent implements OnInit {
 
     this.reservaService.addReserva({quarto: this.getRoom(this.tipo), checkin: this.dataInicial,
       checkout: this.dataFinal, nome: this.nome, email: this.email, morada: this.morada,
-      numero_telefone: this.telefone, nif: Number(this.nif), numeroCartao: Number(this.numeroCartao),
+      numero_telefone: this.telefone.replace(/\s/g, ''), nif: Number(this.nif), numeroCartao: Number(this.numeroCartao),
       ccv: Number(this.ccv), anoValidade: Number(this.ano), mesValidade: Number(this.mes) }).subscribe(() => window.location.reload());
   }
 
@@ -200,11 +200,11 @@ export class ReservaComponent implements OnInit {
     if(!mesValidade.match(regexMes)){
       window.alert('Mes de validade inválido. Tem que inserir 2 digitos. Ex: 05');
       return false;
-    } 
+    }
     if(!ccv.match(regexCcv) ) {
       window.alert('Ccv inválido. Tem que inserir 3 digitos.');
       return false;
-    } 
+    }
     return true;
   }
 
