@@ -40,6 +40,7 @@ export class RegistarComponent implements OnInit {
     const nome = nomeCliente.trim();
     const password = passwordCliente.trim();
     const morada = moradaCliente.trim();
+    // tslint:disable-next-line:variable-name
     const numero_telefone = telefone.trim();
     const email = emailCliente.trim();
 
