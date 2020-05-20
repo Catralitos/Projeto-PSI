@@ -102,7 +102,7 @@ export class RegistarComponent implements OnInit {
 
   public validatePhoneNumber(telefone: string) {
     const regex = '^\\+(?:[0-9] ?){6,14}[0-9]$';
-    return telefone.match(regex) && telefone[4] === ' ';
+    return telefone.match(regex) && telefone[4].trim() === '';
   }
 
   public validateNif(nif: number) {
