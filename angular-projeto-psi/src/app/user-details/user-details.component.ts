@@ -77,7 +77,7 @@ export class UserDetailsComponent implements OnInit {
     let v: Array<Reserva> = [];
     const di = new Date(this.dataInicial);
     const df = new Date(this.dataFinal);
-    if ( (this.precoMinimo>=0 )  && (this.dataInicial <=new Date("01-01-1112")) && (this.dataFinal <=new Date("01-01-1112"))) {
+    /*if ( (this.precoMinimo>=0 )  && (this.dataInicial <=new Date("01-01-1112")) && (this.dataFinal <=new Date("01-01-1112"))) {
       for (const reserva of this.getMyRes()) {
         if (this.precoMinimo <= reserva.preco) {
           v.push(reserva);
@@ -102,7 +102,7 @@ export class UserDetailsComponent implements OnInit {
               v.push(reserva);
             }
           }
-    } */
+    } 
     if ( (this.precoMinimo==0 ) && (this.dataInicial!=new Date("01-01-1111")) && (this.dataFinal!=new Date("01-01-1111"))
       && di < df ) {
       for (const reserva of this.getMyRes()) {
@@ -114,13 +114,13 @@ export class UserDetailsComponent implements OnInit {
           //window.alert(reserva);
         }
       }
-    }
+    }*/
     if((this.precoMinimo>=0 ) && (this.dataInicial>=new Date("01-01-1111")) && (this.dataFinal>=new Date("01-01-1111"))
     && di < df ){
           for (const reserva of this.getMyRes()) {
             const ri = new Date(reserva.checkin);
         const rf = new Date(reserva.checkout);
-            if ((this.precoMinimo>=0 )  && (this.dataInicial!=new Date("01-01-1111")) && (this.dataFinal!=new Date("01-01-1111"))
+            if ((this.precoMinimo>=0 && this.precoMinimo <= reserva.preco)  && (this.dataInicial!=new Date("01-01-1111")) && (this.dataFinal!=new Date("01-01-1111"))
             && di < df) {
               
               v.push(reserva);
