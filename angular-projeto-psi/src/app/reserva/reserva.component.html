@@ -1,5 +1,5 @@
 <h3>Reserva de {{dataInicial | date: 'dd-MM-yyyy'}} até {{dataFinal | date: 'dd-MM-yyyy'}} de {{tipo}}</h3>
-
+<p>{{calculaPreco()}}</p>
 <br>
 <div *ngIf="inputReserva">
 <label >Nome:
@@ -28,7 +28,7 @@
   Mês:
   <input #mes placeholder="05"/><br>
   CCV:
-  <input #ccv /><br>
+  <input #ccv placeholder="111"/><br>
 </label>
 
   <br>
@@ -47,9 +47,7 @@
   <h4>Validade do cartão: {{ano}}/{{mes}}</h4>
   <h4>ccv: {{ccv}}</h4>
 
-
-<input *ngIf="confR" type="checkbox" ng-model="checkbox.value">
-<label *ngIf="confR"> *Confirmo que todos os dados estão corretos</label>
 <br>
-<button *ngIf="confR" (click)="addReserva()" class="button">Confirmar reserva</button>
+<button  (click)="voltar()" class="button">Alterar Dados</button>
+<button (click)="addReserva()" class="button">Confirmar reserva</button>
 </div>

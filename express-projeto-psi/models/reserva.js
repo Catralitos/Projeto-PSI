@@ -9,7 +9,7 @@ var ReservaSchema = new Schema(
         checkout: { type: Date, required: true},
         nome: { type: String, required: true},
         morada: {type: String, required: true},
-        numero_telefone: {type: String, max: 15, required: true},
+        numero_telefone: {type: String, minlength: 13, maxlength: 14, required: true},
         email: {type: String, required: true},
         nif: {type: Number, maxlength: 9, minlength: 9, required: true},
         numeroCartao: {type: Number, minlength: 16, maxlength: 16, required: true},

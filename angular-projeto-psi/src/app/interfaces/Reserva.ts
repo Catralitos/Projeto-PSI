@@ -14,4 +14,5 @@ export interface Reserva {
   ccv: number;
   anoValidade: number;
   mesValidade: number;
+  preco: number;
 }

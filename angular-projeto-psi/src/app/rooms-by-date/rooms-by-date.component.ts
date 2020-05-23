@@ -24,16 +24,19 @@ export class RoomsByDateComponent implements OnInit {
   @Input() dataFinal: Date;
   hotel: Hotel;
   quartos: Quarto[];
-  reservas: Reserva[];
+  //allR: Reserva[];
+  //reservas: Reserva[];
   show: boolean;
 
   constructor(private route: ActivatedRoute,
               private hotelService: HotelService,
-              private reservaService: ReservaService) { }
+              //private reservaService: ReservaService,
+              private quartoService: QuartoService) { }
 
   ngOnInit(): void {
     this.getHotel();
-    this.getReservasDoHotel();
+    //this.getReservas();
+    //this.getReservasDoHotel();
   }
 
   public getHotel(): void {
@@ -41,17 +44,6 @@ export class RoomsByDateComponent implements OnInit {
     this.hotelService.getHotel(id)
       .subscribe(response => (this.hotel = response.hotel,
         this.quartos = response.hotel_rooms));
-  }
-
-  private getReservasDoHotel(): void {
-    let allR;
-    this.reservaService.getReservas().subscribe(response => allR = response.reservas_list);
-
-    for (const reserva of allR) {
-      if (reserva.quarto.hotel === this.hotel) {
-        this.reservas.push(reserva);
-      }
-    }
   }
 
   public getNumRoom(type): any {
@@ -79,7 +71,7 @@ export class RoomsByDateComponent implements OnInit {
     let diasAltos=0;
     let diasBaixos=0;
     let days=0;
-    while ( di.getTime() <= df.getTime()) {
+    while ( di.getTime() < df.getTime()) {
       if (epocaBaixa.includes(di.getMonth()+1)) {
         if( di.getMonth()+1 === 1) {
           if ( di.getDate() < 15 ) {

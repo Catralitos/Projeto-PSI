@@ -18,6 +18,8 @@ import { RegistarComponent } from './registar/registar.component';
 import { LoginComponent } from './login/login.component';
 import { ClienteService } from './cliente.service';
 import { UserDetailsComponent } from './user-details/user-details.component';
+import { UserAreaComponent } from './user-area/user-area.component';
+import { ReservaDetailComponent } from './reserva-detail/reserva-detail.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +33,8 @@ import { UserDetailsComponent } from './user-details/user-details.component';
     RegistarComponent,
     LoginComponent,
     UserDetailsComponent,
+    UserAreaComponent,
+    ReservaDetailComponent,
   ],
     imports: [
         BrowserModule,

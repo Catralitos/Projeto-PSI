@@ -70,8 +70,8 @@ export class ReservaComponent implements OnInit {
 
     this.reservaService.addReserva({quarto: this.getRoom(this.tipo), checkin: this.dataInicial,
       checkout: this.dataFinal, nome: this.nome, email: this.email, morada: this.morada,
-      numero_telefone: this.telefone, nif: Number(this.nif), numeroCartao: Number(this.numeroCartao),
-      ccv: Number(this.ccv), anoValidade: Number(this.ano), mesValidade: Number(this.mes) }).subscribe(() => window.location.reload());
+      numero_telefone: this.telefone.replace(/\s/g, ''), nif: Number(this.nif), numeroCartao: Number(this.numeroCartao),
+      ccv: Number(this.ccv), anoValidade: Number(this.ano), mesValidade: Number(this.mes), preco: this.calculaPreco() }).subscribe(() => window.location.reload());
   }
 
 
@@ -95,7 +95,6 @@ export class ReservaComponent implements OnInit {
     }
 
     if (!this.validateCreditCard(numeroCartao, ano, mes, ccv)) {
-      window.alert('Tem que inserir dados de pagamento no formato correto!');
       return;
     }
 
@@ -131,12 +130,12 @@ export class ReservaComponent implements OnInit {
 
   public getRoom(type): any {
     const q = this.quartos.filter(quarto => quarto.tipoQuarto === type);
-
     for (const quarto of q) {
-      if (this.reservas.length === 0) {
+      const r = this.reservas.filter(reserva => reserva.quarto === quarto);
+      if (r.length === 0) {
         return quarto;
       } else {
-        for (const reserva of this.reservas) {
+        for (const reserva of r) {
           if (this.dataFinal < reserva.checkin
             && this.dataInicial > reserva.checkout) {
             return quarto;
@@ -178,18 +177,86 @@ export class ReservaComponent implements OnInit {
     const regexMes =  '0[1-9]|1[0-2]$';
     const regexCcv =  '^[0-9]{3}$';
 
-    if (numero.match(regexNumero) && anoValidade.match(regexAno)
-        && mesValidade.match(regexMes) && ccv.match(regexCcv) ) {
-      return true;
-    } else {
+    if(Number(anoValidade) <20){
+      window.alert('Ano inválido');
       return false;
     }
+
+    if(anoValidade.match('20')){
+      if(Number(mesValidade) <5){
+        window.alert('Mes inválido');
+        return false;
+      }
+    }
+
+    if (!numero.match(regexNumero)){
+      window.alert('Numero de cartão inváido. Tem de inserir 16 digitos.');
+      return false;
+    }
+    if(!anoValidade.match(regexAno)){
+      window.alert('Ano de validade inválido. Tem que inserir 2 digitos.');
+      return false;
+    }
+    if(!mesValidade.match(regexMes)){
+      window.alert('Mes de validade inválido. Tem que inserir 2 digitos. Ex: 05');
+      return false;
+    }
+    if(!ccv.match(regexCcv) ) {
+      window.alert('Ccv inválido. Tem que inserir 3 digitos.');
+      return false;
+    }
+    return true;
   }
 
 
 
   private goBack(): void {
     this.location.back();
+  }
+
+  voltar() {
+    this.botaoR = true;
+    this.confirmacao = false;
+    this.inputReserva = true;
+  }
+
+  calculaPreco(): any {
+    let di = new Date(this.dataInicial);
+    let df = new Date(this.dataFinal);
+    const epocaBaixa = [1, 2,3,4,5, 10, 11,12];
+    let diasAltos=0;
+    let diasBaixos=0;
+    let days=0;
+    while ( di.getTime() < df.getTime()) {
+      if (epocaBaixa.includes(di.getMonth()+1)) {
+        if( di.getMonth()+1 === 1) {
+          if ( di.getDate() < 15 ) {
+            diasAltos++;
+          } else {
+            diasBaixos++;
+          }
+        } else if (di.getMonth()+1 === 9) {
+          if ( di.getDate() < 30 ) {
+            diasAltos++;
+          } else {
+            diasBaixos++;
+          }
+        } else if (di.getMonth()+1 === 12) {
+          if ( di.getDate() > 15 ) {
+            diasAltos++;
+          } else {
+            diasBaixos++;
+          }
+        } else {
+          diasBaixos++;
+        }
+      } else {
+        diasAltos++;
+      }
+      di.setDate(di.getDate() + 1);
+    }
+    const q = this.getRoom(this.tipo);
+    return diasAltos*q.precoAlto + diasBaixos*q.precoBaixo ;
   }
 
 
