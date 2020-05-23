@@ -22,6 +22,11 @@ export class UserDetailsComponent implements OnInit {
   quarto: Quarto;
   hotel: Hotel;
 
+  precoMinimo: Number;
+  precoMaximo: Number;
+  dataInicial: Date;
+  dataFinal: Date;
+
   constructor(private route: ActivatedRoute,
               private reservaService: ReservaService,
               private hotelService: HotelService,
@@ -31,6 +36,9 @@ export class UserDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.getReservas();
+    this.precoMinimo=0;
+    this.dataInicial= new Date("01-01-1111");
+    this.dataFinal = new Date("01-01-1111");
   }
 
   getCliente() {
@@ -63,6 +71,64 @@ export class UserDetailsComponent implements OnInit {
     let quarto: Quarto;
     this.quartoService.getQuarto(id).subscribe(response => quarto = response);
     return quarto.tipoQuarto;
+  }
+
+  public getResByDatePrice(): any {
+    let v: Array<Reserva> = [];
+    const di = new Date(this.dataInicial);
+    const df = new Date(this.dataFinal);
+    if ( (this.precoMinimo>=0 )  && (this.dataInicial <=new Date("01-01-1112")) && (this.dataFinal <=new Date("01-01-1112"))) {
+      for (const reserva of this.getMyRes()) {
+        if (this.precoMinimo <= reserva.preco) {
+          v.push(reserva);
+        }
+      }
+    }/*else if ( (this.precoMinimo==0 && this.precoMaximo==0) && (this.dataInicial!=new Date("01-01-1111")) && (this.dataFinal!=new Date("01-01-1111"))
+      && di < df ) {
+      for (const reserva of this.getMyRes()) {
+        const ri = new Date(reserva.checkin);
+        const rf = new Date(reserva.checkout);
+        if (!v.includes(reserva) && ( (ri <= di) && (di <= rf))) {
+          v.push(reserva);
+        }
+      }
+    } else if((this.precoMinimo>=0 && this.precoMaximo>0) &&(this.precoMinimo < this.precoMaximo)
+        && (this.dataInicial) && (this.dataFinal) && di < df ){
+          for (const reserva of this.getMyRes()) {
+            const ri = new Date(reserva.checkin);
+        const rf = new Date(reserva.checkout);
+            if (!v.includes(reserva) && ( ((this.precoMinimo <= reserva.preco) 
+            && (reserva.preco <= this.precoMaximo) && ( (ri <= di) && (di <= rf))))) {
+              v.push(reserva);
+            }
+          }
+    } */
+    if ( (this.precoMinimo==0 ) && (this.dataInicial!=new Date("01-01-1111")) && (this.dataFinal!=new Date("01-01-1111"))
+      && di < df ) {
+      for (const reserva of this.getMyRes()) {
+       
+        const ri = new Date(reserva.checkin);
+        //window.alert(ri);
+        if (  (ri >= di) && (ri <= df)) {
+          v.push(reserva);
+          //window.alert(reserva);
+        }
+      }
+    }
+    if((this.precoMinimo>=0 ) && (this.dataInicial>=new Date("01-01-1111")) && (this.dataFinal>=new Date("01-01-1111"))
+    && di < df ){
+          for (const reserva of this.getMyRes()) {
+            const ri = new Date(reserva.checkin);
+        const rf = new Date(reserva.checkout);
+            if ((this.precoMinimo>=0 )  && (this.dataInicial!=new Date("01-01-1111")) && (this.dataFinal!=new Date("01-01-1111"))
+            && di < df) {
+              
+              v.push(reserva);
+            }
+          }
+    }
+
+    return v;
   }
 
 }

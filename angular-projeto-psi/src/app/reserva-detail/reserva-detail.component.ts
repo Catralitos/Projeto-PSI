@@ -23,6 +23,7 @@ export class ReservaDetailComponent implements OnInit {
   quarto: Quarto;
   quartos: Quarto[];
 
+
   constructor(private hotelService: HotelService,
               private quartoService: QuartoService) { }
 
