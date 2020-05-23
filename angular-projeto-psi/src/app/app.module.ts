@@ -32,7 +32,7 @@ import { ReservaDetailComponent } from './reserva-detail/reserva-detail.componen
     RegistarComponent,
     LoginComponent,
     UserDetailsComponent,
-    ReservaDetailComponent,
+    ReservaDetailComponent
   ],
     imports: [
         BrowserModule,

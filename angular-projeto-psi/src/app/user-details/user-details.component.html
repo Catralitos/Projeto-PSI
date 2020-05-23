@@ -25,9 +25,33 @@
   </form>
 
 
-  <h3>As minhas reservas: </h3>
+
+<h3>As minhas reservas: </h3>
 <ul class="rooms">
   <li *ngFor="let r of getMyRes() ">
+    <app-reserva-detail [idQuarto]="r.quarto.toString()"
+    [dataI]="r.checkin" [dataF]="r.checkout" [preco]="r.preco"></app-reserva-detail>
+  </li>
+</ul>
+
+
+<div id="precos">
+  <h3>Preço:</h3>
+  <label >De:
+    <input type="number" [(ngModel)]="precoMinimo" placeholder="0"/>
+  </label>
+</div>
+
+<label >De:
+<input type="Date" [(ngModel)]="dataInicial" placeholder="0"/>
+Até
+<input  type="Date" [(ngModel)]="dataFinal" placeholder="0" />
+</label>
+<br>
+
+  <h3  >Reservas: </h3>
+<ul class="rooms">
+  <li *ngFor="let r of getResByDatePrice() ">
     <app-reserva-detail [idQuarto]="r.quarto.toString()"
     [dataI]="r.checkin" [dataF]="r.checkout" [preco]="r.preco"></app-reserva-detail>
   </li>
