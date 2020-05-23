@@ -23,3 +23,12 @@
       <button type="button" class="savebtn">Guardar</button>
     </div>
   </form>
+
+
+  <h3  >Reservas: </h3>
+<ul class="rooms">
+  <li *ngFor="let r of getMyRes() ">
+    <app-reserva-detail [idQuarto]="r.quarto.toString()" 
+    [dataI]="r.checkin" [dataF]="r.checkout" [preco]="r.preco"></app-reserva-detail>
+  </li>
+</ul>
