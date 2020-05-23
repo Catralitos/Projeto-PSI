@@ -24,12 +24,12 @@ export class ReservaDetailComponent implements OnInit {
   quartos: Quarto[];
 
   constructor(private hotelService: HotelService,
-    private quartoService: QuartoService) { }
+              private quartoService: QuartoService) { }
 
   ngOnInit(): void {
     this.getRoom();
     this.hotelId=this.quarto.hotel.toString();
-    //this.getHotel();
+    this.getHotel();
   }
 
   getRoom(){
