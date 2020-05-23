@@ -28,7 +28,7 @@ export class ReservaDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.getRoom();
-    this.hotelId=this.quarto.hotel.toString();
+    //this.hotelId=this.quarto.hotel.toString();
     this.getHotel();
   }
 
@@ -38,7 +38,8 @@ export class ReservaDetailComponent implements OnInit {
   }
 
   public getHotel(): void {
-      this.hotelService.getHotel(this.quarto.hotel.toString()).subscribe((response) => ((this.hotel = response.hotel), 
+    console.log(this.quarto.hotel.toString());
+    this.hotelService.getHotel(this.quarto.hotel.toString()).subscribe((response) => ((this.hotel = response.hotel),
       (this.quartos = response.hotel_rooms)));
   }
 
