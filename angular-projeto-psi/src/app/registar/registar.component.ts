@@ -35,11 +35,12 @@ export class RegistarComponent implements OnInit {
     this.confR = false;
   }
 
-  registarCliente(nomeCliente: string, passwordCliente: string, moradaCliente: string, telefone: string,
-                  emailCliente: string, nif: number, ): any {
+  registarCliente(nomeCliente: string, passwordCliente: string, passRepeat: string, moradaCliente: string,
+                  telefone: string, emailCliente: string, nif: number, ): any {
     const nome = nomeCliente.trim();
     const password = passwordCliente.trim();
     const morada = moradaCliente.trim();
+    const passwordRepeat = passRepeat.trim();
     // tslint:disable-next-line:variable-name
     const numero_telefone = telefone.trim();
     const email = emailCliente.trim();
@@ -76,11 +77,23 @@ export class RegistarComponent implements OnInit {
       }
     }
 
+    if(email){
+      if(!this.validateEmail(email)){
+        window.alert('Tem que inserir um email no formato correto!');
+        return;
+      }
+    }
+
     if (nif > 0) {
       if (!this.validateNif(nif)) {
         window.alert('Tem que inserir um nif no formato correto!');
         return;
       }
+    }
+
+    if(password != passwordRepeat){
+      window.alert("Password não combina!");
+      return;
     }
 
     console.log(nome);
@@ -109,6 +122,14 @@ export class RegistarComponent implements OnInit {
   public validateNif(nif: number) {
     const regex =  '^[0-9]{9}$';
     return nif.toString().match(regex);
+  }
+
+  public validateEmail(mail){
+    console.log("entrou no validate mail");
+    var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    if(mail.match(mailformat)){
+      return mail;
+    }
   }
 
   private goBack(): void {

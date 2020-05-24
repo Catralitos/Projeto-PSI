@@ -11,7 +11,7 @@
       <input #pass type="password" placeholder="Ex:123456"/>
 
       <label for="psw-repeat"><b>Repeat Password </b></label>
-      <input #pass type="password" placeholder="Ex:123456"/>
+      <input #passrepeat type="password" placeholder="Ex:123456"/>
 
       <label for="morada"><b>Morada</b></label>
       <input #morada type="text" placeholder="Ex:Rua das Macieiras"/>
@@ -31,7 +31,7 @@
 
       <div class="clearfix">
         <button type="button" class="cancelbtn">Cancelar</button>
-        <button type="submit" class="signupbtn" (click)="registarCliente(nome.value, pass.value, morada.value, tele.value, email.value, nif.value)">Registar</button>
+        <button type="submit" class="signupbtn" (click)="registarCliente(nome.value, pass.value, passrepeat.value, morada.value, tele.value, email.value, nif.value)">Registar</button>
       </div>
     </div>
   </form>
