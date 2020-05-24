@@ -71,7 +71,7 @@ export class ReservaComponent implements OnInit {
     this.reservaService.addReserva({quarto: this.getRoom(this.tipo), checkin: this.dataInicial,
       checkout: this.dataFinal, nome: this.nome, email: this.email, morada: this.morada,
       numero_telefone: this.telefone.replace(/\s/g, ''), nif: Number(this.nif), numeroCartao: Number(this.numeroCartao),
-      ccv: Number(this.ccv), anoValidade: Number(this.ano), mesValidade: Number(this.mes) }).subscribe(() => window.location.reload());
+      ccv: Number(this.ccv), anoValidade: Number(this.ano), mesValidade: Number(this.mes), preco: this.calculaPreco() }).subscribe(() => window.location.reload());
   }
 
 
@@ -218,6 +218,45 @@ export class ReservaComponent implements OnInit {
     this.botaoR = true;
     this.confirmacao = false;
     this.inputReserva = true;
+  }
+
+  calculaPreco(): any {
+    let di = new Date(this.dataInicial);
+    let df = new Date(this.dataFinal);
+    const epocaBaixa = [1, 2,3,4,5, 10, 11,12];
+    let diasAltos=0;
+    let diasBaixos=0;
+    let days=0;
+    while ( di.getTime() < df.getTime()) {
+      if (epocaBaixa.includes(di.getMonth()+1)) {
+        if( di.getMonth()+1 === 1) {
+          if ( di.getDate() < 15 ) {
+            diasAltos++;
+          } else {
+            diasBaixos++;
+          }
+        } else if (di.getMonth()+1 === 9) {
+          if ( di.getDate() < 30 ) {
+            diasAltos++;
+          } else {
+            diasBaixos++;
+          }
+        } else if (di.getMonth()+1 === 12) {
+          if ( di.getDate() > 15 ) {
+            diasAltos++;
+          } else {
+            diasBaixos++;
+          }
+        } else {
+          diasBaixos++;
+        }
+      } else {
+        diasAltos++;
+      }
+      di.setDate(di.getDate() + 1);
+    }
+    const q = this.getRoom(this.tipo);
+    return diasAltos*q.precoAlto + diasBaixos*q.precoBaixo ;
   }
 
 

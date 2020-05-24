@@ -114,7 +114,7 @@ export class HotelDetailComponent implements OnInit {
     if (di < df && (di >= dat)) {
       this.mostraBotao();
       for (const quarto of this.quartos) {
-        const q = this.reservas.filter(reserva => reserva.quarto === quarto);
+        const q = this.reservas.filter(reserva => reserva.quarto.toString() === quarto._id);
         if (!t.includes(quarto.tipoQuarto)) {
           if (q.length === 0) {
             t.push(quarto.tipoQuarto);
