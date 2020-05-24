@@ -52,7 +52,7 @@ export class RegistarComponent implements OnInit {
         window.alert("Email já existente! Tem que inserir um email diferente!");
         return;
       }
-      if(this.clienteList[i].numero_telefone == numero_telefone){
+      if(numero_telefone.length > 0 && this.clienteList[i].numero_telefone == numero_telefone){
         window.alert("Número de telefone já existente! Tem que inserir um número diferente!");
         return;
       }
