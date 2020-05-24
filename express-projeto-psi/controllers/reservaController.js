@@ -2,8 +2,8 @@ var Reserva = require('../models/reserva')
 var async = require('async')
 var Quarto = require('../models/quarto')
 
-const { check, validationResult } = require('express-validator');
-//const { body, validationResult } = require('express-validator/check');
+//const { check, validationResult } = require('express-validator');
+const { body, validationResult } = require('express-validator/check');
 
 const { sanitizeBody } = require('express-validator/filter');
 
@@ -39,7 +39,8 @@ exports.reserva_create_post = [
      check('anoValidade').isNumeric().trim().escape(),
      check('ccv').isNumeric().trim().escape(),
      */
-    /*  // Validate fields.
+    // Validate fields.
+    /*
     body('nome').isLength({ min: 1 }).trim().withMessage('Cliente nome must be specified.'),
         //.isAlphanumeric().withMessage('Cliente nome has non-alphanumeric characters.'),
     body('email').isLength({ min: 1 }).trim().withMessage('Cliente email must be specified.'),
@@ -54,20 +55,19 @@ exports.reserva_create_post = [
     body('mesValidade').isLength({ min: 1 }).withMessage('Cliente mesValidade must be specified.'),
     body('numeroCartao').isLength({ min: 1 }).withMessage('Cliente numeroCartao must be specified.'),
     body('ccv').isLength({ min: 1 }).withMessage('Cliente ccv must be specified.'),
+*/
+    body('checkin').isISO8601().toDate(),
+    body('checkout').isISO8601().toDate(),
+    body('nome').isLength({ min: 2 }).isAlpha().escape(),
+    body('morada').isLength({ min: 2 }).escape(),
+    body('numero_telefone').trim(),
+    body('email').isEmail().trim().normalizeEmail(),
+    body('nif').isLength({ min: 8 }).isNumeric().trim(),
+    body('numeroCartao').isCreditCard().trim(),
+    body('ccv').isLength({ min: 2}).isLength({ max: 3}).isNumeric().trim(),
+    body('anoValidade').isLength({ min: 2 }).isLength({ max: 4 }).isNumeric().trim(),
+    body('mesValidade').isLength({ min: 1 }).isLength({ max: 2 }).isNumeric().trim(),
 
-    // Sanitize fields.
-    sanitizeBody('quarto').escape(),
-    sanitizeBody('checkin').toDate(),
-    sanitizeBody('checkout').toDate(),
-    sanitizeBody('nome').escape(),
-    sanitizeBody('email').escape(),
-    sanitizeBody('morada').escape(),
-    sanitizeBody('numero_telefone').escape(),
-    sanitizeBody('nif').escape(),
-    sanitizeBody('numeroCartao').escape(),
-    sanitizeBody('ccv').escape(),
-    sanitizeBody('anoValidade').escape(),
-    sanitizeBody('mesValidade').escape(), */
     // Process request after validation and sanitization.
     (req, res, next) => {
 
