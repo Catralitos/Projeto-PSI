@@ -58,7 +58,7 @@ exports.reserva_create_post = [
 */
     body('checkin').isISO8601().toDate(),
     body('checkout').isISO8601().toDate(),
-    body('nome').isLength({ min: 2 }).isAlpha().escape(),
+    body('nome').isLength({ min: 2 }).escape(),
     body('morada').isLength({ min: 2 }).escape(),
     body('numero_telefone').trim(),
     body('email').isEmail().trim().normalizeEmail(),
