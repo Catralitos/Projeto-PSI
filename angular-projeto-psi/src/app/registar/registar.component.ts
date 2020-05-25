@@ -49,9 +49,9 @@ export class RegistarComponent implements OnInit {
     console.log(password.length);
     console.log(email.length);
 
+    // tslint:disable-next-line:prefer-for-of
     for (let i = 0; i < this.clienteList.length; i++) {
-      // tslint:disable-next-line:triple-equals
-      if (this.clienteList[i].email == email) {
+      if (this.clienteList[i].email === email) {
         window.alert('Email já existente! Tem que inserir um email diferente!');
         return;
       }
@@ -70,6 +70,11 @@ export class RegistarComponent implements OnInit {
       return;
     }
 
+    if (!this.validateName(nome)) {
+      window.alert('O nome não pode conter números ou caractéres especiais');
+      return;
+    }
+
     if (numero_telefone) {
       if (!this.validatePhoneNumber(numero_telefone)) {
         window.alert('Tem que inserir um número de telefone no formato correto!');
@@ -77,8 +82,8 @@ export class RegistarComponent implements OnInit {
       }
     }
 
-    if(email){
-      if(!this.validateEmail(email)){
+    if (email) {
+      if (!this.validateEmail(email)) {
         window.alert('Tem que inserir um email no formato correto!');
         return;
       }
@@ -91,8 +96,8 @@ export class RegistarComponent implements OnInit {
       }
     }
 
-    if(password != passwordRepeat){
-      window.alert("Password não combina!");
+    if (password !== passwordRepeat) {
+      window.alert('Password não combina!');
       return;
     }
 
@@ -110,8 +115,14 @@ export class RegistarComponent implements OnInit {
 
   }
 
+
   public getClientes() {
     this.clienteService.getClientes().subscribe(response => this.clienteList = response.cliente_list);
+  }
+
+  public validateName(nome: string) {
+    const regex = /^[a-za-zA-ZçÇ\u00C0-\u017F][a-za-zA-ZçÇ\s\u00C0-\u017F]*$/;
+    return nome.match(regex);
   }
 
   public validatePhoneNumber(telefone: string) {
@@ -124,10 +135,10 @@ export class RegistarComponent implements OnInit {
     return nif.toString().match(regex);
   }
 
-  public validateEmail(mail){
-    console.log("entrou no validate mail");
-    var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-    if(mail.match(mailformat)){
+  public validateEmail(mail) {
+    console.log('entrou no validate mail');
+    const mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    if (mail.match(mailformat)) {
       return mail;
     }
   }

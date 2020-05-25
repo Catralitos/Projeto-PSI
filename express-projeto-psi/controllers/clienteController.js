@@ -92,26 +92,26 @@ exports.cliente_update_get = function (req, res, next) {
 
 exports.cliente_update_post = [
 
-  // Validate fields.
-  body('nome').isLength({ min: 1 }).trim().withMessage('Cliente nome must be specified.'),
-  body('password').isLength({ min: 1 }).trim().withMessage('Cliente password must be specified.'),
-  body('email').isLength({ min: 1 }).trim().withMessage('Cliente email must be specified.'),
-
-  // Sanitize fields.
-  sanitizeBody('nome').escape(),
-  sanitizeBody('password').escape(),
-  sanitizeBody('email').escape(),
-  sanitizeBody('morada').escape(),
-  sanitizeBody('numero_telefone').escape(),
-  sanitizeBody('nif').escape(),
-
+    body('nome').isLength({ min: 2 }).trim().escape(),
+    body('password').isLength({ min: 2 }).trim().escape(),
+    body('email').isEmail().trim().normalizeEmail(),
+    body('morada').isLength({ min: 2 }).trim().escape(),
+    body('numero_telefone').isLength({ min: 13}).isLength({ max: 15 }).trim(),
+    body('nif').isLength({ min: 8}).isLength({ max: 9}).isNumeric().trim(),
+    //sanitize
+    sanitizeBody('nome').escape(),
+    sanitizeBody('password').escape(),
+    sanitizeBody('email').escape(),
+    sanitizeBody('morada').escape(),
+    sanitizeBody('numero_telefone').escape(),
+    sanitizeBody('nif').escape(),
     // Process request after validation and sanitization.
     (req, res, next) => {
-
+  
         // Extract the validation errors from a request.
         const errors = validationResult(req);
-
-
+  
+        // Create cliente object with escaped and trimmed data
         var cliente = new Cliente(
             {
                 nome: req.body.nome,
@@ -122,10 +122,11 @@ exports.cliente_update_post = [
                 nif: req.body.nif,
             }
         );
-
+  
         if (!errors.isEmpty()) {
-            // There are errors. Render the form again with sanitized values and error messages.
+            // There are errors. Render form again with sanitized values/errors messages.
             res.json({cliente: cliente, errors: errors.array() });
+            console.log("Erros: %j", errors.array());
             return;
         }
         else {

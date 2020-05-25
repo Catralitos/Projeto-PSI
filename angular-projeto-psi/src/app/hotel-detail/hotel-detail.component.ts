@@ -105,7 +105,7 @@ export class HotelDetailComponent implements OnInit {
   }
 
   public getRoomTypesByDate(): any {
-    const t: Array<TipoQuarto> = [];
+    const t: TipoQuarto[] = [];
     const di = new Date(this.dataInicial);
     const df = new Date(this.dataFinal);
     const da = new Date();
@@ -115,26 +115,21 @@ export class HotelDetailComponent implements OnInit {
       this.mostraBotao();
       for (const quarto of this.quartos) {
         const q = this.reservas.filter(reserva => reserva.quarto.toString() === quarto._id);
-        if (!t.includes(quarto.tipoQuarto)) {
-          if (q.length === 0) {
-            t.push(quarto.tipoQuarto);
-          } else {
-            for (const reserva of q) {
-              const ri = new Date(reserva.checkin);
-              const rf = new Date(reserva.checkout);
-              //window.alert(df < ri);
-              if ((df < ri)
-                || (di > rf)) {
-               
-                  t.push(quarto.tipoQuarto);
-                //return;
-              }
+        if (q.length === 0 && !t.includes(quarto.tipoQuarto)) {
+          t.push(quarto.tipoQuarto);
+        } else {
+          for (const reserva of q) {
+            const ri = new Date(reserva.checkin);
+            const rf = new Date(reserva.checkout);
+            if ((df < ri)
+              || (di > rf) && !t.includes(quarto.tipoQuarto)) {
+              t.push(quarto.tipoQuarto);
             }
           }
         }
-        
       }
-    }else{
+
+    } else {
       this.botaoR = false;
     }
     return t;

@@ -71,7 +71,8 @@ export class ReservaComponent implements OnInit {
     this.reservaService.addReserva({quarto: this.getRoom(this.tipo), checkin: this.dataInicial,
       checkout: this.dataFinal, nome: this.nome, email: this.email, morada: this.morada,
       numero_telefone: this.telefone.replace(/\s/g, ''), nif: Number(this.nif), numeroCartao: Number(this.numeroCartao),
-      ccv: Number(this.ccv), anoValidade: Number(this.ano), mesValidade: Number(this.mes), preco: this.calculaPreco() }).subscribe(() => window.location.reload());
+      ccv: Number(this.ccv), anoValidade: Number(this.ano), mesValidade: Number(this.mes), preco: this.calculaPreco() }).subscribe(
+        () => window.location.reload());
   }
 
 
@@ -84,12 +85,22 @@ export class ReservaComponent implements OnInit {
       return;
     }
 
+    if (!this.validateName(nome)) {
+      window.alert('Tem que inserir um nome válido');
+      return;
+    }
+
+    if (!this.validateEmail(email)) {
+      window.alert('Tem que inserir um email válido');
+      return;
+    }
+
     if (!this.validatePhoneNumber(telefone)) {
       window.alert('Tem que inserir um número de telefone no formato correto. Exemplo: +351 912345678!');
       return;
     }
 
-    if (!this.validateNif(nif)) {
+    if (!this.validateNif(Number(nif))) {
       window.alert('Tem que inserir um nif no formato correto!');
       return;
     }
@@ -150,24 +161,26 @@ export class ReservaComponent implements OnInit {
     }
 
 
+  public validateName(nome: string) {
+    const regex = /^[a-za-zA-ZçÇ\u00C0-\u017F][a-za-zA-ZçÇ\s\u00C0-\u017F]*$/;
+    return nome.match(regex);
+  }
 
   public validatePhoneNumber(telefone: string) {
     const regex = '^\\+(?:[0-9] ?){6,14}[0-9]$';
-
-    if (telefone.match(regex)) {
-      return true;
-    } else {
-      return false;
-    }
+    return telefone.match(regex) && telefone[4].trim() === '';
   }
 
-  public validateNif(nif: string) {
+  public validateNif(nif: number) {
     const regex =  '^[0-9]{9}$';
+    return nif.toString().match(regex);
+  }
 
-    if (nif.match(regex)) {
-      return true;
-    } else {
-      return false;
+  public validateEmail(mail) {
+    console.log('entrou no validate mail');
+    const mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    if (mail.match(mailformat)) {
+      return mail;
     }
   }
 
@@ -177,7 +190,7 @@ export class ReservaComponent implements OnInit {
     const regexMes =  '0[1-9]|1[0-2]$';
     const regexCcv =  '^[0-9]{3}$';
 
-    if(Number(anoValidade) <20){
+    if(Number(anoValidade) < 20){
       window.alert('Ano inválido');
       return false;
     }
