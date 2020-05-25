@@ -11,12 +11,12 @@ import {Quarto} from './interfaces/Quarto';
 })
 export class ReservaService {
 
-  private reservasUrl = 'http://appserver.alunos.di.fc.ul.pt:3010/catalog/reservas';  // URL to web api
-  private reservaUrl = 'http://appserver.alunos.di.fc.ul.pt:3010/catalog/reserva';  // URL to web api
-  private reservaCreateUrl = 'http://appserver.alunos.di.fc.ul.pt:3010/catalog/reservas/create';
-  // private reservaCreateUrl = 'http://10.101.151.25:3010/catalog/reservas/create';
-  // private reservasUrl = 'http://10.101.151.25:3010/catalog/reservas';
-  // private reservaUrl = 'http://10.101.151.25:3010/catalog/reserva';  // URL to web api
+  //private reservasUrl = 'http://appserver.alunos.di.fc.ul.pt:3010/catalog/reservas';  // URL to web api
+  //private reservaUrl = 'http://appserver.alunos.di.fc.ul.pt:3010/catalog/reserva';  // URL to web api
+  //private reservaCreateUrl = 'http://appserver.alunos.di.fc.ul.pt:3010/catalog/reservas/create';
+   private reservaCreateUrl = 'http://10.101.151.25:3010/catalog/reservas/create';
+   private reservasUrl = 'http://10.101.151.25:3010/catalog/reservas';
+   private reservaUrl = 'http://10.101.151.25:3010/catalog/reserva';  // URL to web api
 
   constructor(
     private http: HttpClient,

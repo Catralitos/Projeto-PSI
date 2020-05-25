@@ -71,7 +71,7 @@ export class RoomsByDateComponent implements OnInit {
     let diasAltos=0;
     let diasBaixos=0;
     let days=0;
-    while ( di.getTime() <= df.getTime()) {
+    while ( di.getTime() < df.getTime()) {
       if (epocaBaixa.includes(di.getMonth()+1)) {
         if( di.getMonth()+1 === 1) {
           if ( di.getDate() < 15 ) {
