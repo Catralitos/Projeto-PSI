@@ -121,8 +121,10 @@ export class HotelDetailComponent implements OnInit {
           for (const reserva of q) {
             const ri = new Date(reserva.checkin);
             const rf = new Date(reserva.checkout);
-            if ((df < ri)
-              || (di > rf) && !t.includes(quarto.tipoQuarto)) {
+            if ( ((ri <= df && ri >= di)
+            || (rf >= di && rf <= df)
+            || (ri >= di && rf <= df))
+              && !t.includes(quarto.tipoQuarto)) {
               t.push(quarto.tipoQuarto);
             }
           }
