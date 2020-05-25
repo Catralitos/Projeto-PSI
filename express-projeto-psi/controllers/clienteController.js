@@ -41,7 +41,7 @@ exports.cliente_create_post = [
   sanitizeBody('numero_telefone').escape(),
   sanitizeBody('nif').escape(),
 */
-  body('nome').isLength({ min: 2 }).trim().isAlpha().escape(),
+  body('nome').isLength({ min: 2 }).trim().escape(),
   body('password').isLength({ min: 2 }).trim().escape(),
   body('email').isEmail().trim().normalizeEmail(),
   body('morada').isLength({ min: 2 }).trim().escape(),
