@@ -75,6 +75,7 @@ exports.cliente_create_post = [
       if (!errors.isEmpty()) {
           // There are errors. Render form again with sanitized values/errors messages.
           res.json({cliente: cliente, errors: errors.array() });
+          console.log("Erros: %j", errors.array());
           return;
       }
       else {
