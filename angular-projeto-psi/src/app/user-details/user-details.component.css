@@ -71,11 +71,14 @@ button:hover {
 /* Modal Content/Box */
 .modal-content {
   background-color: #2b2d42;
-  margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+  /*margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
   border: 1px solid #888;
   width: 80%; /* Could be more or less, depending on screen size */
   font-size: 20px;
   color: white;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 50px;
 }
 
 
@@ -113,4 +116,8 @@ hr {
   .cancelbtn, .signupbtn {
      width: 100%;
   }
+}
+
+ul {
+  list-style: none;
 }

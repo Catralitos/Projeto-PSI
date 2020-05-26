@@ -22,6 +22,13 @@ import {ReservaService} from '../reserva.service';
 })
 export class HotelDetailComponent implements OnInit {
 
+  constructor(private route: ActivatedRoute,
+              private data: DataService,
+              private hotelService: HotelService,
+              private quartoService: QuartoService,
+              private location: Location,
+              private reservaService: ReservaService) { }
+
   @Input() hotel: Hotel;
   @Input() quartos: Quarto[];
   @Input() servicos: string[];
@@ -37,16 +44,10 @@ export class HotelDetailComponent implements OnInit {
   tipo: string;
   esconderDatas: boolean;
 
-  constructor(private route: ActivatedRoute,
-              private data: DataService,
-              private hotelService: HotelService,
-              private quartoService: QuartoService,
-              private location: Location,
-              private reservaService: ReservaService) { }
 
   ngOnInit(): void {
     this.getHotel();
-    this.getReservasDoHotel();
+    //this.getReservasDoHotel();
     this.show = false;
     this.botaoR = false;
     this.esconderDatas = true;
@@ -58,9 +59,11 @@ export class HotelDetailComponent implements OnInit {
       this.hotelService
         .getHotel(this.id)
         .subscribe(
-          (response) => (
-            (this.hotel = response.hotel), (this.quartos = response.hotel_rooms)
-          )
+          (response) => {
+            this.hotel = response.hotel;
+            this.quartos = response.hotel_rooms;
+            this.reservaService.getReservas().subscribe(response => this.reservas = response.reservas_list);
+          }
         );
     });
   }
@@ -105,36 +108,47 @@ export class HotelDetailComponent implements OnInit {
   }
 
   public getRoomTypesByDate(): any {
+    //console.log('Entrou no roomTypesByDate');
     const t: TipoQuarto[] = [];
     const di = new Date(this.dataInicial);
     const df = new Date(this.dataFinal);
     const da = new Date();
     const dat = new Date(da.getTime() - (1000 * 60 * 60 * da.getHours()));
 
+    //console.log(dat);
     if (di < df && (di >= dat)) {
       this.mostraBotao();
+      //console.log('Vai mostrar os quartos');
       for (const quarto of this.quartos) {
-        const q = this.reservas.filter(reserva => reserva.quarto.toString() === quarto._id);
+        const q = this.reservas.filter(reserva => reserva.quarto.toString()  === quarto._id);
+        //console.log('Reservas para o tipo de quarto ' + quarto + ':' + q);
         if (q.length === 0 && !t.includes(quarto.tipoQuarto)) {
+          //console.log('Deu push');
+          console.log('O tipo de quarto ' + quarto.tipoQuarto + ' deu push no primeiro');
           t.push(quarto.tipoQuarto);
         } else {
-          for (const reserva of q) {
-            const ri = new Date(reserva.checkin);
-            const rf = new Date(reserva.checkout);
-            if ( ((ri <= df && ri >= di)
-            || (rf >= di && rf <= df)
-            || (ri >= di && rf <= df))
-              && !t.includes(quarto.tipoQuarto)) {
-              t.push(quarto.tipoQuarto);
-            }
+          if ( !this.checkOverlap(q, di, df) && !t.includes(quarto.tipoQuarto)) {
+            console.log('O tipo de quarto ' + quarto.tipoQuarto + ' deu push no segundo');
+            t.push(quarto.tipoQuarto);
           }
         }
       }
-
     } else {
       this.botaoR = false;
     }
     return t;
+  }
+
+  private checkOverlap(quarto: Reserva[], di: Date, df: Date): boolean {
+    let overlap = false;
+    for (const reserva of quarto) {
+      const ri = new Date(reserva.checkin);
+      const rf = new Date(reserva.checkout);
+      if ( ((di <= rf) && (df >= ri))) {
+        overlap = true;
+      }
+    }
+    return overlap;
   }
 
   public mostraBotao(): void {
@@ -142,7 +156,7 @@ export class HotelDetailComponent implements OnInit {
   }
 
   public mostraReserva(): void {
-    if (this.myStorage.length === 0){
+    if (this.myStorage.length === 0) {
       window.alert('Tem de fazer login ou registar-se primeiro');
     } else {
       if(this.tipo) {
