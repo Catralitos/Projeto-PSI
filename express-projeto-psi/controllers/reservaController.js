@@ -29,13 +29,14 @@ exports.reserva_create_post = [
     body('checkout').isISO8601().toDate(),
     body('nome').isLength({ min: 2 }).escape(),
     body('morada').isLength({ min: 2 }).escape(),
-    body('numero_telefone').trim(),
+    body('numero_telefone').isLength({ min: 13}).isLength({ max: 14 }).trim(),
     body('email').isEmail().trim().normalizeEmail(),
-    body('nif').isLength({ min: 8 }).isNumeric().trim(),
-    body('numeroCartao').isLength({min:15}).isLength({max:16}).trim(),
-    body('ccv').isLength({ min: 2}).isLength({ max: 3}).isNumeric().trim(),
+    body('numeroCartao').isLength({min:16}).isLength({max:16}).trim(),
+    body('ccv').isLength({ min: 3}).isLength({ max: 3}).isNumeric().trim(),
     body('anoValidade').isLength({ min: 2 }).isLength({ max: 4 }).isNumeric().trim(),
-    body('mesValidade').isLength({ min: 1 }).isLength({ max: 2 }).isNumeric().trim(),
+    body('mesValidade').isLength({ min: 2 }).isLength({ max: 2 }).isNumeric().trim(),
+    body('nif').isLength({ min: 9}).isLength({ max: 9}).isNumeric().trim(),
+    body('preco').isNumeric().trim(),
 
     // Process request after validation and sanitization.
     (req, res, next) => {
@@ -58,6 +59,7 @@ exports.reserva_create_post = [
                 ccv: req.body.ccv,
                 anoValidade: req.body.anoValidade,
                 mesValidade: req.body.mesValidade,
+                preco: req.body.preco
             }
         );
 
