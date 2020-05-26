@@ -23,39 +23,43 @@
     </div>
   </form>
 
-<div *ngIf="reservas">
-  <h3>As minhas reservas: </h3>
-  <ul class="rooms">
-    <li *ngFor="let r of getMyRes() ">
-      <div *ngIf="r && r !== null && r !== undefined">
-        <app-reserva-detail [idQuarto]="r.quarto.toString()"
-                            [dataI]="r.checkin" [dataF]="r.checkout" [preco]="r.preco"></app-reserva-detail>
+<form class="modal-content" action="/action_page.php">
+  <div class="container">
+    <div *ngIf="reservas">
+      <h3>As minhas reservas: </h3>
+      <ul class="rooms">
+        <li *ngFor="let r of getMyRes() ">
+          <div *ngIf="r && r !== null && r !== undefined">
+            <app-reserva-detail [idQuarto]="r.quarto.toString()"
+                                [dataI]="r.checkin" [dataF]="r.checkout" [preco]="r.preco"></app-reserva-detail>
+          </div>
+        </li>
+      </ul>
+
+
+      <div id="precos">
+        <h3>Preço:</h3>
+        <label >De:
+          <input type="number" [(ngModel)]="precoMinimo" placeholder=""/>
+        </label>
       </div>
-    </li>
-  </ul>
 
+      <label >De:
+        <input type="Date" [(ngModel)]="dataInicial" placeholder="0"/>
+        Até
+        <input  type="Date" [(ngModel)]="dataFinal" placeholder="0" />
+      </label>
+      <br>
 
-  <div id="precos">
-    <h3>Preço:</h3>
-    <label >De:
-      <input type="number" [(ngModel)]="precoMinimo" placeholder=""/>
-    </label>
+      <h3  >Reservas: </h3>
+      <ul class="rooms">
+        <li *ngFor="let r of getResByDatePrice() ">
+          <div *ngIf="r && r !== null && r !== undefined">
+            <app-reserva-detail [idQuarto]="r.quarto.toString()"
+                                [dataI]="r.checkin" [dataF]="r.checkout" [preco]="r.preco"></app-reserva-detail>
+          </div>
+        </li>
+      </ul>
+    </div>
   </div>
-
-  <label >De:
-    <input type="Date" [(ngModel)]="dataInicial" placeholder="0"/>
-    Até
-    <input  type="Date" [(ngModel)]="dataFinal" placeholder="0" />
-  </label>
-  <br>
-
-  <h3  >Reservas: </h3>
-  <ul class="rooms">
-    <li *ngFor="let r of getResByDatePrice() ">
-      <div *ngIf="r && r !== null && r !== undefined">
-        <app-reserva-detail [idQuarto]="r.quarto.toString()"
-                            [dataI]="r.checkin" [dataF]="r.checkout" [preco]="r.preco"></app-reserva-detail>
-      </div>
-    </li>
-  </ul>
-</div>
+</form>
