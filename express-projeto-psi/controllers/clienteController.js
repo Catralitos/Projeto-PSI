@@ -29,14 +29,15 @@ exports.cliente_create_get = function (req, res, next) {
 exports.cliente_create_post = [
   body('nome').isLength({ min: 2 }).trim().escape(),
   body('password').isLength({ min: 2 }).trim().escape(),
-  body('email').isEmail().trim().normalizeEmail(),
+  //body('email').isEmail().trim().normalizeEmail(),
+  body('email').isLength({min: 6}).trim().escape(),
   body('morada').isLength({ min: 2 }).trim().escape(),
   body('numero_telefone').isLength({ min: 13}).isLength({ max: 14 }).trim(),
   body('nif').isLength({ min: 9}).isLength({ max: 9}).isNumeric().trim(),
   //sanitize
   sanitizeBody('nome').escape(),
   sanitizeBody('password').escape(),
-  //sanitizeBody('email').escape(),
+  sanitizeBody('email').escape(),
   sanitizeBody('morada').escape(),
   sanitizeBody('numero_telefone').escape(),
   sanitizeBody('nif').escape(),
