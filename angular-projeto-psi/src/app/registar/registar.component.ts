@@ -137,10 +137,11 @@ export class RegistarComponent implements OnInit {
 
   public validateEmail(mail) {
     console.log('entrou no validate mail');
-    const domain = mail.split('@').substring(0, 5);
-    let mailformat = /^[A-Za-z0-9._%-]+@[A-Za-z0-9._%-]+\\.[a-z]{2,3}/;
+    const domain = mail.split('@')[1].substring(0, 5);
+    let mailformat = '^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$';
     if (domain === 'gmail') {
-      mailformat = /^[A-Za-z0-9.]+@[A-Za-z0-9._%-]+\\.[a-z]{2,3}/;
+      console.log('Entrou no domain é gmail');
+      mailformat = '^[a-z0-9.]+@[a-z0-9.-]+\.[a-z]{2,4}$';
     }
     return mail.match(mailformat);
   }
