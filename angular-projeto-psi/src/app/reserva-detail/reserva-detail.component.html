@@ -1,9 +1,5 @@
-<p>{{quarto.hotel}}</p>
-<p>{{quarto._id}}</p>
-<p>hotel:</p>
-<p>{{hotelId}}</p>
-<p>{{quarto.tipoQuarto}}</p>
-<p>{{dataI}}</p>
-<p>{{dataF}}</p>
-<p>{{preco}}</p>
-
+<p *ngIf="hotelId">Hotel: {{hotelId}}</p>
+<p *ngIf="quarto">Tipo de Quarto: {{quarto.tipoQuarto}}</p>
+<p *ngIf="quarto">Data de Check-in: {{dataI | date: 'dd-MM-yyyy'}}</p>
+<p *ngIf="quarto">Data de Check-out: {{dataF | date: 'dd-MM-yyyy'}}</p>
+<p *ngIf="preco">Preço: {{preco}}</p>
