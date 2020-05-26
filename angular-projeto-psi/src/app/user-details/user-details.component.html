@@ -21,7 +21,7 @@
     <br>
   </div>
 </form>
-<div *ngIf="reservas && reservas.length > 0">
+<div *ngIf="reservas">
   <h3>As minhas reservas: </h3>
   <ul class="rooms">
     <li *ngFor="let r of getMyRes() ">
