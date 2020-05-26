@@ -70,8 +70,12 @@ export class RegistarComponent implements OnInit {
       return;
     }
 
+    if (morada.length < 3) {
+      window.alert('Tem que inserir a morada completa');
+    }
+
     if (!this.validateName(nome)) {
-      window.alert('O nome não pode conter números ou caractéres especiais');
+      window.alert('Tem que inserir nome e apelido. Não pode conter números ou caractéres especiais');
       return;
     }
 
@@ -122,7 +126,7 @@ export class RegistarComponent implements OnInit {
 
   public validateName(nome: string) {
     const regex = /^[a-za-zA-ZçÇ\u00C0-\u017F][a-za-zA-ZçÇ\s\u00C0-\u017F]*$/;
-    return nome.match(regex);
+    return nome.match(regex) && nome.length > 2;
   }
 
   public validatePhoneNumber(telefone: string) {

@@ -31,8 +31,8 @@ exports.cliente_create_post = [
   body('password').isLength({ min: 2 }).trim().escape(),
   body('email').isEmail().trim().normalizeEmail(),
   body('morada').isLength({ min: 2 }).trim().escape(),
-  body('numero_telefone').isLength({ min: 13}).isLength({ max: 15 }).trim(),
-  body('nif').isLength({ min: 8}).isLength({ max: 9}).isNumeric().trim(),
+  body('numero_telefone').isLength({ min: 13}).isLength({ max: 14 }).trim(),
+  body('nif').isLength({ min: 9}).isLength({ max: 9}).isNumeric().trim(),
   //sanitize
   sanitizeBody('nome').escape(),
   sanitizeBody('password').escape(),
