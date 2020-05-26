@@ -36,7 +36,7 @@ exports.cliente_create_post = [
   //sanitize
   sanitizeBody('nome').escape(),
   sanitizeBody('password').escape(),
-  sanitizeBody('email').escape(),
+  //sanitizeBody('email').escape(),
   sanitizeBody('morada').escape(),
   sanitizeBody('numero_telefone').escape(),
   sanitizeBody('nif').escape(),
