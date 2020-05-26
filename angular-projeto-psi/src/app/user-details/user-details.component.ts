@@ -77,51 +77,22 @@ export class UserDetailsComponent implements OnInit {
     let v: Array<Reserva> = [];
     const di = new Date(this.dataInicial);
     const df = new Date(this.dataFinal);
-    /*if ( (this.precoMinimo>=0 )  && (this.dataInicial <=new Date("01-01-1112")) && (this.dataFinal <=new Date("01-01-1112"))) {
+    if ( (this.precoMinimo>0 )  && (di <new Date("01-02-1111")) && (df <new Date("01-02-1111"))) {
       for (const reserva of this.getMyRes()) {
+        //window.alert(reserva.preco);
         if (this.precoMinimo <= reserva.preco) {
           v.push(reserva);
         }
       }
-    }/*else if ( (this.precoMinimo==0 && this.precoMaximo==0) && (this.dataInicial!=new Date("01-01-1111")) && (this.dataFinal!=new Date("01-01-1111"))
-      && di < df ) {
-      for (const reserva of this.getMyRes()) {
-        const ri = new Date(reserva.checkin);
-        const rf = new Date(reserva.checkout);
-        if (!v.includes(reserva) && ( (ri <= di) && (di <= rf))) {
-          v.push(reserva);
-        }
-      }
-    } else if((this.precoMinimo>=0 && this.precoMaximo>0) &&(this.precoMinimo < this.precoMaximo)
-        && (this.dataInicial) && (this.dataFinal) && di < df ){
+    }
+    if((this.precoMinimo>=0 ) && (di>new Date("01-01-1111")) && (df>new Date("01-01-1111"))
+    && di <= df ){
           for (const reserva of this.getMyRes()) {
             const ri = new Date(reserva.checkin);
-        const rf = new Date(reserva.checkout);
-            if (!v.includes(reserva) && ( ((this.precoMinimo <= reserva.preco) 
-            && (reserva.preco <= this.precoMaximo) && ( (ri <= di) && (di <= rf))))) {
-              v.push(reserva);
-            }
-          }
-    } 
-    if ( (this.precoMinimo==0 ) && (this.dataInicial!=new Date("01-01-1111")) && (this.dataFinal!=new Date("01-01-1111"))
-      && di < df ) {
-      for (const reserva of this.getMyRes()) {
-       
-        const ri = new Date(reserva.checkin);
-        //window.alert(ri);
-        if (  (ri >= di) && (ri <= df)) {
-          v.push(reserva);
-          //window.alert(reserva);
-        }
-      }
-    }*/
-    if((this.precoMinimo>=0 ) && (this.dataInicial>=new Date("01-01-1111")) && (this.dataFinal>=new Date("01-01-1111"))
-    && di < df ){
-          for (const reserva of this.getMyRes()) {
-            const ri = new Date(reserva.checkin);
-        const rf = new Date(reserva.checkout);
-            if ((this.precoMinimo>=0 && this.precoMinimo <= reserva.preco)  && (this.dataInicial!=new Date("01-01-1111")) && (this.dataFinal!=new Date("01-01-1111"))
-            && di < df) {
+            const rf = new Date(reserva.checkout);
+        //window.alert("ola");
+            if ((this.precoMinimo>=0 && this.precoMinimo <= reserva.preco) &&
+            ri>=di && ri<=df && di <= df) {
               
               v.push(reserva);
             }
