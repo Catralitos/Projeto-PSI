@@ -42,8 +42,11 @@ export class RoomsByDateComponent implements OnInit {
   public getHotel(): void {
     const id = this.route.snapshot.url[0].path;
     this.hotelService.getHotel(id)
-      .subscribe(response => (this.hotel = response.hotel,
-        this.quartos = response.hotel_rooms));
+      .subscribe(response => {
+          this.hotel = response.hotel;
+          this.quartos = response.hotel_rooms;
+        }
+      );
   }
 
   public getNumRoom(type): any {
@@ -58,9 +61,7 @@ export class RoomsByDateComponent implements OnInit {
   }
 
   public getRoom(type): any {
-    const q = this.quartos.filter(function(quarto) {
-      return quarto.tipoQuarto === type;
-    });
+    const q = this.quartos.filter(quarto => quarto.tipoQuarto === type);
     return q[0];
   }
 
