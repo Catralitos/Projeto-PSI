@@ -85,7 +85,7 @@ export class ReservaComponent implements OnInit {
       return;
     }
 
-    if (morada.length < 3){
+    if (morada.length < 3) {
       window.alert('Insira uma morada válida!');
       return;
     }
