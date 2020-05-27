@@ -25,10 +25,11 @@
 
 <div class="modal-content" >
   <div class="container">
-    <div *ngIf="reservas">
-      <h3>As minhas reservas: </h3>
+    <div *ngIf="reservas" id="reservas">
+      <h1>As minhas reservas: </h1>
       <ul class="rooms">
         <li *ngFor="let r of getMyRes() ">
+          <b id="reserva">Reserva {{r._id}}</b>:
           <div *ngIf="r && r !== null && r !== undefined">
             <app-reserva-detail [idQuarto]="r.quarto.toString()"
                                 [dataI]="r.checkin" [dataF]="r.checkout" [preco]="r.preco"></app-reserva-detail>
@@ -40,7 +41,7 @@
       <div id="precos">
         <h3>Preço:</h3>
         <label >De:
-          <input type="number" [(ngModel)]="precoMinimo" placeholder=""/>
+          <input id="preco" type="number" [(ngModel)]="precoMinimo" placeholder=""/>
         </label>
       </div>
 

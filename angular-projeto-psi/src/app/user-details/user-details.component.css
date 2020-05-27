@@ -121,3 +121,16 @@ hr {
 ul {
   list-style: none;
 }
+
+#reservas {
+  text-align: center;
+  font-size: 25px;
+}
+
+#preco {
+  width: 60%;
+}
+
+#reserva {
+  margin-top: 30px;
+}
