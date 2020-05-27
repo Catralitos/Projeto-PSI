@@ -51,7 +51,7 @@
 </div>
 
 
-<div *ngIf="confirmacao" style="text-align:center;">
+<div *ngIf="confirmacao">
   <form class="modal-content" action="/action_page.php">
     <div class="container">
       <!--<label >Nome:
@@ -78,15 +78,15 @@
       <label>CCV:
         <input type="number" #ccv value="{{ccv}}"/><br>
       </label><br>!-->
-  <div style="font-size: 25px;">
-  <h4>Nome: {{nome}}</h4>
-  <h4>Morada: {{morada}}</h4>
-  <h4>Telefone: {{telefone}}</h4>
-  <h4>Email: {{email}}</h4>
-  <h4>Nif: {{nif}}</h4>
-  <h4>Numero de cartao: {{numeroCartao}}</h4>
-  <h4>Validade do cartão: {{ano}}/{{mes}}</h4>
-  <h4>ccv: {{ccv}}</h4>
+  <div style="font-size: 20px;">
+  Nome:<input type="text" value="{{nome}}"><br>
+  Morada:<input type="text" value="{{morada}}"><br>
+  Telefone:<input type="text" value="{{telefone}}"><br>
+  Email:<input type="text" value="{{email}}"><br>
+  Nif:<input type="number" value="{{nif}}"><br>
+  Numero Cartão:<input type="number" value="{{numeroCartao}}"><br>
+  Validade do Cartão:<input type="text" value="{{ano}}/{{mes}}"> <br>
+  CCV:<input type="number" value="{{ccv}}"><br>
 </div>
 <br>
 <button  (click)="voltar()" class="button">Alterar Dados</button>
